@@ -1,0 +1,69 @@
+package tech.miam.coursesuui.template.mealPlanner.form
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.miam.kmm_miam_sdk.android.theme.Typography
+
+@Composable
+fun CoursesUCurrency(text: String) {
+    Box(contentAlignment = Alignment.Center) {
+        Text(
+            modifier = Modifier
+                .width(48.dp)
+                .wrapContentHeight(),
+            text = text,
+            textAlign = TextAlign.Center,
+            style = Typography.subtitleBold
+        )
+    }
+}
+
+@Composable
+fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
+    var text by remember { mutableStateOf(budgetAmount.toString()) }
+    val focusManager = LocalFocusManager.current
+
+    BasicTextField(
+        value = text,
+        onValueChange = { newValue: String ->
+            if (newValue.length <= 5 && newValue.matches(Regex("[0-9]*"))) {
+                text = newValue
+                onBudgetChanged(newValue.toIntOrNull() ?: 0)
+            }
+        },
+        modifier = Modifier
+            .defaultMinSize(minHeight = 40.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(Alignment.CenterVertically)
+            .padding(end = 30.dp),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.clearFocus()
+                onBudgetChanged(text.toIntOrNull() ?: 0)
+            }
+        ),
+        singleLine = true,
+        textStyle = Typography.subtitleBold.copy(textAlign = TextAlign.End)
+    )
+}

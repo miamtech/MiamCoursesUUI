@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color
+        name="miam_courses_u_primary"
+        >#007D8F</color>
+    <color
+        name="miam_courses_u_primary_light"
+        >#66B1BC</color>
+    <color
+        name="miam_courses_u_success"
+        >#D4F8DD</color>
+    <color
+        name="miam_courses_u_alert"
+        >#FAEAEA</color>
+    <color
+        name="miam_courses_u_text_alert"
+        >#EC0000</color>
+    <color
+        name="miam_courses_u_background_blue"
+        >#BFDDE8</color>
+    <color
+        name="miam_courses_u_background_gray_light"
+        >#F5F4F2</color>
+    <color
+        name="miam_courses_u_background_gray"
+        >#DDDDDD</color>
+    <color
+        name="miam_courses_u_text_gray"
+        >#575756</color>
+
+</resources>

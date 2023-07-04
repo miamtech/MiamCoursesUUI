@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#037E92</color>
+    <color name="secondary">#209B8F</color>
+
+    <color name="background_primary">#ffffff</color>
+    <color name="background_secondary">#eff2f5</color>
+    <color name="background_tertiary">#edecf2</color>
+
+    <color name="foreground_primary">#000000</color>
+    <color name="foreground_secondary">#6e7678</color>
+    <color name="foreground_tertiary">#C0C0C4</color>
+    <color name="foreground_primary_inverse">#ffffff</color>
+
+    <color name="unfilled">@color/foreground_secondary</color>
+
+    <color name="selected">@color/primary</color>
+    <color name="unselected">@color/foreground_secondary</color>
+
+    <color name="stroke">#DBDAE3</color> <!-- #bcbbc2 -->
+    <color name="ripple">#e0e3e4</color>
+
+    <color name="success">#289F62</color>
+    <color name="error">#FF5F5C</color>
+    <color name="warning">#EFA609</color>
+
+    <color name="badge">#FF5F5C</color>
+    <color name="semi_transparent">#80000000</color>
+    <color name="status_bar">#006E80</color>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BadgeView">
+        <attr name="badge_bgColor" format="reference|color" />
+        <attr name="badge_checkable" format="boolean" />
+        <attr name="badge_checked" format="boolean" />
+        <attr name="badge_clickAnimation" format="boolean" />
+        <attr name="badge_radius" format="reference|dimension" />
+        <attr name="badge_strokeColor" format="reference|color" />
+        <attr name="badge_strokeWidth" format="reference|dimension" />
+        <attr name="badge_text" format="reference|string" />
+        <attr name="badge_textAppearance" format="reference" />
+    </declare-styleable>
+</resources>

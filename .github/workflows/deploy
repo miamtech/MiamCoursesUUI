@@ -1,0 +1,79 @@
+name: Android Deploy SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: ''
+        required: true
+        type: string
+jobs:
+  #  check-sdk:
+  #    runs-on: ubuntu-latest
+  #    timeout-minutes: 210
+  #    steps:
+  #      - uses: actions/checkout@v3
+  #      - name: Set up JDK
+  #        uses: actions/setup-java@v3
+  #        with:
+  #         java-version: '11'
+  #        distribution: 'adopt'
+  #   - name: Setup Gradle
+  #    uses: gradle/gradle-build-action@v2
+  # - name: Run build with Gradle Wrapper
+  #  run: ./gradlew check
+  create_staging_repository:
+    runs-on: ubuntu-latest
+    name: Create staging repository
+    outputs:
+      repository-id: ${{ steps.create.outputs.repository-id }}
+    steps:
+      - id: create
+        uses: nexus-actions/create-nexus-staging-repo@v1.2
+        with:
+          username: ${{ secrets.OSSRH_USERNAME_ANDROID }}
+          password: ${{ secrets.OSSRH_PASSWORD_ANDROID }}
+          staging_profile_id: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
+          base_url: https://s01.oss.sonatype.org/service/local/
+          description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
+  build_and_sign:
+    runs-on: self-hosted
+    needs: create_staging_repository
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure JDK
+        uses: actions/setup-java@v1
+        with:
+         java-version: 11
+      - name: Coco
+        run: 'echo "${{ needs.create_staging_repository.outputs.repository_id }}"'
+      - name: Publish
+        run: |
+          ./gradlew publishAllPublicationsToOss
+        env:
+          SONATYPE_REPOSITORY_ID: ${{ needs.create_staging_repository.outputs.repository_id }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_ANDROID }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD_ANDROID }}
+          SIGNING_KEY: ${{ secrets.GPG_KEY }}
+          SIGNING_PASSWORD  s: ${{ secrets.GPG_KEY_PASS_PHRASE }}
+  release:
+    runs-on: ubuntu-latest
+    needs: [create_staging_repository, build_and_sign]
+    if: ${{ always() && needs.create_staging_repository.result == 'success' }}
+    steps:
+      - name: Discard
+        if: ${{ needs.build_and_sign.result != 'success' }}
+        uses: nexus-actions/drop-nexus-staging-repo@fe83783967a063540320ace3c8942608246705a1 #v1
+        with:
+          username: ${{ secrets.OSSRH_USERNAME_ANDROID }}
+          password: ${{ secrets.OSSRH_PASSWORD_ANDROID }}
+          staging_repository_id: ${{ needs.create_staging_repository.outputs.repository_id }}
+      - name: Release
+        if: ${{ needs.build_and_sign.result == 'success'}}
+        uses: nexus-actions/release-nexus-staging-repo@36161f25ef98cc3821eabb11ab742d2e9d479e52 #v1.2
+        with:
+          base_url: https://s01.oss.sonatype.org/service/local/
+          username: ${{ secrets.OSSRH_USERNAME_ANDROID }}
+          password: ${{ secrets.OSSRH_PASSWORD_ANDROID }}
+          staging_repository_id: ${{ needs.create_staging_repository.outputs.repository_id }}

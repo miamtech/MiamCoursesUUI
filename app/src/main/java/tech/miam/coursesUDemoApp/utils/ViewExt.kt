@@ -1,5 +1,6 @@
 package tech.miam.coursesUDemoApp.utils
 
+import android.R
 import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator

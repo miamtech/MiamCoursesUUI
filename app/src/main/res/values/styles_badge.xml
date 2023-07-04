@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Badge">
+        <item name="badge_bgColor">@color/background_tertiary</item>
+        <item name="badge_radius">@dimen/radius_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="badge_textAppearance">@style/Typography.Badge</item>
+    </style>
+
+    <style name="Badge.BottomNavigationView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">14dp</item>
+        <item name="android:minHeight">14dp</item>
+        <item name="android:layout_gravity">top|center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="badge_bgColor">@color/secondary</item>
+        <item name="badge_textAppearance">@style/TextAppearance.Badge.BottomNavigationView</item>
+        <item name="android:paddingStart">@dimen/spacing_tiny</item>
+        <item name="android:paddingEnd">@dimen/spacing_tiny</item>
+    </style>
+
+    <style name="TextAppearance.Badge.BottomNavigationView" parent="Typography.Body3">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/foreground_primary_inverse</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
+    </style>
+
+    <style name="TextAppearance.Badge.Regular" parent="Typography.Body3">
+    </style>
+
+</resources>

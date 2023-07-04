@@ -1,46 +1,56 @@
 package tech.miam.coursesUDemoApp
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import tech.miam.coursesUDemoApp.ui.theme.MiamCoursesUUITheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import tech.miam.coursesUDemoApp.features.miam.MiamSdkHelper
+import org.koin.android.ext.android.inject
+import tech.miam.coursesUDemoApp.basket.BasketLocalDataSource
+import tech.miam.coursesUDemoApp.utils.BadgeManager
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private val viewModel by viewModel<MainViewModel>()
+    private val basketLocalDataSource by inject<BasketLocalDataSource>()
+    private lateinit var badgeManager: BadgeManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MiamCoursesUUITheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+        setContentView(R.layout.activity_main)
+
+        viewModel.getUserUseCase.setUserId("user_test_u")
+
+        viewModel.getUserUseCase.getCurrentUserId()?.let {
+            MiamSdkHelper.initialize(
+                context = this,
+                supplierId = MiamSdkHelper.SUPPLIER_ID,
+                supplierOrigin = MiamSdkHelper.SUPPLIER_ORIGIN,
+                storeId = viewModel.storeUseCase.getCurrentStore()?.id,
+                userId = it,
+                basket = basketLocalDataSource.getProducts()
+            )
+
+            /*
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    MiamSdkHelper.basketMiamRecipeCountFlow.collectLatest { recipeCount ->
+                        if (recipeCount > 0) {
+                            badgeManager.showBadge(
+                                R.id.menu_meals,
+                                recipeCount.toString(),
+                                R.color.badge
+                            )
+                        } else {
+                            badgeManager.removeBadge(R.id.menu_meals)
+                        }
+                    }
                 }
-            }
+            }*/
+
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MiamCoursesUUITheme {
-        Greeting("Android")
     }
 }

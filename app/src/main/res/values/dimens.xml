@@ -1,0 +1,61 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- buttons -->
+    <dimen name="button_height">56dp</dimen>
+
+    <!-- cells -->
+    <dimen name="cell_min_height">52dp</dimen>
+
+    <dimen name="container_height">220dp</dimen>
+
+    <!-- elevations -->
+    <dimen name="elevation_tiny">1dp</dimen> <!-- cards in list -->
+    <dimen name="elevation_small">4dp</dimen> <!-- top bar -->
+    <dimen name="elevation_medium">8dp</dimen> <!-- cards -->
+    <dimen name="elevation_high">16dp</dimen> <!-- bottom sheets and containers -->
+
+    <!-- font sizes -->
+    <dimen name="font_size_primary">16sp</dimen>
+    <dimen name="font_size_secondary">14sp</dimen>
+    <dimen name="font_size_tertiary">28sp</dimen>
+    <dimen name="font_size_quaternary">18sp</dimen>
+
+    <!-- icons -->
+    <dimen name="icon_small">16dp</dimen>
+    <dimen name="icon_regular">24dp</dimen>
+    <dimen name="icon_medium">36dp</dimen>
+    <dimen name="icon_large">56dp</dimen>
+    <dimen name="icon_huge">100dp</dimen>
+
+    <!-- indicator for tab layout, progress bar, seek bar -->
+    <dimen name="indicator_height">3dp</dimen>
+
+    <!-- bottom & top menu view -->
+    <dimen name="menu_view_height">56dp</dimen>
+
+    <!-- radius -->
+    <dimen name="radius_tiny">4dp</dimen>
+    <dimen name="radius_small">6dp</dimen>
+    <dimen name="radius_regular">10dp</dimen>
+    <dimen name="radius_large">48dp</dimen>
+    <dimen name="radius_huge">300dp</dimen>
+
+    <!-- spacing -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_regular">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_huge">48dp</dimen>
+
+    <!-- stroke (dividers) -->
+    <dimen name="stroke_tiny">0.5dp</dimen>
+    <dimen name="stroke_small">1dp</dimen>
+    <dimen name="stroke_regular">2dp</dimen>
+    <dimen name="stroke_large">4dp</dimen>
+
+    <!-- toolbar -->
+    <dimen name="toolbar_custom_text_margin_left">56dp</dimen>
+    <dimen name="toolbar_custom_text_margin_right">48dp</dimen>
+    <dimen name="toolbar_custom_text_min_height">48dp</dimen> <!-- ?attr/actionBarSize -->
+</resources>

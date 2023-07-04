@@ -23,7 +23,7 @@ jobs:
           base_url: https://s01.oss.sonatype.org/service/local/
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
   build_and_sign:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: create_staging_repository
     steps:
       - name: Checkout

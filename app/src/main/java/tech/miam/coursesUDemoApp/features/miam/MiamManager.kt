@@ -20,6 +20,7 @@ import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.basket.BasketEvent
 import tech.miam.coursesUDemoApp.data.models.Product
 import tech.miam.coursesUDemoApp.features.products.ProductsRepository
+import tech.miam.coursesUDemoApp.miam.template.MiamTemplateManager
 import timber.log.Timber
 
 object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent {
@@ -59,6 +60,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         userId: String? = null,
         storeId: String? = null
     ) = apply {
+        MiamTemplateManager()
         if (isInitialized) return@apply
         applicationContext = context.applicationContext
         isInitialized = true

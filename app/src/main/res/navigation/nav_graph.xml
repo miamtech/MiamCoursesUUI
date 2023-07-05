@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/callToActionFragment"
-        android:name="tech.miam.coursesUDemoApp.miam.views.CallToActionFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.CallToActionFragment"
         android:label="CallToActionFragment" >
         <action
             android:id="@+id/action_callToActionFragment_to_mealPlannerFormFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealPlannerFormFragment"
-        android:name="tech.miam.coursesUDemoApp.miam.views.MealPlannerFormFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MealPlannerFormFragment"
         android:label="MealPlannerFormFragment" >
         <action
             android:id="@+id/action_mealPlannerFormFragment_to_mealPlannerMealsFragment"
@@ -22,6 +22,33 @@
     </fragment>
     <fragment
         android:id="@+id/mealPlannerMealsFragment"
-        android:name="tech.miam.coursesUDemoApp.miam.views.MealPlannerMealsFragment"
-        android:label="MealPlannerMealsFragment" />
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MealPlannerMealsFragment"
+        android:label="MealPlannerMealsFragment" >
+        <action
+            android:id="@+id/action_mealPlannerMealsFragment_to_mealPlannerSearchFragment"
+            app:destination="@id/mealPlannerSearchFragment" />
+        <action
+            android:id="@+id/action_mealPlannerMealsFragment_to_mealPlannerBasketPreview"
+            app:destination="@id/mealPlannerBasketPreview" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealPlannerSearchFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MealPlannerSearchFragment"
+        android:label="MealPlannerSearchFragment" >
+        <action
+            android:id="@+id/action_mealPlannerSearchFragment_to_mealPlannerMealsFragment"
+            app:destination="@id/mealPlannerMealsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealPlannerRecapFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MealPlannerRecapFragment"
+        android:label="MealPlannerRecapFragment" />
+    <fragment
+        android:id="@+id/mealPlannerBasketPreview"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MealPlannerBasketPreviewFragment"
+        android:label="MealPlannerBasketPreview" >
+        <action
+            android:id="@+id/action_mealPlannerBasketPreview_to_mealPlannerRecapFragment"
+            app:destination="@id/mealPlannerRecapFragment" />
+    </fragment>
 </navigation>

@@ -6,8 +6,8 @@ import com.example.androidDemoAppXml.utils.logger.TimberDebugTree
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
 import org.koin.core.context.startKoin
-import org.koin.core.logger.EmptyLogger
 import tech.miam.coursesUDemoApp.di.apiModule
+import tech.miam.coursesUDemoApp.di.repositoryModule
 import tech.miam.coursesUDemoApp.di.storageModule
 import tech.miam.coursesUDemoApp.di.useCaseModule
 import tech.miam.coursesUDemoApp.di.viewModelModule
@@ -23,7 +23,8 @@ class KoinInitializer : Initializer<Unit> {
                     apiModule,
                     storageModule,
                     useCaseModule,
-                    viewModelModule
+                    viewModelModule,
+                    repositoryModule
                 )
             )
         }

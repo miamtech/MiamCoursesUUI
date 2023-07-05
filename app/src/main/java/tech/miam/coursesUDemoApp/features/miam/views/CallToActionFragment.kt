@@ -1,8 +1,6 @@
-package tech.miam.coursesUDemoApp.miam.views
+package tech.miam.coursesUDemoApp.features.miam.views
 
 import android.os.Bundle
-import android.telecom.Call
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.miam.sdk.components.budget.callToAction.BudgetCallToAction
 import tech.miam.coursesUDemoApp.R
-import tech.miam.coursesuui.template.mealPlanner.callToAction.CallToActionU
 
-class CallToActionFragment : Fragment() {
+class CallToActionFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

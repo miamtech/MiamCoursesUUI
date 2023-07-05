@@ -1,4 +1,4 @@
-package tech.miam.coursesUDemoApp.features.miam
+package tech.miam.coursesUDemoApp.features.miam.template
 
 import android.content.Context
 import com.miam.kmmMiamCore.handler.Basket.BasketHandler
@@ -20,13 +20,10 @@ import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.basket.BasketEvent
 import tech.miam.coursesUDemoApp.data.models.Product
 import tech.miam.coursesUDemoApp.features.products.ProductsRepository
-import tech.miam.coursesUDemoApp.miam.template.MiamTemplateManager
 import timber.log.Timber
 
 object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent {
     private const val TAG = "MiamSdkHelper"
-    const val SUPPLIER_ID = 14
-    const val SUPPLIER_ORIGIN = "miam.test"
 
     private var isInitialized = false
     private lateinit var applicationContext: Context
@@ -57,17 +54,22 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         supplierId: Int,
         supplierOrigin: String,
         basket: MutableList<Product>,
-        userId: String? = null,
-        storeId: String? = null
+        userId: String,
+        storeId: String
     ) = apply {
+
+        if (userId.isBlank()) throw Exception("userId Cannot be null or empty or blank")
+        if (storeId.isBlank()) throw Exception("storeId Cannot be null or empty or blank")
+        if (supplierOrigin.isBlank()) throw Exception("supplierOrigin Cannot be null or empty or blank")
+
         MiamTemplateManager()
         if (isInitialized) return@apply
         applicationContext = context.applicationContext
         isInitialized = true
 
         setSupplier(supplierId, supplierOrigin)
-        userId?.let { setUser(it) }
-        storeId?.let { setStore(it) }
+        setUser(userId)
+        setStore(storeId)
         setEnableLike(enableLike)
         setUserProfiling(enableUserProfiling)
 
@@ -152,7 +154,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
      * @param enable true or false, the default value is true
      */
     fun setUserProfiling(enable: Boolean) = apply {
-        this.enableUserProfiling = enable
+        enableUserProfiling = enable
         UserHandler.setProfilingAllowed(enableUserProfiling)
     }
 
@@ -193,7 +195,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
 
     private fun setListenToRetailerBasket(basketHandler: BasketHandler) {
         with(basketHandler) {
-            setListenToRetailerBasket(::initBasketListener)
+            setListenToRetailerBasket(MiamSdkHelper::initBasketListener)
             pushProductsToMiamBasket(retailerBasketSubject.value.map { product ->
                 retailProductToMiamRetailerProduct(product)
             })
@@ -221,7 +223,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
     }
 
     private fun setPushProductToBasket(basketHandler: BasketHandler) {
-        basketHandler.setPushProductsToRetailerBasket(::pushProductToRetailer)
+        basketHandler.setPushProductsToRetailerBasket(MiamSdkHelper::pushProductToRetailer)
     }
 
     private fun pushProductToRetailer(retailerProducts: List<RetailerProduct>) {

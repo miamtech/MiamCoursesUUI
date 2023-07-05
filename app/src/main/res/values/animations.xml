@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="screen_transition_animation_duration">250</integer>
-    <integer name="scrim_animation_duration">250</integer>
-</resources>

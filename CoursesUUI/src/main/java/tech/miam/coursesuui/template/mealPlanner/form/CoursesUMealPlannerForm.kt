@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +39,7 @@ class CoursesUBudgetForm: MealPlannerForm {
     override fun Content(mealPlannerFormParameters: MealPlannerFormParameters) {
         Box(
             modifier = Modifier
-                .background(Color(R.color.miam_courses_u_background_blue))
+                .background(colorResource(R.color.miam_courses_u_background_blue))
                 .fillMaxSize(),
             contentAlignment = Alignment.TopCenter,
         ) {
@@ -121,9 +122,10 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
         return mealPlannerFormParameters.budget > 0
     }
 
+    @Composable
     fun submitBackgroundColor(): Color {
-        return if (budgetAndPeopleValid()) (Color(R.color.miam_courses_u_primary))
-        else Color(R.color.miam_courses_u_background_gray)
+        return if (budgetAndPeopleValid()) (colorResource(R.color.miam_courses_u_primary))
+        else colorResource(R.color.miam_courses_u_background_gray)
     }
 
     Column(
@@ -132,7 +134,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             .background(Color.White)
             .border(
                 width = 1.dp,
-                color = Color(R.color.miam_courses_u_background_gray),
+                color = colorResource(R.color.miam_courses_u_background_gray),
                 shape = RoundedCornerShape(size = Dimension.mRoundedCorner)
             )
             .padding(Dimension.lPadding),
@@ -145,7 +147,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             style = Typography.bodyBold,
             textAlign = TextAlign.Center
         )
-        Divider(color = Color(R.color.miam_courses_u_background_gray))
+        Divider(color = colorResource(R.color.miam_courses_u_background_gray))
         CoursesUFormRow(
             caption = "Mon budget max",
             icon = painterResource(id = R.drawable.budget_icon)
@@ -158,7 +160,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                 })
             CoursesUCurrency(text = "€")
         }
-        Divider(color = Color(R.color.miam_courses_u_background_gray))
+        Divider(color = colorResource(R.color.miam_courses_u_background_gray))
         CoursesUFormRow(
             caption = "Nombre de personnes",
             icon = painterResource(id = R.drawable.number_of_people_icon)
@@ -170,14 +172,14 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                     mealPlannerFormParameters.refreshMaxMealCount(mealPlannerFormParameters.budget, it)
                 })
         }
-        Divider(color = Color(R.color.miam_courses_u_background_gray))
+        Divider(color = colorResource(R.color.miam_courses_u_background_gray))
         CoursesUFormRow(
             caption = "Nombre de repas",
             icon = painterResource(id = R.drawable.number_of_meals_icon)
         ) {
             CoursesUMealStepper(
                 mealCounterState,
-                disableButton = !budgetAndPeopleValid(),
+                disableButton = false,
                 maxValue = if (mealPlannerFormParameters.maxMealCount > 9) 9 else mealPlannerFormParameters.maxMealCount,
                 increase = {
                     if (mealCounterState.count < mealPlannerFormParameters.maxMealCount || mealCounterState.count < 9) {
@@ -190,7 +192,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                 }
             }
         }
-        Divider(color = Color(R.color.miam_courses_u_background_gray))
+        Divider(color = colorResource(R.color.miam_courses_u_background_gray))
         CoursesUButton(
             backgroundColor = submitBackgroundColor(),
             cornerRadius = 50.dp,

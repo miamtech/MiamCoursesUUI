@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.miam.kmm_miam_sdk.android.theme.Typography
@@ -38,8 +38,8 @@ fun CoursesUStepper(
     var value by remember { mutableStateOf(defaultValue) }
 
     // Calculate button colors
-    val minButtonColor = if (value <= minValue || disableButton) Color(R.color.miam_courses_u_background_gray_light) else Color(R.color.miam_courses_u_primary)
-    val maxButtonColor = if (value >= maxValue || disableButton) Color(R.color.miam_courses_u_background_gray_light) else Color(R.color.miam_courses_u_primary)
+    val minButtonColor = if (value <= minValue || disableButton) colorResource(R.color.miam_courses_u_background_gray_light) else colorResource(R.color.miam_courses_u_primary)
+    val maxButtonColor = if (value >= maxValue || disableButton) colorResource(R.color.miam_courses_u_background_gray_light) else colorResource(R.color.miam_courses_u_primary)
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -79,8 +79,8 @@ fun CoursesUMealStepper(
     decrease: () -> Unit,
 ) {
 
-    val minButtonColor = if (counterState.count <= minValue || disableButton) Color(R.color.miam_courses_u_background_gray_light) else Color(R.color.miam_courses_u_primary)
-    val maxButtonColor = if (counterState.count >= maxValue || disableButton) Color(R.color.miam_courses_u_background_gray_light) else Color(R.color.miam_courses_u_primary)
+    val minButtonColor = if (counterState.count <= minValue || disableButton) colorResource(R.color.miam_courses_u_background_gray_light) else colorResource(R.color.miam_courses_u_primary)
+    val maxButtonColor = if (counterState.count >= maxValue || disableButton) colorResource(R.color.miam_courses_u_background_gray_light) else colorResource(R.color.miam_courses_u_primary)
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,

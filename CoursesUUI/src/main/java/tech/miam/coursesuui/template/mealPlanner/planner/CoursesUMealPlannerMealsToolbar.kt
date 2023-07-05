@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -69,7 +70,7 @@ class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(R.color.miam_courses_u_background_blue))
+                        .background(colorResource(R.color.miam_courses_u_background_blue))
                         .padding(top = 15.dp),
                     text = "${mealPlannerFormParameters.numberOfMeals} idée${if (mealPlannerFormParameters.numberOfMeals > 1) "s" else ""} repas pour votre budget :",
                     color = Colors.black,
@@ -90,7 +91,7 @@ fun ClickableToolbar(mealPlannerFormParameters: MealPlannerFormParameters, onCli
             .clip(RoundedCornerShape(size = Dimension.mRoundedCorner))
             .border(
                 width = 1.dp,
-                color = Color(R.color.miam_courses_u_background_gray_light),
+                color = colorResource(R.color.miam_courses_u_background_gray_light),
                 shape = RoundedCornerShape(size = Dimension.mRoundedCorner)
             )
 
@@ -155,7 +156,7 @@ fun CoursesUTemplateRow(
 
 @Composable
 fun VerticalDivider(
-    color: Color = Color(R.color.miam_courses_u_background_gray_light),
+    color: Color = colorResource(R.color.miam_courses_u_background_gray_light),
     thickness: Dp = Dp(1f)
 ) {
     Box(
@@ -171,7 +172,7 @@ fun VerticalDivider(
 fun CoursesUBudgetPlannerToolbarPreview() {
     Box(
         modifier = Modifier
-            .background(Color(R.color.miam_courses_u_background_blue))
+            .background(colorResource(R.color.miam_courses_u_background_blue))
             .padding(12.dp)
             .fillMaxSize(),
         contentAlignment = Alignment.Center

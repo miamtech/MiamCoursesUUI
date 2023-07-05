@@ -1,7 +1,7 @@
 package tech.miam.coursesUDemoApp.store
 
 import tech.miam.coursesUDemoApp.data.models.Store
-import tech.miam.coursesUDemoApp.features.miam.MiamSdkHelper
+import tech.miam.coursesUDemoApp.features.miam.template.MiamSdkHelper
 
 class StoreUseCase(
     private val storeLocalDataSource: StoreLocalDataSource) {

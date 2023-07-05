@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#ff007D8F</color>
+    <color name="secondary">#FFE61845</color>
+    <color name="ternary">#FF209B8F</color>
+    <color name="success">#FF44D6B3</color>
+    <color name="positive">#FF28760D</color>
+    <color name="info">#FF44D6B3</color>
+    <color name="warning">#FFFFDAA3</color>
+    <color name="dangerBudgetBar">#FFEA6E5D</color>
+    <color name="dangerBudgetText">#FF9F1628</color>
+    <color name="danger">#ffF47F7A</color>
+    <color name="grey">#FF676767</color>
+    <color name="backgroundGrey">#FFF5F4F2</color>
+    <color name="lightgrey">#FFEDEDED</color>
+    <color name="white">#FFFAFCFE</color>
+    <color name="unpureWhite">#FFfefefe</color>
+    <color name="black">#FF252525</color>
+    <color name="miamDangerBackground">#FFFDE3D4</color>
+    <color name="miamSuccessBackGround">#FFEAFAD0</color>
+    <color name="miamDangerText">#FF9F1628</color>
+    <color name="boldText">#FF1F3543</color>
+    <color name="miam_courses_u_background_blue">#BFDDE8</color>
+</resources>

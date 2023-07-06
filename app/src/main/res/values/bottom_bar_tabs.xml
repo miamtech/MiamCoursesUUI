@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="menu_products" type="id"/>
-    <item name="menu_catalog" type="id"/>
-    <item name="menu_meals" type="id"/>
-    <item name="menu_basket" type="id"/>
-    <item name="menu_favorites" type="id"/>
-</resources>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="ToolbarCustom">
-        <attr name="tst_duration" format="integer" />
-        <attr name="tst_text" format="reference|string" />
-        <attr name="tst_text_color" format="reference|color" />
-    </declare-styleable>
-</resources>

@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#037E92</color>
-    <color name="secondary">#209B8F</color>
-
-    <color name="background_primary">#ffffff</color>
-    <color name="background_secondary">#eff2f5</color>
-    <color name="background_tertiary">#edecf2</color>
-
-    <color name="foreground_primary">#000000</color>
-    <color name="foreground_secondary">#6e7678</color>
-    <color name="foreground_tertiary">#C0C0C4</color>
-    <color name="foreground_primary_inverse">#ffffff</color>
-
-    <color name="unfilled">@color/foreground_secondary</color>
-
-    <color name="selected">@color/primary</color>
-    <color name="unselected">@color/foreground_secondary</color>
-
-    <color name="stroke">#DBDAE3</color> <!-- #bcbbc2 -->
-    <color name="ripple">#e0e3e4</color>
-
-    <color name="success">#289F62</color>
-    <color name="error">#FF5F5C</color>
-    <color name="warning">#EFA609</color>
-
-    <color name="badge">#FF5F5C</color>
-    <color name="semi_transparent">#80000000</color>
-    <color name="status_bar">#006E80</color>
+    <color name="primary">#ff007D8F</color>
+    <color name="secondary">#FFE61845</color>
+    <color name="ternary">#FF209B8F</color>
+    <color name="success">#FF44D6B3</color>
+    <color name="positive">#FF28760D</color>
+    <color name="info">#FF44D6B3</color>
+    <color name="warning">#FFFFDAA3</color>
+    <color name="dangerBudgetBar">#FFEA6E5D</color>
+    <color name="dangerBudgetText">#FF9F1628</color>
+    <color name="danger">#ffF47F7A</color>
+    <color name="grey">#FF676767</color>
+    <color name="backgroundGrey">#FFF5F4F2</color>
+    <color name="lightgrey">#FFEDEDED</color>
+    <color name="white">#FFFAFCFE</color>
+    <color name="unpureWhite">#FFfefefe</color>
+    <color name="black">#FF252525</color>
+    <color name="miamDangerBackground">#FFFDE3D4</color>
+    <color name="miamSuccessBackGround">#FFEAFAD0</color>
+    <color name="miamDangerText">#FF9F1628</color>
+    <color name="boldText">#FF1F3543</color>
+    <color name="miam_courses_u_background_blue">#BFDDE8</color>
 </resources>

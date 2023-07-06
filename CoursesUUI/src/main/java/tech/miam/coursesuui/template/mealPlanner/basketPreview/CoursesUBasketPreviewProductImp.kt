@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -84,7 +85,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                     if (mealPlannerBasketPreviewProductParameters.isSubstitutable) {
                         Text(
                             text = "Changer d'article",
-                            color = Color(R.color.miam_courses_u_primary),
+                            color = colorResource(R.color.miam_courses_u_primary),
                             style = Typography.link.copy(textDecoration = TextDecoration.Underline),
                             modifier = Modifier
                                 .clickable { mealPlannerBasketPreviewProductParameters.changeProduct() }
@@ -131,7 +132,7 @@ fun UtilizedInManyRecipes(recipesUsedIn: Int) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .clip(RoundedCornerShape(Dimension.sRoundedCorner))
-            .background(Color(R.color.miam_courses_u_background_gray))
+            .background(colorResource(R.color.miam_courses_u_background_gray))
             .padding(horizontal = Dimension.sPadding)
     ) {
         Icon(
@@ -143,7 +144,7 @@ fun UtilizedInManyRecipes(recipesUsedIn: Int) {
         )
         Text(
             text = "Utilisé dans $recipesUsedIn repas",
-            color = Color(R.color.miam_courses_u_text_gray),
+            color = colorResource(R.color.miam_courses_u_text_gray),
             style = Typography.bodySmall,
             modifier = Modifier
 
@@ -209,9 +210,11 @@ fun CounterForProduct(
     Row(
         modifier = CounterStyle.mainRowContainer
             .clip(RoundedCornerShape(size = 50.dp))
-            .background(Color(R.color.miam_courses_u_background_gray_light))
-            .border(width = 0.5.dp, color = Color(R.color.miam_courses_u_background_gray),
-                shape = RoundedCornerShape(size = 50.dp)),
+            .background(colorResource(R.color.miam_courses_u_background_gray_light))
+            .border(
+                width = 0.5.dp, color = colorResource(R.color.miam_courses_u_background_gray),
+                shape = RoundedCornerShape(size = 50.dp)
+            ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
 

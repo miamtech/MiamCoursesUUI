@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -95,12 +96,12 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
             exit = slideOutVertically { height -> height },
             modifier = Modifier
                 .clip(RoundedCornerShape(10.dp, 10.dp, 0.dp, 0.dp))
-                .background(Color.White)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(88.dp),
+                    .height(88.dp)
+                    .background(Color.White),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(
@@ -133,30 +134,31 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
             PriceExceededInfo(priceDelta)
         }
         LinearProgressIndicator(
-            backgroundColor = if (isBudgetExceeded) Color(R.color.miam_courses_u_text_alert) else Color(R.color.miam_courses_u_primary),
+            backgroundColor = if (isBudgetExceeded) colorResource(R.color.miam_courses_u_text_alert) else colorResource(R.color.miam_courses_u_primary),
             progress = progressAnimation,
             modifier = Modifier
                 .width(182.dp)
                 .height(8.dp)
                 .clip(RoundedCornerShape(8.dp)),
-            color = Color(R.color.miam_courses_u_primary_light)
+            color = colorResource(R.color.miam_courses_u_primary_light)
         )
     }
 
     @Composable
     private fun PriceExceededInfo(priceDelta: Double) {
+        val miamCoursesUAlertColor = colorResource(id = R.color.miam_courses_u_alert)
         Column(
             horizontalAlignment = Alignment.End
         ) {
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(4.dp))
-                    .background(Color(R.color.miam_courses_u_alert))
+                    .background(miamCoursesUAlertColor)
             ) {
                 Text(
                     modifier = Modifier.padding(2.dp),
                     text = "+${NumberFormat.getCurrencyInstance().format(priceDelta)}",
-                    style = bodyBold.copy(color = Color(R.color.miam_courses_u_text_alert), fontSize = 10.sp)
+                    style = bodyBold.copy(color = colorResource(R.color.miam_courses_u_text_alert), fontSize = 10.sp)
                 )
             }
             Canvas(modifier = Modifier
@@ -171,7 +173,7 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
                         lineTo(0f, size.height)
                     }
                     drawPath(
-                        color = Color(R.color.miam_courses_u_alert),
+                        color = miamCoursesUAlertColor,
                         path = trianglePath
                     )
                 })

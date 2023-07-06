@@ -47,7 +47,7 @@ class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitl
             modifier = Modifier
                 .height(56.dp)
                 .padding(horizontal = 16.dp)
-                .padding(top = 20.dp)
+                .padding(vertical = 10.dp)
                 .clip(RoundedCornerShape(4.dp))
                 .clickable {
                     mealPlannerBasketPreviewSectionTitleParameters.toggleCollapse()

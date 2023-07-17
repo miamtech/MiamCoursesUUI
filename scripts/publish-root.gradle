@@ -1,0 +1,24 @@
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+ext["signing.keyId"] = properties.getProperty('SIGNING_KEY_ID')
+ext["signing.key"] = project.findProperty('GPG_SIGNING_KEY')
+ext["signing.password"] = properties.getProperty('SIGNING_PASSWORD')
+ext["ossrhUsername"] =  properties.getProperty('OSSR_USER_NAME')
+ext["ossrhPassword"] =  properties.getProperty('OSSR_PASSWORD')
+ext["sonatypeStagingProfileId"] = properties.getProperty('SONATYPE_STAGING_PROFILE_ID')
+ext["version"] = '0.0.1'
+
+// Set up Sonatype repository
+nexusPublishing {
+    repositories {
+        sonatype {
+            stagingProfileId = sonatypeStagingProfileId
+            username = ossrhUsername
+            password = ossrhPassword
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
+}

@@ -21,7 +21,7 @@ import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
 import com.miam.sdk.templateInterfaces.mealPlanner.callToAction.MealPlannerCallToAction
 import com.miam.sdk.templateParameters.mealPlanner.callToAction.MealPlannerCallToActionParameters
 
-class CallToActionU: MealPlannerCallToAction {
+class MealPlannerCallToActionU: MealPlannerCallToAction {
     @Composable
     override fun Content(mealPlannerCallToActionParameters: MealPlannerCallToActionParameters) {
         Card(modifier = Modifier

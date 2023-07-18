@@ -30,7 +30,7 @@ import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.templateInterfaces.budget.search.BudgetSearch
 import com.miam.sdk.templateParameters.budget.search.BudgetSearchParameters
 
-class CoursesUReplaceRecipeSearch: BudgetSearch {
+class MealPlannerReplaceRecipeSearchU: BudgetSearch {
 
     @Composable
     override fun Content(budgetSearchParameters: BudgetSearchParameters) {

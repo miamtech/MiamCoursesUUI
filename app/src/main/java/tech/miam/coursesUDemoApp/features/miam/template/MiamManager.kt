@@ -20,6 +20,7 @@ import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.basket.BasketEvent
 import tech.miam.coursesUDemoApp.data.models.Product
 import tech.miam.coursesUDemoApp.features.products.ProductsRepository
+import tech.miam.coursesuui.config.MiamTemplateManager
 import timber.log.Timber
 
 object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent {

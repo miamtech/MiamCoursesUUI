@@ -28,9 +28,9 @@ import tech.miam.coursesuui.theme.Typography
 import com.miam.core.sdk.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
+import com.miam.kmm_miam_sdk.android.ui.components.likeButton.LikeButton
 import com.miam.kmm_miam_sdk.android.ui.components.price.SimplePrice
 import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeCardParameters
-import com.miam.sdk.ui.mealPlanner.recipe.BudgetLikeButton
 
 @Composable
 fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
@@ -54,7 +54,7 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
                         .fillMaxWidth(),
                     contentScale = ContentScale.Crop
                 )
-                BudgetLikeButton(recipeId = params.recipe.id, sizeOfImage = 208.dp)
+                LikeButton().apply { bind(params.recipe.id) }
             }
             Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
                 Text(

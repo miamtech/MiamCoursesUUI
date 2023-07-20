@@ -50,5 +50,8 @@
         <action
             android:id="@+id/action_mealPlannerBasketPreview_to_mealPlannerRecapFragment"
             app:destination="@id/mealPlannerRecapFragment" />
+        <action
+            android:id="@+id/action_mealPlannerBasketPreview_to_mealPlannerFormFragment"
+            app:destination="@id/mealPlannerFormFragment" />
     </fragment>
 </navigation>

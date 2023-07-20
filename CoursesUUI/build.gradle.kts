@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    api ("tech.miam.sdk:kmm-miam-sdk:3.12.4")
+    api ("tech.miam.sdk:kmm-miam-sdk:3.12.5")
     api ("androidx.core:core-ktx:1.10.1")
     api ("androidx.appcompat:appcompat:1.6.1")
     api ("com.google.android.material:material:1.9.0")

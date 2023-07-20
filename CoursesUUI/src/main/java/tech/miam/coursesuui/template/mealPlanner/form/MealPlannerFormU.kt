@@ -200,7 +200,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             paddingValues = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
             content = {
                 Row(
-                    Modifier
+                    Modifier.height(30.dp)
                         .width(200.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically

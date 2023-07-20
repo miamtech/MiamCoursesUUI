@@ -105,6 +105,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         CounterForProduct(
+                            key = mealPlannerBasketPreviewProductParameters.id ,
                             initialCount = mealPlannerBasketPreviewProductParameters.quantity,
                             isDisable = false,
                             onCounterChanged = { count -> mealPlannerBasketPreviewProductParameters.onQuantityChanged(count) })
@@ -157,20 +158,19 @@ fun CounterForProduct(
     initialCount: Int?,
     isDisable: Boolean,
     onCounterChanged: (newValue: Int) -> Unit,
-    minValue: Int? = null,
-    maxValue: Int? = null,
+
     isLoading: Boolean = false,
     key: Any? = null
 ) {
-    var localCount by remember(key ?: initialCount) { mutableStateOf(initialCount) }
+    var localCount by remember(key) { mutableStateOf(initialCount) }
 
     fun newValueBounded(newValue: Int): Boolean {
-        return (minValue == null || newValue >= minValue) && (maxValue == null || newValue <= maxValue)
+        return ( newValue >= 0)
     }
 
     fun changedValue(localCount: Int?, delta: Int): Int? {
         // if min value is not defined 1 is surely bounded
-        if (localCount == null) return minValue ?: 1
+        if (localCount == null) return 0
 
         if (!newValueBounded(localCount + delta)) return null
 
@@ -194,7 +194,6 @@ fun CounterForProduct(
     fun plusDisabled(): Boolean {
         return when {
             isDisable -> true
-            maxValue != null && localCount != null && localCount!! >= maxValue -> true
             else -> false
         }
     }
@@ -202,7 +201,7 @@ fun CounterForProduct(
     fun minusDisabled(): Boolean {
         return when {
             isDisable -> true
-            minValue != null && localCount != null && localCount!! <= minValue -> true
+            localCount != null && localCount!! <= 0 -> true
             else -> false
         }
     }
@@ -223,7 +222,7 @@ fun CounterForProduct(
         ) {
             CounterButton(
                 Icons.Default.Remove,
-                !minusDisabled(),
+                enable= !minusDisabled(),
                 if (minusDisabled()) Color.Gray else Colors.primary
             ) {
                 decrease()
@@ -231,7 +230,7 @@ fun CounterForProduct(
             MiddleText(localCount, isLoading)
             CounterButton(
                 Icons.Default.Add,
-                !plusDisabled(),
+                enable= !plusDisabled(),
                 if (plusDisabled()) Color.Gray else Colors.primary
             ) {
                 increase()

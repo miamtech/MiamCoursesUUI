@@ -22,5 +22,6 @@ class MealPlannerBasketPreviewFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val mealPlannerBasketPreview = view.findViewById<MealPlannerBasketPreview>(R.id.meal_planner_basket_preview)
         mealPlannerBasketPreview.onComfirmBasket = {findNavController().navigate(R.id.action_mealPlannerBasketPreview_to_mealPlannerRecapFragment)}
+        mealPlannerBasketPreview.onEmptyState = {findNavController().navigate(R.id.action_mealPlannerBasketPreview_to_mealPlannerFormFragment)}
     }
 }

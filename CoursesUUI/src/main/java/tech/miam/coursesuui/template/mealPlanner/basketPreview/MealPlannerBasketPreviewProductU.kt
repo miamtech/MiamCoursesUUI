@@ -52,7 +52,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                 modifier = Modifier
                     .background(Color.White)
                     .padding(Dimension.lPadding)
-                    .height(185.dp)
+                    .height(205.dp)
             ) {
                 val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewProductParameters.picture)
                 Image(
@@ -97,6 +97,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .height(40.dp)
                     ) {
                         Text(
                             text = formatPrice(mealPlannerBasketPreviewProductParameters.price),
@@ -147,7 +148,7 @@ fun UtilizedInManyRecipes(recipesUsedIn: Int) {
             text = "Utilisé dans $recipesUsedIn repas",
             color = colorResource(R.color.miam_courses_u_text_gray),
             style = Typography.bodySmall,
-            modifier = Modifier
+            modifier = Modifier.padding(end = Dimension.mPadding)
 
         )
     }
@@ -208,6 +209,7 @@ fun CounterForProduct(
 
     Row(
         modifier = CounterStyle.mainRowContainer
+            .height(40.dp)
             .clip(RoundedCornerShape(size = 50.dp))
             .background(colorResource(R.color.miam_courses_u_background_gray_light))
             .border(

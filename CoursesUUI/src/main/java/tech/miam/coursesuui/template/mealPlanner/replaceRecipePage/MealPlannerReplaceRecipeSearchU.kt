@@ -27,13 +27,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.templateInterfaces.budget.search.BudgetSearch
-import com.miam.sdk.templateParameters.budget.search.BudgetSearchParameters
+import com.miam.sdk.templateInterfaces.mealPlanner.search.MealPlannerSearch
+import com.miam.sdk.templateParameters.mealPlanner.search.MealPlannerSearchParameters
 
-class MealPlannerReplaceRecipeSearchU: BudgetSearch {
+class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
 
     @Composable
-    override fun Content(budgetSearchParameters: BudgetSearchParameters) {
+    override fun Content(budgetSearchParameters: MealPlannerSearchParameters) {
 
         var currentSearch by remember { mutableStateOf("") }
         Column {

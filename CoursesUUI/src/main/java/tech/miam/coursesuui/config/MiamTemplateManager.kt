@@ -1,7 +1,6 @@
 package tech.miam.coursesuui.config
 
 import com.miam.sdk.templatesConfigs.MiamTheme
-import com.miam.sdk.templatesConfigs.MiamTheme.budget
 import com.miam.sdk.templatesConfigs.MiamTheme.mealPlanner
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
@@ -21,7 +20,7 @@ import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSe
 class MiamTemplateManager {
     init {
         MiamTheme.Template {
-            budget {
+            mealPlanner {
                 plannerFooterConfig {
                     view = CoursesUMealPlannerFooter()
                 }
@@ -31,8 +30,6 @@ class MiamTemplateManager {
                 searchConfig {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
-            }
-            mealPlanner {
                 callToActionConfig {
                     view = MealPlannerCallToActionU()
                 }

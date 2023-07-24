@@ -35,8 +35,8 @@ import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
 import com.miam.sdk.templateInterfaces.mealPlanner.basketPreview.MealPlannerBasketPreviewFooter
 import com.miam.sdk.templateInterfaces.mealPlanner.meals.MealPlannerFooter
-import com.miam.sdk.templateParameters.budget.planner.BudgetPlannerFooterParameters
 import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBasketPreviewFooterParameters
+import com.miam.sdk.templateParameters.mealPlanner.planner.BudgetPlannerFooterParameters
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
 import java.util.*

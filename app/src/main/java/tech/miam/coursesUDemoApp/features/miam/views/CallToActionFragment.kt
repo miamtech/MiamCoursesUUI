@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.miam.sdk.components.budget.callToAction.BudgetCallToAction
+import com.miam.sdk.components.mealPlanner.callToAction.MealPlannerCallToAction
 import tech.miam.coursesUDemoApp.R
 
 class CallToActionFragment : Fragment(){
@@ -19,7 +19,7 @@ class CallToActionFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val callToAction = view.findViewById<BudgetCallToAction>(R.id.CallToActionU)
+        val callToAction = view.findViewById<MealPlannerCallToAction>(R.id.CallToActionU)
         callToAction.bind { findNavController().navigate(R.id.action_callToActionFragment_to_mealPlannerFormFragment)  }
     }
 }

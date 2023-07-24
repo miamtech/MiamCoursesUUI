@@ -57,11 +57,11 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
                 tint = Colors.white,
                 modifier = Modifier.size(14.dp)
             )
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = "Tout ajouter",
                 color = Color.White,
-                style = Typography.body
+                style = Typography.bodySmall
             )
         }
     }

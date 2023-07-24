@@ -97,8 +97,7 @@ class MealPlannerRecapU: MealPlannerRecap {
                         Button(
                             onClick = { mealPlannerRecapParameters.action() },
                             modifier = Modifier
-                                .padding(horizontal = 64.dp)
-                                .width(148.dp)
+                                .width(162.dp)
                                 .height(40.dp),
                             shape = RoundedCornerShape(40.dp),
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFE22019))
@@ -107,8 +106,8 @@ class MealPlannerRecapU: MealPlannerRecap {
                             Text(
                                 text = "Nos promotions",
                                 color = Colors.white,
-                                style = Typography.bodyBold,
-                                textAlign = TextAlign.Center
+                                style = Typography.bodyBold.copy(fontSize = 14.sp),
+                                textAlign = TextAlign.Center,
                             )
                         }
                     }

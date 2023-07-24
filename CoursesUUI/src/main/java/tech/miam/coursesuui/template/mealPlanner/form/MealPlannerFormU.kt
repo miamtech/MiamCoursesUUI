@@ -33,7 +33,7 @@ import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R
 
 
-class CoursesUBudgetForm: MealPlannerForm {
+class CoursesUBudgetForm : MealPlannerForm {
 
     @Composable
     override fun Content(mealPlannerFormParameters: MealPlannerFormParameters) {
@@ -156,7 +156,10 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                 budgetAmount = mealPlannerFormParameters.budget,
                 onBudgetChanged = { amount ->
                     mealPlannerFormParameters.setBudget(amount)
-                    mealPlannerFormParameters.refreshMaxMealCount(amount, mealPlannerFormParameters.numberOfGuests)
+                    mealPlannerFormParameters.refreshMaxMealCount(
+                        amount,
+                        mealPlannerFormParameters.numberOfGuests
+                    )
                 })
             CoursesUCurrency(text = "€")
         }
@@ -169,7 +172,10 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                 defaultValue = mealPlannerFormParameters.numberOfGuests,
                 onStepperChanged = {
                     mealPlannerFormParameters.setNumberOfGuests(it)
-                    mealPlannerFormParameters.refreshMaxMealCount(mealPlannerFormParameters.budget, it)
+                    mealPlannerFormParameters.refreshMaxMealCount(
+                        mealPlannerFormParameters.budget,
+                        it
+                    )
                 })
         }
         Divider(color = colorResource(R.color.miam_courses_u_background_gray))
@@ -197,11 +203,11 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             backgroundColor = submitBackgroundColor(),
             cornerRadius = 50.dp,
             enabled = mealPlannerFormParameters.uiState != ComponentUiState.EMPTY,
-            paddingValues = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
+            paddingValues = PaddingValues(horizontal = 0.dp, vertical = 0.dp),
             content = {
                 Row(
                     Modifier.height(30.dp)
-                        .width(200.dp),
+                        .fillMaxSize(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -209,18 +215,21 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                         CircularProgressIndicator(
                             modifier = Modifier
                                 .size(Dimension.lIconHeight)
-                                .padding(top = 4.dp),
+                                .padding(top = 4.dp, end = 4.dp),
                             strokeWidth = 2.dp,
                             color = Colors.white
                         )
                     } else {
                         Icon(
                             Icons.Default.Search,
-                            modifier = Modifier.padding(top = 4.dp, end = 4.dp),
                             contentDescription = "Search",
                             tint = Colors.white
                         )
-                        Text(text = "C'est parti !", color = Colors.white, style = Typography.subtitle)
+                        Text(
+                            text = "C'est parti !",
+                            color = Colors.white,
+                            style = Typography.subtitle
+                        )
                     }
                 }
 

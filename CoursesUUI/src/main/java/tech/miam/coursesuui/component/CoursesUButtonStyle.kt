@@ -4,12 +4,15 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -23,9 +26,12 @@ fun CoursesUButton(
     buttonStrokeColor: Color = Color.Transparent,
     enabled: Boolean = true,
     cornerRadius: Dp = Dimension.lRoundedCorner.dp,
-    paddingValues: PaddingValues = PaddingValues(horizontal = Dimension.lPadding, vertical = Dimension.mPadding),
+    paddingValues: PaddingValues = PaddingValues(
+        horizontal = Dimension.lPadding,
+        vertical = Dimension.mPadding
+    ),
     content: @Composable RowScope.() -> Unit,
-    buttonAction: () -> Unit
+    buttonAction: () -> Unit,
 ) {
     val shape = RoundedCornerShape(cornerRadius)
     Button(
@@ -35,7 +41,10 @@ fun CoursesUButton(
         enabled = enabled,
         border = BorderStroke(width = Dp(1f), color = buttonStrokeColor),
         contentPadding = paddingValues,
-        content = content
+        content = content,
+        modifier = Modifier
+            .height(54.dp)
+            .width(180.dp)
     )
 }
 

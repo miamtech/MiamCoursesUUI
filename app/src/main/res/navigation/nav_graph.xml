@@ -30,6 +30,8 @@
         <action
             android:id="@+id/action_mealPlannerMealsFragment_to_mealPlannerBasketPreview"
             app:destination="@id/mealPlannerBasketPreview" />
+        <argument android:name="index"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mealPlannerSearchFragment"
@@ -38,6 +40,8 @@
         <action
             android:id="@+id/action_mealPlannerSearchFragment_to_mealPlannerMealsFragment"
             app:destination="@id/mealPlannerMealsFragment" />
+        <argument android:name="index"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mealPlannerRecapFragment"

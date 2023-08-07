@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.miam.core.sdk.base.state.ComponentUiState
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
@@ -228,7 +229,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                         Text(
                             text = "C'est parti !",
                             color = Colors.white,
-                            style = Typography.subtitle
+                            style = Typography.subtitle.copy(fontSize = 16.sp)
                         )
                     }
                 }

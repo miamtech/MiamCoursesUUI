@@ -29,7 +29,7 @@ data class MealCountState(var count: Int = 0)
 
 @Composable
 fun CoursesUStepper(
-    defaultValue: Int = 1,
+    defaultValue: Int = 0,
     minValue: Int = 1,
     maxValue: Int = 9,
     disableButton: Boolean = false,
@@ -125,7 +125,7 @@ fun CounterValue(value: Int) {
     ) { targetCount ->
         Text(
             modifier = Modifier.width(20.dp),
-            text = "${if (targetCount == 0) "-" else targetCount}",
+            text = "${if (targetCount == 0) "0" else targetCount}",
             style = Typography.subtitleBold,
             textAlign = TextAlign.Center
         )

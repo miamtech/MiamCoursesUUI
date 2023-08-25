@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         MiamSdkHelper.initialize(
             context = this,
             supplierId = 7,
-            supplierOrigin = "app.courseu.com",
+            supplierOrigin = "app.coursesu.com",
             storeId = "25910",
             userId = "test_${UUID.randomUUID()}",
             basket = basketLocalDataSource.getProducts()

@@ -66,6 +66,7 @@ fun SwipeToDelete(deleteAction: () -> Unit, Overlay: @Composable () -> Unit) {
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Colors.miamDangerBackground
             ),
+            elevation = ButtonDefaults.elevation(0.dp) ,
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .height(Dimension.mealPlannerCardHeight)

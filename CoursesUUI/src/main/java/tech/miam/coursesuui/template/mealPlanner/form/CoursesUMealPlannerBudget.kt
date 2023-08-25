@@ -72,7 +72,6 @@ fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
         onValueChange = { newValue ->
             if (newValue.text.length <= 5 && newValue.text.matches(Regex("[0-9]*"))) {
                 text = newValue
-                onBudgetChanged(newValue.text.toIntOrNull() ?: 0)
             }
         },
         modifier = Modifier

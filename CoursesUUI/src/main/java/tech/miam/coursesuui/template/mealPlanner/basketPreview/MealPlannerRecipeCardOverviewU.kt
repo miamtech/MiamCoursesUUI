@@ -234,7 +234,7 @@ fun GuestNumberComponent(initialValue: Int, onGuestChange: (Int) -> Unit) {
             Text(text = "pers.", style = body.copy(fontSize = 14.sp))
         }
         IconButton(onClick = {
-            if (guestNumber < 9) {
+            if (guestNumber < 100) {
                 guestNumber++
                 onGuestChange(guestNumber)
             }

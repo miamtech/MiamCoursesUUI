@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,6 +41,7 @@ import com.miam.kmm_miam_sdk.android.ui.components.counter.CounterStyle
 import com.miam.kmm_miam_sdk.android.ui.components.price.formatPrice
 import com.miam.sdk.templateInterfaces.mealPlanner.basketPreview.MealPlannerBasketPreviewProduct
 import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBasketPreviewProductParameters
+import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
 
@@ -69,7 +71,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
-                    if (mealPlannerBasketPreviewProductParameters.sharedRecipeCount > 0) {
+                    if (mealPlannerBasketPreviewProductParameters.sharedRecipeCount > 1) {
                         UtilizedInManyRecipes(mealPlannerBasketPreviewProductParameters.sharedRecipeCount)
                     }
                     Text(
@@ -107,6 +109,7 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                         Spacer(modifier = Modifier.weight(1f))
                         CounterForProduct(
                             key = mealPlannerBasketPreviewProductParameters.id ,
+                            isLoading = mealPlannerBasketPreviewProductParameters.isLoading,
                             initialCount = mealPlannerBasketPreviewProductParameters.quantity,
                             isDisable = false,
                             onCounterChanged = { count -> mealPlannerBasketPreviewProductParameters.onQuantityChanged(count) })
@@ -159,11 +162,11 @@ fun CounterForProduct(
     initialCount: Int?,
     isDisable: Boolean,
     onCounterChanged: (newValue: Int) -> Unit,
-
-    isLoading: Boolean = false,
+    isLoading: Flow<Boolean> ,
     key: Any? = null
 ) {
-    var localCount by remember(key) { mutableStateOf(initialCount) }
+    var localCount by remember("$key$initialCount") { mutableStateOf(initialCount) }
+    val isLoadingState by isLoading.collectAsState(initial = false)
 
     fun newValueBounded(newValue: Int): Boolean {
         return ( newValue >= 0)
@@ -224,15 +227,15 @@ fun CounterForProduct(
         ) {
             CounterButton(
                 Icons.Default.Remove,
-                enable= !minusDisabled(),
+                enable= !minusDisabled() && !isLoadingState,
                 if (minusDisabled()) Color.Gray else Colors.primary
             ) {
                 decrease()
             }
-            MiddleText(localCount, isLoading)
+            MiddleText(localCount, isLoadingState)
             CounterButton(
                 Icons.Default.Add,
-                enable= !plusDisabled(),
+                enable= !plusDisabled() && !isLoadingState,
                 if (plusDisabled()) Color.Gray else Colors.primary
             ) {
                 increase()
@@ -252,7 +255,7 @@ fun MiddleText(localCount: Int?, isLoading: Boolean) {
         horizontalArrangement = Arrangement.Center,
     ) {
         if (isLoading) {
-            CircularProgressIndicator(color = CounterColor.countTextColor)
+            CircularProgressIndicator(Modifier.height(10.dp) , color = CounterColor.countTextColor)
         } else {
             Text(
                 text = counterText(localCount),
@@ -265,30 +268,3 @@ fun MiddleText(localCount: Int?, isLoading: Boolean) {
     }
 }
 
-
-@Preview
-@Composable
-fun MealPlannerBasketPreviewProductImpPreview() {
-    Box(
-        contentAlignment = Alignment.BottomCenter,
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        CoursesUBasketPreviewProductImp().Content(
-            mealPlannerBasketPreviewProductParameters = MealPlannerBasketPreviewProductParameters(
-                id = "12",
-                picture = "https://picsum.photos/200/300",
-                name = "Tom's Hot Sauce",
-                description = "Tom's Russian Special Spicy Hot Hot Sauce",
-                price = 12.4,
-                sharedRecipeCount = 3,
-                isSubstitutable = true,
-                isLoading = false,
-                quantity = 1,
-                onQuantityChanged = {},
-                delete = { println("delete") },
-                changeProduct = { println("change product") },
-            )
-        )
-    }
-}

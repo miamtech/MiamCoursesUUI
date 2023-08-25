@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             supplierId = 7,
             supplierOrigin = "app.courseu.com",
             storeId = "25910",
-            userId = UUID.randomUUID().toString(),
+            userId = "test_${UUID.randomUUID()}",
             basket = basketLocalDataSource.getProducts()
         )
         I18nResolver.registerContext(this.applicationContext)

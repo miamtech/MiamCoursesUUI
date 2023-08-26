@@ -86,7 +86,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 value = searchText,
                 onValueChange = onTextChange,
                 placeholder = {
-                    Text(text = "Que recherchez-vous ??", style = Typography.bodySmall)
+                    Text(text = "Que recherchez-vous ?", style = Typography.bodySmall)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = {

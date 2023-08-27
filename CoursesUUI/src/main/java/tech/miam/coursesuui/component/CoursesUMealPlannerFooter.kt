@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miam.core.sdk.localisation.Localisation
@@ -55,13 +56,14 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
                 painterResource(id = Image.cart),
                 contentDescription = null,
                 tint = Colors.white,
-                modifier = Modifier.size(14.dp)
+                modifier = Modifier.size(18.dp)
             )
             Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = "Tout ajouter",
                 color = Color.White,
-                style = Typography.bodySmall
+                style = Typography.bodySmall,
+                textAlign = TextAlign.Center
             )
         }
     }
@@ -186,10 +188,10 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
             onClick = { action() },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(40.dp)
+                .height(56.dp)
                 .padding(end = 24.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Colors.primary),
-            shape = RoundedCornerShape(24.dp)
+            shape = RoundedCornerShape(32.dp)
         ) {
             Content()
         }

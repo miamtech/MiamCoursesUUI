@@ -1,8 +1,10 @@
 package tech.miam.coursesuui.template.mealPlanner.basketPreview
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -53,11 +55,10 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
 
 
         val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewRecipeOverviewParameters.picture)
-        Column() {
+        Column {
             Spacer(modifier = Modifier.height(8.dp))
             Card(
-                modifier = Modifier.padding(horizontal = 8.dp),
-                elevation = 5.dp,
+                modifier = Modifier.padding(horizontal = 8.dp).border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp)),
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Column(

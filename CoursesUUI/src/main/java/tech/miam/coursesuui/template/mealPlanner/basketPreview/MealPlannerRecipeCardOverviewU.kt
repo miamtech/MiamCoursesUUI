@@ -57,19 +57,14 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
         val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewRecipeOverviewParameters.picture)
         Column {
             Spacer(modifier = Modifier.height(8.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-                    .height(Dimension.mealPlannerCardHeight)
-                    .border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp)),
+            Card(
+                modifier = Modifier.padding(horizontal = 8.dp).border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp)),
+                shape = RoundedCornerShape(10.dp)
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
-                        .background(Color.White)
                 ) {
                     Row(
                         modifier = Modifier.height(184.dp)

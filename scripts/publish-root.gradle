@@ -8,7 +8,7 @@ ext["signing.password"] = properties.getProperty("SIGNING_PASSWORD")
 ext["ossrhUsername"] =  properties.getProperty("OSSR_USER_NAME")
 ext["ossrhPassword"] =  properties.getProperty("OSSR_PASSWORD")
 ext["sonatypeStagingProfileId"] = properties.getProperty("SONATYPE_STAGING_PROFILE_ID")
-ext["version"] = "0.0.5"
+ext["version"] = "0.0.7"
 
 // Set up Sonatype repository
 nexusPublishing {

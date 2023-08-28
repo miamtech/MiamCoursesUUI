@@ -52,9 +52,7 @@ class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitl
                 .clickable {
                     mealPlannerBasketPreviewSectionTitleParameters.toggleCollapse()
                     toggle()
-                }
-                .background(Color(0xffDDDDDD))
-
+                }.background(Color(0xffDDDDDD))
         ) {
             Column {
                 Row(
@@ -86,4 +84,3 @@ class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitl
         }
     }
 }
-

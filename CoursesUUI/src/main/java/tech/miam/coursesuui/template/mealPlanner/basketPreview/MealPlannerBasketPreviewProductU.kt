@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -27,10 +28,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
@@ -44,6 +47,7 @@ import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBask
 import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
 
 class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
 
@@ -51,60 +55,54 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
     override fun Content(mealPlannerBasketPreviewProductParameters: MealPlannerBasketPreviewProductParameters) {
         Column {
             Row(
-                modifier = Modifier
+                modifier = Modifier.fillMaxWidth()
                     .background(Color.White)
                     .padding(Dimension.lPadding)
-                    .height(205.dp)
             ) {
                 val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewProductParameters.picture)
-                Image(
-                    painter = backgroundImage,
-                    contentDescription = "Grocery Item Image",
-                    modifier = Modifier
-                        .width(50.dp),
-                    contentScale = ContentScale.Fit
-                )
-                Spacer(modifier = Modifier.width(8.dp))
+
+                Image(  painter = backgroundImage, contentDescription = null, modifier = Modifier
+                    .height(60.dp)
+                    .width(60.dp),
+                    contentScale = ContentScale.Crop)
+                Spacer(modifier = Modifier.width(4.dp))
                 Column(
+                    Modifier.weight(1f),
                     horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier
-                        .fillMaxSize()
+                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     if (mealPlannerBasketPreviewProductParameters.sharedRecipeCount > 1) {
                         UtilizedInManyRecipes(mealPlannerBasketPreviewProductParameters.sharedRecipeCount)
                     }
                     Text(
-                        text = mealPlannerBasketPreviewProductParameters.name,
+                        text = mealPlannerBasketPreviewProductParameters.name.capitalize(),
                         color = Color.Black,
                         style = Typography.bodyBold
                     )
                     Text(
                         text = mealPlannerBasketPreviewProductParameters.description,
                         color = Color.Gray,
-                        style = Typography.body
+                        style = Typography.bodySmall
                     )
                     if (mealPlannerBasketPreviewProductParameters.isSubstitutable) {
                         Text(
                             text = "Changer d'article",
                             color = colorResource(R.color.miam_courses_u_primary),
-                            style = Typography.link.copy(textDecoration = TextDecoration.Underline),
-                            modifier = Modifier
-                                .clickable { mealPlannerBasketPreviewProductParameters.changeProduct() }
+                            style = Typography.link.copy(textDecoration = TextDecoration.Underline, fontWeight = FontWeight.Normal,),
+                            modifier = Modifier.clickable { mealPlannerBasketPreviewProductParameters.changeProduct() }
                         )
                     }
-                    Spacer(Modifier.height(8.dp))
+                    Spacer(Modifier.height(4.dp))
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(40.dp)
                     ) {
                         Text(
                             text = formatPrice(mealPlannerBasketPreviewProductParameters.price),
                             color = Color.Black,
-                            style = Typography.subtitleBold
+                            style = Typography.subtitleBold.copy( fontSize = 22.sp)
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         CounterForProduct(
@@ -113,16 +111,19 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                             initialCount = mealPlannerBasketPreviewProductParameters.quantity,
                             isDisable = false,
                             onCounterChanged = { count -> mealPlannerBasketPreviewProductParameters.onQuantityChanged(count) })
+                        IconButton(
+                            onClick = {
+                                mealPlannerBasketPreviewProductParameters.delete()
+                            }
+                        ) {
                         Image(
                             painter = painterResource(id = Image.delete),
                             contentDescription = "Trash Icon",
                             modifier = Modifier
                                 .size(Dimension.lButtonHeight)
                                 .padding(Dimension.sPadding)
-                                .clickable {
-                                    mealPlannerBasketPreviewProductParameters.delete()
-                                }
-                        )
+                            )
+                        }
                     }
                 }
             }
@@ -152,7 +153,6 @@ fun UtilizedInManyRecipes(recipesUsedIn: Int) {
             color = colorResource(R.color.miam_courses_u_text_gray),
             style = Typography.bodySmall,
             modifier = Modifier.padding(end = Dimension.mPadding)
-
         )
     }
 }
@@ -209,10 +209,8 @@ fun CounterForProduct(
             else -> false
         }
     }
-
     Row(
-        modifier = CounterStyle.mainRowContainer
-            .height(40.dp)
+        modifier = CounterStyle.mainRowContainer.height(50.dp)
             .clip(RoundedCornerShape(size = 50.dp))
             .background(colorResource(R.color.miam_courses_u_background_gray_light))
             .border(
@@ -223,12 +221,14 @@ fun CounterForProduct(
     ) {
 
         Row(
+            Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             CounterButton(
                 Icons.Default.Remove,
                 enable= !minusDisabled() && !isLoadingState,
-                if (minusDisabled()) Color.Gray else Colors.primary
+                if (minusDisabled()) Color.Gray else Colors.primary,
+                modifier =Modifier.size(30.dp),
             ) {
                 decrease()
             }
@@ -236,7 +236,8 @@ fun CounterForProduct(
             CounterButton(
                 Icons.Default.Add,
                 enable= !plusDisabled() && !isLoadingState,
-                if (plusDisabled()) Color.Gray else Colors.primary
+                if (plusDisabled()) Color.Gray else Colors.primary,
+                modifier = Modifier.size(30.dp),
             ) {
                 increase()
             }
@@ -255,7 +256,7 @@ fun MiddleText(localCount: Int?, isLoading: Boolean) {
         horizontalArrangement = Arrangement.Center,
     ) {
         if (isLoading) {
-            CircularProgressIndicator(Modifier.height(10.dp) , color = CounterColor.countTextColor)
+            ProgressIndicatorU(progressIndicatorSize = 20.dp, progressIndicatorColor = Colors.primary, borderStroke = 1.dp)
         } else {
             Text(
                 text = counterText(localCount),

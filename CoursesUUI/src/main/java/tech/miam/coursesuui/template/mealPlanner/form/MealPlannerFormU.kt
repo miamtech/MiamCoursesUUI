@@ -30,6 +30,7 @@ import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.templateInterfaces.mealPlanner.form.MealPlannerForm
 import com.miam.sdk.templateParameters.mealPlanner.form.MealPlannerFormParameters
+import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R
 
@@ -289,19 +290,5 @@ fun CoursesUFormRow(
 @Preview
 @Composable
 fun CoursesUBudgetFormPreview() {
-    Box(modifier = Modifier.background(Colors.white)) {
-        FormCard(mealPlannerFormParameters = MealPlannerFormParameters(
-            budget = 40,
-            numberOfGuests = 4,
-            numberOfMeals = 4,
-            uiState = ComponentUiState.SUCCESS,
-            setBudget = {},
-            setNumberOfGuests = { },
-            setNumberOfMeals = {},
-            12,
-            12,
-            { _, _ -> },
-            submit = { budget, numberOfGuests, numberOfMeal -> print("hello") }
-        ))
-    }
+
 }

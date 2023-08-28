@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,11 +32,16 @@ import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.templateInterfaces.mealPlanner.meals.MealPlannerToolbar
 import com.miam.sdk.templateParameters.mealPlanner.form.MealPlannerFormParameters
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
     @Composable
     override fun Content(mealPlannerFormParameters: MealPlannerFormParameters) {
         val showFullForm = remember { mutableStateOf(false) }
+        val currentRemainingRecipeCountState =  mealPlannerFormParameters.currentRemainingRecipeCountFlow.collectAsState(
+            initial = 0
+        )
 
         Box() {
             Image(
@@ -72,7 +78,7 @@ class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
                         .fillMaxWidth()
                         .background(colorResource(R.color.miam_courses_u_background_blue))
                         .padding(top = 15.dp),
-                    text = "${mealPlannerFormParameters.numberOfMeals} idée${if (mealPlannerFormParameters.numberOfMeals > 1) "s" else ""} repas pour votre budget :",
+                    text = "${currentRemainingRecipeCountState.value} idée${if (currentRemainingRecipeCountState.value > 1) "s" else ""} repas pour votre budget :",
                     color = Colors.black,
                     style = Typography.bodyBold,
                     textAlign = TextAlign.Center
@@ -186,7 +192,7 @@ fun CoursesUBudgetPlannerToolbarPreview() {
             setNumberOfGuests = { },
             setNumberOfMeals = {},
             12,
-            12,
+            MutableStateFlow(12),
             { _, _ -> },
             submit = { budget, numberOfGuests, numberOfMeal -> print("hello") }
         ))

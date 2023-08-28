@@ -19,6 +19,7 @@ fun CounterButton(
     icon: ImageVector,
     enable: Boolean,
     color: Color,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     IconButton(
@@ -35,6 +36,7 @@ fun CounterButton(
         ) {
             Icon(
                 icon,
+                modifier= modifier,
                 contentDescription = "",
                 tint = color
             )

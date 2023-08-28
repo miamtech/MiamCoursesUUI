@@ -50,15 +50,30 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
     @Composable
     override fun Content(mealPlannerBasketPreviewRecipeOverviewParameters: MealPlannerBasketPreviewRecipeOverviewParameters) {
 
-        val likeButton =
+        val likeButton = remember {
             LikeButton().apply { bind(mealPlannerBasketPreviewRecipeOverviewParameters.id) }
+        }
 
 
-        val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewRecipeOverviewParameters.picture)
+        println("rendering recipe ${mealPlannerBasketPreviewRecipeOverviewParameters.id}")
+
+        val mealPlannerBasketPreviewRecipeOverviewParametersState by remember(
+            "${mealPlannerBasketPreviewRecipeOverviewParameters.id}" +
+                    "${mealPlannerBasketPreviewRecipeOverviewParameters.isDeleting}" +
+                    "${mealPlannerBasketPreviewRecipeOverviewParameters.isReloading}" +
+                    "${mealPlannerBasketPreviewRecipeOverviewParameters.totalPrice}",
+            mealPlannerBasketPreviewRecipeOverviewParameters
+        ) {
+            mutableStateOf(mealPlannerBasketPreviewRecipeOverviewParameters)
+        }
+
+        val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewRecipeOverviewParametersState.picture)
         Column {
             Spacer(modifier = Modifier.height(8.dp))
             Card(
-                modifier = Modifier.padding(horizontal = 8.dp).border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp)),
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp)),
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Column(
@@ -66,15 +81,13 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
                 ) {
-                    Row(
-                        modifier = Modifier.height(184.dp)
-                    ) {
+                    Row(modifier = Modifier.height(184.dp)) {
                         Box {
                             Image(
                                 painter = backgroundImage, contentDescription = null, modifier = Modifier
                                     .height(Dimension.mealPlannerCardHeight)
                                     .width(150.dp)
-                                    .clickable { mealPlannerBasketPreviewRecipeOverviewParameters.openRecipeDetail() },
+                                    .clickable { mealPlannerBasketPreviewRecipeOverviewParametersState.openRecipeDetail() },
                                 contentScale = ContentScale.Crop
                             )
                             Box(modifier = Modifier.offset(8.dp, 8.dp)) {
@@ -83,21 +96,21 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
                         }
                         Column(Modifier.padding(horizontal = 16.dp)) {
                             Text(
-                                mealPlannerBasketPreviewRecipeOverviewParameters.name,
+                                mealPlannerBasketPreviewRecipeOverviewParametersState.name,
                                 modifier = Modifier
                                     .padding(vertical = 8.dp)
                                     .defaultMinSize(minHeight = 40.dp)
-                                    .clickable { mealPlannerBasketPreviewRecipeOverviewParameters.openRecipeDetail() },
+                                    .clickable { mealPlannerBasketPreviewRecipeOverviewParametersState.openRecipeDetail() },
                                 style = Typography.subtitleBold.copy(fontSize = 14.sp),
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis
                             )
                             Text(
-                                text = Localisation.Recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParameters.productCount).localised,
+                                text = Localisation.Recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParametersState.productCount).localised,
                                 style = body.copy(fontSize = 12.sp)
                             )
                             SimplePrice(
-                                mealPlannerBasketPreviewRecipeOverviewParameters.totalPrice / mealPlannerBasketPreviewRecipeOverviewParameters.guestNumber
+                                mealPlannerBasketPreviewRecipeOverviewParametersState.totalPrice / mealPlannerBasketPreviewRecipeOverviewParametersState.guestNumber
                             ) {
                                 SuccessViewPerGuest(price = it)
                             }
@@ -117,10 +130,12 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
                                         .height(32.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    SimplePrice(
-                                        mealPlannerBasketPreviewRecipeOverviewParameters.totalPrice
-                                    ) {
-                                        SuccessView(price = it)
+                                    if (mealPlannerBasketPreviewRecipeOverviewParametersState.isReloading){
+                                        ProgressIndicatorU(progressIndicatorSize = 20.dp, progressIndicatorColor = Colors.primary, borderStroke = 1.dp)
+                                    } else {
+                                        SimplePrice(mealPlannerBasketPreviewRecipeOverviewParametersState.totalPrice) {
+                                            SuccessView(price = it)
+                                        }
                                     }
                                 }
                                 Spacer(
@@ -129,9 +144,9 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
                                         .weight(1f)
                                 )
                                 GuestNumberComponent(
-                                    mealPlannerBasketPreviewRecipeOverviewParameters.guestNumber,
+                                    mealPlannerBasketPreviewRecipeOverviewParametersState.guestNumber,
                                 ) { guestValue ->
-                                    mealPlannerBasketPreviewRecipeOverviewParameters.onGuestChange(guestValue)
+                                    mealPlannerBasketPreviewRecipeOverviewParametersState.onGuestChange(guestValue)
                                 }
                             }
                             Divider(thickness = 1.dp, color = Color.LightGray)
@@ -139,27 +154,25 @@ class RecipeCardOverview: MealPlannerBasketPreviewRecipeOverview {
                                 horizontalArrangement = Arrangement.Start,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                CollapseButton(initaleState = mealPlannerBasketPreviewRecipeOverviewParameters.isCollapsed) {
-                                    mealPlannerBasketPreviewRecipeOverviewParameters.toggleCollapse()
+                                CollapseButton(initaleState = mealPlannerBasketPreviewRecipeOverviewParametersState.isCollapsed) {
+                                    mealPlannerBasketPreviewRecipeOverviewParametersState.toggleCollapse()
                                 }
                                 Spacer(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .weight(1f)
                                 )
-                                if (mealPlannerBasketPreviewRecipeOverviewParameters.isDeleting) {
+                                if (mealPlannerBasketPreviewRecipeOverviewParametersState.isDeleting) {
                                     ProgressIndicatorU(progressIndicatorSize = 20.dp, progressIndicatorColor = Colors.primary, borderStroke = 1.dp)
                                 } else {
-                                    IconButton(onClick = { mealPlannerBasketPreviewRecipeOverviewParameters.delete() }) {
+                                    IconButton(onClick = { mealPlannerBasketPreviewRecipeOverviewParametersState.delete() }) {
                                         Icon(painter = painterResource(Image.delete), contentDescription = null)
                                     }
                                 }
-
                             }
                         }
                     }
-
-                    mealPlannerBasketPreviewRecipeOverviewParameters.Content()
+                    mealPlannerBasketPreviewRecipeOverviewParametersState.Content()
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))

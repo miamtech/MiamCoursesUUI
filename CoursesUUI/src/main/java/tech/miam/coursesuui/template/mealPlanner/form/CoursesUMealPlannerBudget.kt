@@ -73,6 +73,7 @@ fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
             if (newValue.text.length <= 5 && newValue.text.matches(Regex("[0-9]*"))) {
                 text = newValue
             }
+            onBudgetChanged(text.text.toIntOrNull() ?: 0)
         },
         modifier = Modifier
             .defaultMinSize(minHeight = 40.dp)
@@ -83,10 +84,9 @@ fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
         keyboardActions = KeyboardActions(
             onDone = {
                 focusManager.clearFocus()
-                onBudgetChanged(text.text.toIntOrNull() ?: 0)
-            }
+            },
         ),
         singleLine = true,
-        textStyle = Typography.subtitleBold.copy(textAlign = TextAlign.End)
+        textStyle = Typography.subtitleBold.copy(textAlign = TextAlign.End),
     )
 }

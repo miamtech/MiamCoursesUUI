@@ -21,6 +21,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.nativeKeyCode
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
@@ -28,7 +31,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.miam.kmmMiamCore.handler.ToasterHandler.state
 import com.miam.kmm_miam_sdk.android.theme.Typography
 
 @Composable
@@ -73,14 +75,25 @@ fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
             if (newValue.text.length <= 5 && newValue.text.matches(Regex("[0-9]*"))) {
                 text = newValue
             }
-            onBudgetChanged(text.text.toIntOrNull() ?: 0)
         },
         modifier = Modifier
             .defaultMinSize(minHeight = 40.dp)
             .fillMaxWidth()
             .wrapContentHeight(Alignment.CenterVertically)
-            .padding(end = 30.dp),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+            .padding(end = 30.dp)
+            .onFocusChanged { onBudgetChanged(text.text.toIntOrNull() ?: 0) }
+            .onKeyEvent { event ->
+                if (event.key.nativeKeyCode == android.view.KeyEvent.KEYCODE_BACK) {
+                    focusManager.clearFocus()
+                    true
+                } else {
+                    false
+                }
+            },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Done
+        ),
         keyboardActions = KeyboardActions(
             onDone = {
                 focusManager.clearFocus()

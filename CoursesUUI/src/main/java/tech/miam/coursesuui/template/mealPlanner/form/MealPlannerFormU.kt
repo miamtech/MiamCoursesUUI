@@ -33,7 +33,6 @@ import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.templateInterfaces.mealPlanner.form.MealPlannerForm
 import com.miam.sdk.templateParameters.mealPlanner.form.MealPlannerFormParameters
-import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R
 
@@ -55,9 +54,11 @@ class CoursesUBudgetForm : MealPlannerForm {
                 modifier = Modifier
                     .padding(Dimension.lPadding)
                     .pointerInput(Unit) {
-                        detectTapGestures(onTap = {
-                            focusManager.clearFocus()
-                        })
+                        detectTapGestures(
+                            onTap = {
+                                focusManager.clearFocus()
+                            }
+                        )
                     }
             ) {
                 Image(

@@ -8,7 +8,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -29,7 +28,6 @@ fun CounterButton(
         enabled = enable
     ) {
         Box(
-            contentAlignment = Alignment.Center,
             modifier = Modifier
                 .background(color = Color.White, shape = CircleShape)
                 .border(width = 2.dp, color = color, shape = CircleShape)

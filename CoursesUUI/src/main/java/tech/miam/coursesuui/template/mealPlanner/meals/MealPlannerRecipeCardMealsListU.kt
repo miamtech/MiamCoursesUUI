@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -46,8 +48,19 @@ import kotlin.math.roundToInt
 
 @Composable
 fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
-    SwipeToDelete(params.deleteAction) {
-        RecipeCardRow(params)
+    val focusManager = LocalFocusManager.current
+    Column(
+        modifier = Modifier.pointerInput(Unit) {
+            detectTapGestures(
+                onTap = {
+                    focusManager.clearFocus()
+                }
+            )
+        }
+    ) {
+        SwipeToDelete(params.deleteAction) {
+            RecipeCardRow(params)
+        }
     }
 }
 
@@ -66,7 +79,7 @@ fun SwipeToDelete(deleteAction: () -> Unit, Overlay: @Composable () -> Unit) {
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Colors.miamDangerBackground
             ),
-            elevation = ButtonDefaults.elevation(0.dp) ,
+            elevation = ButtonDefaults.elevation(0.dp),
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .height(Dimension.mealPlannerCardHeight)
@@ -87,21 +100,19 @@ fun SwipeToDelete(deleteAction: () -> Unit, Overlay: @Composable () -> Unit) {
                 )
             }
         }
-        Box(
-            modifier = Modifier
-                .height(Dimension.mealPlannerCardHeight)
-                .offset { IntOffset(offsetX.roundToInt(), 0) }
-                .pointerInput(Unit) {
-                    detectHorizontalDragGestures { change, dragAmount ->
-                        val newOffsetX = offsetX + dragAmount
-                        if (newOffsetX <= 0f && newOffsetX >= -maxSwipeDistance) {
-                            offsetX = newOffsetX
-                        }
-                        change.consume()
-                        showCloseIcon.value = offsetX <= -threshold
+        Box(modifier = Modifier
+            .height(Dimension.mealPlannerCardHeight)
+            .offset { IntOffset(offsetX.roundToInt(), 0) }
+            .pointerInput(Unit) {
+                detectHorizontalDragGestures { change, dragAmount ->
+                    val newOffsetX = offsetX + dragAmount
+                    if (newOffsetX <= 0f && newOffsetX >= -maxSwipeDistance) {
+                        offsetX = newOffsetX
                     }
+                    change.consume()
+                    showCloseIcon.value = offsetX <= -threshold
                 }
-        ) {
+            }) {
             Overlay()
         }
     }
@@ -111,8 +122,7 @@ fun SwipeToDelete(deleteAction: () -> Unit, Overlay: @Composable () -> Unit) {
 fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
 
     val backgroundImage: Painter = rememberImagePainter(params.recipe.attributes?.mediaUrl)
-    val likeButton =
-        LikeButton().apply { bind(params.recipe.id) }
+    val likeButton = LikeButton().apply { bind(params.recipe.id) }
 
     Box(
         modifier = Modifier
@@ -125,7 +135,8 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
         Row(Modifier.background(Color.White)) {
             Box {
                 Image(
-                    painter = backgroundImage, contentDescription = null,
+                    painter = backgroundImage,
+                    contentDescription = null,
                     modifier = Modifier
                         .height(Dimension.mealPlannerCardHeight)
                         .width(150.dp)
@@ -154,7 +165,9 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                 ) {
                     RecipeCardMetric(text = params.recipe.totalTime, image = Image.time)
                     Divider(
-                        thickness = 1.dp, color = Color.LightGray, modifier = Modifier
+                        thickness = 1.dp,
+                        color = Color.LightGray,
+                        modifier = Modifier
                             .height(32.dp)
                             .width(1.dp)
                     )

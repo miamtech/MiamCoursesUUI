@@ -45,7 +45,14 @@ class CoursesUBudgetForm : MealPlannerForm {
         Box(
             modifier = Modifier
                 .background(colorResource(R.color.miam_courses_u_background_blue))
-                .fillMaxSize(),
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = {
+                            focusManager.clearFocus()
+                        }
+                    )
+                },
             contentAlignment = Alignment.TopCenter,
         ) {
             PageBackground()
@@ -53,13 +60,6 @@ class CoursesUBudgetForm : MealPlannerForm {
                 verticalArrangement = Arrangement.spacedBy(Dimension.lPadding),
                 modifier = Modifier
                     .padding(Dimension.lPadding)
-                    .pointerInput(Unit) {
-                        detectTapGestures(
-                            onTap = {
-                                focusManager.clearFocus()
-                            }
-                        )
-                    }
             ) {
                 Image(
                     painter = painterResource(R.drawable.budget_repas_logo),
@@ -120,6 +120,8 @@ fun PageBackground() {
 @Composable
 fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () -> Unit = {}) {
 
+    val focusManager = LocalFocusManager.current
+
     fun calculateMealInitialValue(): Int {
         if (mealPlannerFormParameters.numberOfMeals > mealPlannerFormParameters.maxMealCount) {
             return mealPlannerFormParameters.maxMealCount
@@ -150,7 +152,14 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                 color = colorResource(R.color.miam_courses_u_background_gray),
                 shape = RoundedCornerShape(size = Dimension.mRoundedCorner)
             )
-            .padding(Dimension.lPadding),
+            .padding(Dimension.lPadding)
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        focusManager.clearFocus()
+                    }
+                )
+            },
         verticalArrangement = Arrangement.spacedBy(Dimension.lPadding),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

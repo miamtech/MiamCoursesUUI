@@ -75,7 +75,7 @@ class MealPlannerRecapU: MealPlannerRecap {
                         )
                         Text(
                             lineHeight = 24.sp,
-                            text = "Les produits associés ont bien été ajoutés au panier.",
+                            text = "Tous les ingrédients ont bien été ajoutés au panier.",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 16.dp),

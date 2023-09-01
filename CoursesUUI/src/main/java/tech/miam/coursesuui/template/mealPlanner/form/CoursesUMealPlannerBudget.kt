@@ -73,7 +73,7 @@ fun CoursesUBudgetInt(budgetAmount: Int, onBudgetChanged: (Int) -> Unit) {
         value = text,
         interactionSource = interactionSource,
         onValueChange = { newValue ->
-            if (newValue.text.length <= 5 && newValue.text.matches(Regex("[0-9]*"))) {
+            if (newValue.text.length <= 3 && newValue.text.matches(Regex("[0-9]*"))) {
                 text = newValue
             }
         },

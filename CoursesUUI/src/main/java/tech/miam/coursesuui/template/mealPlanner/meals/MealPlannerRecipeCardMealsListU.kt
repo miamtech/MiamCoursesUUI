@@ -5,27 +5,19 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -33,7 +25,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import tech.miam.coursesuui.theme.Typography
@@ -44,7 +35,6 @@ import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.ui.components.likeButton.LikeButton
 import com.miam.kmm_miam_sdk.android.ui.components.price.SimplePrice
 import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeCardParameters
-import kotlin.math.roundToInt
 
 @Composable
 fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
@@ -56,65 +46,9 @@ fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
                     focusManager.clearFocus()
                 }
             )
-        }
+        },
     ) {
-        SwipeToDelete(params.deleteAction) {
-            RecipeCardRow(params)
-        }
-    }
-}
-
-@Composable
-fun SwipeToDelete(deleteAction: () -> Unit, Overlay: @Composable () -> Unit) {
-    var offsetX by remember { mutableStateOf(0f) }
-    val threshold = 200f
-    val maxSwipeDistance = 250f // Change this value to adjust the maximum swipe distance
-    val showCloseIcon = remember { mutableStateOf(false) }
-
-    Box(Modifier.padding(vertical = 8.dp)) {
-        Button(
-            onClick = {
-                deleteAction()
-            },
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = Colors.miamDangerBackground
-            ),
-            elevation = ButtonDefaults.elevation(0.dp),
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .height(Dimension.mealPlannerCardHeight)
-                .width(maxSwipeDistance.dp)
-                .padding(end = 8.dp),
-            shape = RoundedCornerShape(10.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxSize(),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(Image.delete),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(Colors.miamDangerText),
-                    modifier = Modifier.size(30.dp)
-                )
-            }
-        }
-        Box(modifier = Modifier
-            .height(Dimension.mealPlannerCardHeight)
-            .offset { IntOffset(offsetX.roundToInt(), 0) }
-            .pointerInput(Unit) {
-                detectHorizontalDragGestures { change, dragAmount ->
-                    val newOffsetX = offsetX + dragAmount
-                    if (newOffsetX <= 0f && newOffsetX >= -maxSwipeDistance) {
-                        offsetX = newOffsetX
-                    }
-                    change.consume()
-                    showCloseIcon.value = offsetX <= -threshold
-                }
-            }) {
-            Overlay()
-        }
+        RecipeCardRow(params)
     }
 }
 
@@ -127,7 +61,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(8.dp)
             .height(Dimension.mealPlannerCardHeight)
             .border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp))
             .clip(RoundedCornerShape(10.dp)),

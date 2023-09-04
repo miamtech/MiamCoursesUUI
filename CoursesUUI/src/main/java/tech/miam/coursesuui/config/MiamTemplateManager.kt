@@ -31,6 +31,7 @@ import com.miam.kmm_miam_sdk.android.ui.components.catalog.customization.Catalog
 import com.miam.sdk.templatesConfigs.MiamTheme
 import com.miam.sdk.templatesConfigs.MiamTheme.mealPlanner
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
+import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.MealPlannerBasketPreviewSectionTitleU
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.RecipeCardOverview
@@ -96,41 +97,11 @@ class MiamTemplateManager {
 
         Template.myMealEmptyTemplate = @Composable()
         { goToCatalog: () -> Unit ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Colors.primary)
-            ) {
-                Column(
-                    Modifier
-                        .align(Alignment.Center)
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(CatalogImage.empty),
-                        contentDescription = null,
-                        Modifier.padding(vertical = 16.dp)
-                    )
-                    Text(
-                        text = "Vous n’avez aucune idée repas.",
-                        color = Colors.white,
-                        style = Typography.subtitleBold,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        modifier = Modifier.height(50.dp),
-                        onClick = { goToCatalog()},
-                        colors =
-                        ButtonDefaults.buttonColors(backgroundColor = Colors.ternary, contentColor = Colors.white),
-                        shape = RoundedCornerShape(50),
-                    ) {
-                        Text(text = "Je découvre les recettes")
-                    }
-                }
-            }
+            EmptyPage(goToCatalog)
+        }
+        Template.emptyFavoritePage = @Composable()
+        { goToCatalog: () -> Unit ->
+            EmptyPage(goToCatalog)
         }
     }
 }

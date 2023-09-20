@@ -295,7 +295,7 @@ fun CoursesUFormRow(
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = Dimension.sPadding),
-                style = Typography.body
+                style = Typography.body.copy(fontSize = 14.sp)
             )
             Box(modifier = Modifier.weight(0.5f))
         }

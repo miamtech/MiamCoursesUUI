@@ -19,9 +19,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.template.mealPlanner.form.MealCountState
 
 @Composable
 fun CoursesUButton(
+    counterState: MealCountState,
     backgroundColor: Color = Color(R.color.miam_courses_u_primary),
     buttonStrokeColor: Color = Color.Transparent,
     enabled: Boolean = true,
@@ -38,7 +40,7 @@ fun CoursesUButton(
         onClick = { buttonAction() },
         colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
         shape = shape,
-        enabled = enabled,
+        enabled = counterState.count > 0 && enabled,
         border = BorderStroke(width = Dp(1f), color = buttonStrokeColor),
         contentPadding = paddingValues,
         content = content,
@@ -54,12 +56,14 @@ fun CoursesUButtonPreview() {
     MaterialTheme {
         Column() {
             CoursesUButton(
+                MealCountState(),
                 buttonAction = { /* Your action here */ },
                 content =
                 {
                     Text(text = "My Button")
                 })
             CoursesUButton(
+                MealCountState(),
                 backgroundColor = Color.Red,
                 cornerRadius = Dimension.sRoundedCorner,
                 buttonAction = { /* Your action here */ },
@@ -68,6 +72,7 @@ fun CoursesUButtonPreview() {
                     Text(text = "My Button")
                 })
             CoursesUButton(
+                MealCountState(),
                 backgroundColor = Color.Gray,
                 buttonStrokeColor = Color.Green,
                 buttonAction = { /* Your action here */ },

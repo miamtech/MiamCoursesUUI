@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.ActivityNavigator
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.miam.sdk.components.mealPlanner.meals.MealPlanner
 import tech.miam.coursesUDemoApp.R
 
@@ -26,5 +24,6 @@ class MealPlannerMealsFragment : Fragment() {
         val mealPlannerMeals = view.findViewById<MealPlanner>(R.id.meal_planner)
         mealPlannerMeals.goToRecipeSelector = { index -> findNavController().navigate(R.id.action_mealPlannerMealsFragment_to_mealPlannerSearchFragment, args = bundleOf("index" to index)) }
         mealPlannerMeals.onComfirm = { findNavController().navigate(R.id.action_mealPlannerMealsFragment_to_mealPlannerBasketPreview) }
+        mealPlannerMeals.onEmptyState = { findNavController().navigateUp() }
     }
 }

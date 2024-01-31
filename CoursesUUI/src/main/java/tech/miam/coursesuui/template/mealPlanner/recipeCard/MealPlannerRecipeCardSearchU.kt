@@ -24,15 +24,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.miam.core.sdk.data.repository.BudgetRepository
+import com.miam.core.data.repository.BudgetRepository
+import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
-import com.miam.core.sdk.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.ui.components.price.RecipePrice
-import com.miam.kmm_miam_sdk.android.ui.components.price.SimplePrice
-import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeCardParameters
-import com.miam.sdk.ui.mealPlanner.recipe.BudgetLikeButton
+import com.miam.sdk.components.mealPlanner.recipe.success.BudgetLikeButton
+import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
+import com.miam.sdk.components.price.RecipePrice
+
 
 @Composable
 fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
@@ -111,9 +111,7 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RecipePrice(params.recipe.id, BudgetRepository.guestCount,false,{ price ->
-                        RecipeCardPrice(price = price)
-                    }){ RecipeCardPriceLoading()}
+                    RecipePrice(params.recipe.id, BudgetRepository.guestCount)
                 }
                 Divider(thickness = 1.dp, color = Color.LightGray)
                 Row(Modifier.padding(top = 8.dp)) {

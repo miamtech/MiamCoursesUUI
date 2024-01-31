@@ -27,13 +27,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.templateInterfaces.mealPlanner.search.MealPlannerSearch
-import com.miam.sdk.templateParameters.mealPlanner.search.MealPlannerSearchParameters
+import com.miam.sdk.components.mealPlanner.search.MealPlannerSearch
+import com.miam.sdk.components.mealPlanner.search.MealPlannerSearchParameters
+
 
 class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
 
     @Composable
-    override fun Content(budgetSearchParameters: MealPlannerSearchParameters) {
+    override fun Content(params: MealPlannerSearchParameters) {
 
         var currentSearch by remember { mutableStateOf("") }
         Column {
@@ -51,9 +52,9 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                         searchText = currentSearch,
                         onTextChange = {
                             currentSearch = it
-                            budgetSearchParameters.updateSearch(it)
+                            params.updateSearch(it)
                         },
-                        submit = { budgetSearchParameters.updateSearch(currentSearch) }
+                        submit = { params.updateSearch(currentSearch) }
                     )
                 }
                 Divider(
@@ -61,7 +62,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                         .fillMaxHeight()
                         .width(1.dp)
                 )
-                IconButton(onClick = budgetSearchParameters.filtersTapped) {
+                IconButton(onClick = params.filtersTapped) {
                     Image(
                         painter = painterResource(com.miam.kmm_miam_sdk.android.ressource.Image.filter),
                         contentDescription = "Filter Icon",

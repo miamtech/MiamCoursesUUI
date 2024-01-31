@@ -15,13 +15,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miam.kmm_miam_sdk.android.theme.Typography.body
 import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
+import com.miam.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmpty
+import com.miam.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmptyParameters
 import tech.miam.coursesuui.R
-import com.miam.sdk.templateInterfaces.mealPlanner.search.MealPlannerSearchEmpty
-import com.miam.sdk.templateParameters.mealPlanner.search.MealPlannerSearchEmptyParameters
+
 
 class MealPlannerSearchEmptyU: MealPlannerSearchEmpty {
     @Composable
-    override fun Content(mealPlannerSearchEmptyParameters: MealPlannerSearchEmptyParameters) {
+    override fun Content(params: MealPlannerSearchEmptyParameters) {
         Column(
             modifier = Modifier.padding(horizontal = 15.dp),
             verticalArrangement = Arrangement.Center,

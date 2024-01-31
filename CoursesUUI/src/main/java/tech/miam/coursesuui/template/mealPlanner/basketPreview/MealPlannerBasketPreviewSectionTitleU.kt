@@ -27,14 +27,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.miam.sdk.templateInterfaces.mealPlanner.basketPreview.MealPlannerBasketPreviewSectionTitle
-import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBasketPreviewSectionTitleParameters
+import com.miam.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeader
+import com.miam.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeaderParameters
 import tech.miam.coursesuui.R
 
-class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitle {
+class MealPlannerBasketPreviewSectionTitleU: NotInBasketProductHeader {
     @Composable
-    override fun Content(mealPlannerBasketPreviewSectionTitleParameters: MealPlannerBasketPreviewSectionTitleParameters) {
-        var expandedState by remember { mutableStateOf(mealPlannerBasketPreviewSectionTitleParameters.isCollapse) }
+    override fun Content(params: NotInBasketProductHeaderParameters) {
+        var expandedState by remember { mutableStateOf(params.isExpanded) }
         val rotationState by animateFloatAsState(
             targetValue = if (expandedState) 90f else 0f
         )
@@ -50,7 +50,7 @@ class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitl
                 .padding(vertical = 10.dp)
                 .clip(RoundedCornerShape(4.dp))
                 .clickable {
-                    mealPlannerBasketPreviewSectionTitleParameters.toggleCollapse()
+                    params.toggle()
                     toggle()
                 }.background(Color(0xffDDDDDD))
         ) {
@@ -65,7 +65,7 @@ class MealPlannerBasketPreviewSectionTitleU: MealPlannerBasketPreviewSectionTitl
                     Text(
                         modifier = Modifier
                             .weight(6f),
-                        text = mealPlannerBasketPreviewSectionTitleParameters.title,
+                        text = params.title,
                         fontWeight = if (expandedState) FontWeight.Bold else FontWeight.Normal
                     )
 

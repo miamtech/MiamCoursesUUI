@@ -1,8 +1,9 @@
 package tech.miam.coursesuui.template.mealPlanner.recipeCard
 
 import androidx.compose.runtime.Composable
-import com.miam.sdk.templateInterfaces.mealPlanner.recipe.MealPlannerRecipeCard
-import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeCardParameters
+import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCard
+import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
+
 
 class MealPlannerRecipeCardU: MealPlannerRecipeCard {
     @Composable

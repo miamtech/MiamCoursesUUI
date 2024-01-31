@@ -1,35 +1,8 @@
 package tech.miam.coursesuui.config
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.SnackbarDefaults.backgroundColor
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Colors.primary
-import com.miam.kmm_miam_sdk.android.theme.Colors.white
-import com.miam.kmm_miam_sdk.android.theme.Template
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.catalog.customization.CatalogImage
-import com.miam.kmm_miam_sdk.android.ui.components.catalog.customization.CatalogText
-import com.miam.sdk.templatesConfigs.MiamTheme
-import com.miam.sdk.templatesConfigs.MiamTheme.mealPlanner
+import com.miam.sdk.components.MiamTheme
+import com.miam.sdk.components.MiamTheme.defaultViews
+import com.miam.sdk.components.MiamTheme.mealPlanner
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
@@ -38,8 +11,6 @@ import tech.miam.coursesuui.template.mealPlanner.basketPreview.RecipeCardOvervie
 import tech.miam.coursesuui.template.mealPlanner.callToAction.MealPlannerCallToActionU
 import tech.miam.coursesuui.template.mealPlanner.form.CoursesUBudgetForm
 import tech.miam.coursesuui.template.mealPlanner.planner.CoursesUBudgetPlannerToolbar
-import tech.miam.coursesuui.template.mealPlanner.recap.MealPlannerRecapU
-import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipeCardU
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePlaceholderU
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
@@ -49,6 +20,8 @@ import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSe
 class MiamTemplateManager {
     init {
         MiamTheme.Template {
+
+            //////// MEAL PLANNER TEMPLATING /////////////////
             mealPlanner {
                 plannerFooterConfig {
                     view = CoursesUMealPlannerFooter()
@@ -60,48 +33,67 @@ class MiamTemplateManager {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
                 callToActionConfig {
-                    view = MealPlannerCallToActionU()
+                    success {
+                        view = MealPlannerCallToActionU()
+                    }
                 }
-                basketPreviewProductConfig {
-                    view = CoursesUBasketPreviewProductImp()
+                basketPreview {
+                    success {
+                        recipe{
+                            view = RecipeCardOverview()
+                        }
+                        foundProducts {
+                            product {
+                                view = CoursesUBasketPreviewProductImp()
+                            }
+                        }
+                        notInBasketProducts {
+                           header {
+                               view = MealPlannerBasketPreviewSectionTitleU()
+                           }
+                        }
+                    }
+                    footer {
+                        view = CoursesUMealPlannerFooter()
+                    }
                 }
-                basketPreviewFooterConfig {
-                    view = CoursesUMealPlannerFooter()
-                }
-                basketPreviewSectionTitleConfig {
-                    view = MealPlannerBasketPreviewSectionTitleU()
-                }
-                basketPreviewRecipeOverviewConfig {
-                    view = RecipeCardOverview()
-                }
+
                 formConfig {
-                    view = CoursesUBudgetForm()
+                    success {
+                        view = CoursesUBudgetForm()
+                    }
                 }
                 recapConfig {
-                    view = MealPlannerRecapU()
+                    //TODO fix in SDK
+                    //view = MealPlannerRecapU()
+                }
+
+                // TODO should be in recipe config
+                recipePlaceholderConfig {
+                    view = MealPlannerRecipePlaceholderU()
+                }
+                // TODO should be in recipe config
+                recipeLoadingConfig {
+                    view = RecipeLoadingViewU()
                 }
                 recipeCardConfig {
-                    view = MealPlannerRecipeCardU()
-                    recipePlaceholderConfig {
-                        view = MealPlannerRecipePlaceholderU()
-                    }
-                    recipeLoadingConfig {
-                        view = RecipeLoadingViewU()
-                    }
+                    //TODO fix in SDK
+                    //view = MealPlannerRecipeCardU()
+
                 }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()
                 }
             }
+            ////////   MEAL PLANNER  END TEMPLATING /////////////////////
+            /////// DEFAULT VIEW TEMPLATING //////////////////
+            defaultViews {
+                empty {
+                    view = EmptyPage()
+                }
+            }
+            /////// DEFAULT VIEW TEMPLATING //////////////////
         }
 
-        Template.myMealEmptyTemplate = @Composable()
-        { goToCatalog: () -> Unit ->
-            EmptyPage(goToCatalog)
-        }
-        Template.emptyFavoritePage = @Composable()
-        { goToCatalog: () -> Unit ->
-            EmptyPage(goToCatalog)
-        }
     }
 }

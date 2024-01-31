@@ -24,6 +24,6 @@ class MealPlannerMealsFragment : Fragment() {
         val mealPlannerMeals = view.findViewById<MealPlanner>(R.id.meal_planner)
         mealPlannerMeals.goToRecipeSelector = { index -> findNavController().navigate(R.id.action_mealPlannerMealsFragment_to_mealPlannerSearchFragment, args = bundleOf("index" to index)) }
         mealPlannerMeals.onComfirm = { findNavController().navigate(R.id.action_mealPlannerMealsFragment_to_mealPlannerBasketPreview) }
-        mealPlannerMeals.onEmptyState = { findNavController().navigateUp() }
+       // TODO check mealPlannerMeals.onEmptyState = { findNavController().navigateUp() }
     }
 }

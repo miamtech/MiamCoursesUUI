@@ -24,22 +24,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.miam.core.sdk.localisation.Localisation
+import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.templateInterfaces.mealPlanner.recipe.MealPlannerRecipePlaceholder
-import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipePlaceholderParameters
+import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholder
+import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholderParameters
+
 
 class MealPlannerRecipePlaceholderU: MealPlannerRecipePlaceholder {
     @Composable
-    override fun Content(mealPlannerRecipePlaceholderParameters: MealPlannerRecipePlaceholderParameters) {
+    override fun Content(params: MealPlannerRecipePlaceholderParameters) {
         Card(
             modifier = Modifier
                 .height(Dimension.mealPlannerCardHeight)
                 .clickable {
-                    mealPlannerRecipePlaceholderParameters.action()
+                    params.action()
                 }
                 .padding(8.dp),
             shape = RoundedCornerShape(10.dp)
@@ -90,5 +91,5 @@ class MealPlannerRecipePlaceholderU: MealPlannerRecipePlaceholder {
 @Preview
 @Composable
 fun MealPlannerRecipePlaceholderImpPreview() {
-    MealPlannerRecipePlaceholderU().Content(mealPlannerRecipePlaceholderParameters = MealPlannerRecipePlaceholderParameters { print("hello") })
+    MealPlannerRecipePlaceholderU().Content(params = MealPlannerRecipePlaceholderParameters { print("hello") })
 }

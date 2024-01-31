@@ -24,22 +24,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.miam.core.base.state.ComponentUiState
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.form.FormCard
-import com.miam.core.sdk.base.state.ComponentUiState
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.templateInterfaces.mealPlanner.meals.MealPlannerToolbar
-import com.miam.sdk.templateParameters.mealPlanner.form.MealPlannerFormParameters
-import kotlinx.coroutines.flow.Flow
+import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
+import com.miam.sdk.components.mealPlanner.meals.toolbar.MealPlannerToolbar
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
     @Composable
-    override fun Content(mealPlannerFormParameters: MealPlannerFormParameters) {
+    override fun Content(params: MealPlannerFormSuccessParameters) {
         val showFullForm = remember { mutableStateOf(false) }
-        val currentRemainingRecipeCountState =  mealPlannerFormParameters.currentRemainingRecipeCountFlow.collectAsState(
+        val currentRemainingRecipeCountState =  params.currentRemainingRecipeCountFlow.collectAsState(
             initial = 0
         )
 
@@ -65,12 +64,12 @@ class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
                         .fillMaxWidth()
                 )
                 if (!showFullForm.value) {
-                    ClickableToolbar(mealPlannerFormParameters) {
+                    ClickableToolbar(params) {
                         showFullForm.value = true
                     }
                 }
                 AnimatedVisibility(visible = showFullForm.value) {
-                    FormCard(mealPlannerFormParameters) { showFullForm.value = false }
+                    FormCard(params) { showFullForm.value = false }
                 }
 
                 Text(
@@ -90,7 +89,7 @@ class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
 
 
 @Composable
-fun ClickableToolbar(mealPlannerFormParameters: MealPlannerFormParameters, onClick: () -> Unit) {
+fun ClickableToolbar(mealPlannerFormParameters: MealPlannerFormSuccessParameters, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .clickable { onClick() }
@@ -183,7 +182,7 @@ fun CoursesUBudgetPlannerToolbarPreview() {
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        CoursesUBudgetPlannerToolbar().Content(mealPlannerFormParameters = MealPlannerFormParameters(
+        CoursesUBudgetPlannerToolbar().Content(params = MealPlannerFormSuccessParameters(
             budget = 40,
             numberOfGuests = 4,
             numberOfMeals = 4,

@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.price.formatPrice
-import com.miam.sdk.templateInterfaces.mealPlanner.recap.MealPlannerRecap
-import com.miam.sdk.templateParameters.mealPlanner.recap.MealPlannerRecapParameters
+import com.miam.sdk.components.mealPlanner.recap.success.MealPlannerRecap
+import com.miam.sdk.components.mealPlanner.recap.success.MealPlannerRecapParameters
+import com.miam.sdk.components.price.formatPrice
 
 class MealPlannerRecapU: MealPlannerRecap {
     @Composable
@@ -130,7 +130,7 @@ class MealPlannerRecapU: MealPlannerRecap {
             Text(text = "$mealCount repas pour", style = Typography.body)
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(text = formatPrice(price), style = Typography.subtitleBold)
+                Text(text = price.formatPrice(), style = Typography.subtitleBold)
                 Image(
                     painter = painterResource(id = R.drawable.ic_underline),
                     contentDescription = null,

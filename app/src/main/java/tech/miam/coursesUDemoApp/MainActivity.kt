@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
-import com.miam.core.localisation.I18nResolver
-import com.miam.kmmMiamCore.handler.ContextHandlerInstance
-import com.miam.kmmMiamCore.handler.ReadyEvent
+import com.miam.core.Mealz
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,22 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MiamSdkHelper.initialize(
-            context = this,
-            supplierId = 7,
-            supplierOrigin = "app.coursesu.com",
+            appContext =  this,
             storeId = "25910",
             userId = "test_${UUID.randomUUID()}",
             basket = basketLocalDataSource.getProducts()
         )
-        I18nResolver.registerContext(this.applicationContext)
+
         CoroutineScope(Dispatchers.Main).launch {
-            ContextHandlerInstance.instance.observeReadyEvent().collect {
-                when (it) {
-                    ReadyEvent.isReady -> {
-                        val navHostFragment = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
-                        navHostFragment.visibility = View.VISIBLE
-                    }
-                    else -> {}
+            Mealz.notifications.availability.listen {
+                if (it) {
+                    val navHostFragment = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
+                    navHostFragment.visibility = View.VISIBLE
                 }
             }
         }

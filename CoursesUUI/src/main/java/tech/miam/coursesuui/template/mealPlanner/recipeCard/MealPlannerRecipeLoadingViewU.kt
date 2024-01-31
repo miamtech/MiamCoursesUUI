@@ -25,9 +25,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.sdk.templateInterfaces.mealPlanner.recipe.MealPlannerRecipeLoading
-import com.miam.sdk.templateParameters.mealPlanner.recipe.Component
-import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeLoadingParameters
+import com.miam.sdk.components.mealPlanner.recipe.loading.Component
+import com.miam.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoading
+import com.miam.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoadingParameters
+
 
 class RecipeLoadingViewU: MealPlannerRecipeLoading {
     @Composable
@@ -36,7 +37,6 @@ class RecipeLoadingViewU: MealPlannerRecipeLoading {
             Component.PLANNER -> ShimmerMealPlannerRecipeCardRow()
             Component.SEARCH_RESULT -> ShimmerMealPlannerRecipeCardColumn()
         }
-
     }
 
     @Composable

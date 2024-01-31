@@ -35,19 +35,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.sdk.base.state.ComponentUiState
+import com.miam.core.base.state.ComponentUiState
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.templateInterfaces.mealPlanner.form.MealPlannerForm
-import com.miam.sdk.templateParameters.mealPlanner.form.MealPlannerFormParameters
+import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccess
+import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
+
 import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R
 
 
-class CoursesUBudgetForm : MealPlannerForm {
+class CoursesUBudgetForm : MealPlannerFormSuccess {
     @Composable
-    override fun Content(mealPlannerFormParameters: MealPlannerFormParameters) {
+    override fun Content(params: MealPlannerFormSuccessParameters) {
         val focusManager = LocalFocusManager.current
         Box(
             modifier = Modifier
@@ -75,7 +76,7 @@ class CoursesUBudgetForm : MealPlannerForm {
                         .padding(vertical = 24.dp)
                         .fillMaxWidth()
                 )
-                FormCard(mealPlannerFormParameters)
+                FormCard(params)
             }
         }
     }
@@ -125,16 +126,16 @@ fun PageBackground() {
 
 
 @Composable
-fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () -> Unit = {}) {
+fun FormCard(params: MealPlannerFormSuccessParameters, onSubmit: () -> Unit = {}) {
 
     val focusManager = LocalFocusManager.current
     val isKeyBoardOpen by keyboardAsState()
 
     fun calculateMealInitialValue(): Int {
-        if (mealPlannerFormParameters.numberOfMeals > mealPlannerFormParameters.maxMealCount) {
-            return mealPlannerFormParameters.maxMealCount
+        if (params.numberOfMeals > params.maxMealCount) {
+            return params.maxMealCount
         }
-        return mealPlannerFormParameters.numberOfMeals
+        return params.numberOfMeals
     }
 
     val mealCounterState = MealCountState(
@@ -142,7 +143,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
     )
 
     fun budgetAndPeopleValid(): Boolean {
-        return mealPlannerFormParameters.budget > 0
+        return params.budget > 0
     }
 
     @Composable
@@ -183,12 +184,12 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             icon = painterResource(id = R.drawable.budget_icon)
         ) {
             CoursesUBudgetInt(
-                budgetAmount = mealPlannerFormParameters.budget,
+                budgetAmount = params.budget,
                 onBudgetChanged = { amount ->
-                    mealPlannerFormParameters.setBudget(amount)
-                    mealPlannerFormParameters.refreshMaxMealCount(
+                    params.setBudget(amount)
+                    params.refreshMaxMealCount(
                         amount,
-                        mealPlannerFormParameters.numberOfGuests
+                        params.numberOfGuests
                     )
                 })
             CoursesUCurrency(text = "€")
@@ -199,11 +200,11 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             icon = painterResource(id = R.drawable.number_of_people_icon)
         ) {
             CoursesUStepper(
-                defaultValue = mealPlannerFormParameters.numberOfGuests,
+                defaultValue = params.numberOfGuests,
                 onStepperChanged = {
-                    mealPlannerFormParameters.setNumberOfGuests(it)
-                    mealPlannerFormParameters.refreshMaxMealCount(
-                        mealPlannerFormParameters.budget,
+                    params.setNumberOfGuests(it)
+                    params.refreshMaxMealCount(
+                        params.budget,
                         it
                     )
                 })
@@ -216,15 +217,15 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             CoursesUMealStepper(
                 mealCounterState,
                 disableButton = false,
-                maxValue = if (mealPlannerFormParameters.maxMealCount > 9) 9 else mealPlannerFormParameters.maxMealCount,
+                maxValue = if (params.maxMealCount > 9) 9 else params.maxMealCount,
                 increase = {
-                    if (mealCounterState.count < mealPlannerFormParameters.maxMealCount || mealCounterState.count < 9) {
-                        mealPlannerFormParameters.setNumberOfMeals(mealCounterState.count + 1)
+                    if (mealCounterState.count < params.maxMealCount || mealCounterState.count < 9) {
+                        params.setNumberOfMeals(mealCounterState.count + 1)
                     }
                 })
             {
                 if (mealCounterState.count > 0) {
-                    mealPlannerFormParameters.setNumberOfMeals(mealCounterState.count - 1)
+                    params.setNumberOfMeals(mealCounterState.count - 1)
                 }
             }
         }
@@ -233,7 +234,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
             mealCounterState,
             backgroundColor = submitBackgroundColor(),
             cornerRadius = 50.dp,
-            enabled = (mealPlannerFormParameters.uiState != ComponentUiState.EMPTY) && (isKeyBoardOpen == Keyboard.Closed),
+            enabled = (params.uiState != ComponentUiState.EMPTY) && (isKeyBoardOpen == Keyboard.Closed),
             paddingValues = PaddingValues(horizontal = 0.dp, vertical = 0.dp),
             content = {
                 Row(
@@ -243,7 +244,7 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (mealPlannerFormParameters.uiState == ComponentUiState.LOADING) {
+                    if (params.uiState == ComponentUiState.LOADING) {
                         CircularProgressIndicator(
                             modifier = Modifier
                                 .size(Dimension.lIconHeight)
@@ -267,10 +268,10 @@ fun FormCard(mealPlannerFormParameters: MealPlannerFormParameters, onSubmit: () 
 
             }
         ) {
-            mealPlannerFormParameters.submit(
-                mealPlannerFormParameters.budget,
-                mealPlannerFormParameters.numberOfMeals,
-                mealPlannerFormParameters.numberOfGuests
+            params.submit(
+                params.budget,
+                params.numberOfMeals,
+                params.numberOfGuests
             )
             onSubmit()
         }

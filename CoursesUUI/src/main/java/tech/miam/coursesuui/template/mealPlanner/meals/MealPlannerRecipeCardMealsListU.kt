@@ -27,14 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
-import com.miam.core.sdk.localisation.Localisation
+
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.ui.components.likeButton.LikeButton
-import com.miam.kmm_miam_sdk.android.ui.components.price.SimplePrice
-import com.miam.sdk.templateParameters.mealPlanner.recipe.MealPlannerRecipeCardParameters
+import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
 
 @Composable
 fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
@@ -56,7 +55,7 @@ fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
 fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
 
     val backgroundImage: Painter = rememberImagePainter(params.recipe.attributes?.mediaUrl)
-    val likeButton = LikeButton().apply { bind(params.recipe.id) }
+   // val likeButton = LikeButton().apply { bind(params.recipe.id) }
 
     Box(
         modifier = Modifier
@@ -80,7 +79,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                     contentScale = ContentScale.Crop
                 )
                 Box(modifier = Modifier.offset(8.dp, 8.dp)) {
-                    likeButton.Content()
+                   // likeButton.Content()
                 }
             }
             Column(Modifier.padding(horizontal = 16.dp)) {
@@ -140,9 +139,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    SimplePrice(params.price) {
-                        RecipeCardPrice(price = it)
-                    }
+                    RecipeCardPrice(params.price)
                 }
                 Divider(thickness = 1.dp, color = Color.LightGray)
                 Spacer(modifier = Modifier.weight(1f))

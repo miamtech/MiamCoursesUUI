@@ -28,29 +28,30 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.sdk.localisation.Localisation
+import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.ressource.Image.trait
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
-import com.miam.sdk.templateInterfaces.mealPlanner.basketPreview.MealPlannerBasketPreviewFooter
-import com.miam.sdk.templateInterfaces.mealPlanner.meals.MealPlannerFooter
-import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBasketPreviewFooterParameters
-import com.miam.sdk.templateParameters.mealPlanner.planner.BudgetPlannerFooterParameters
+import com.miam.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooter
+import com.miam.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooterParameters
+import com.miam.sdk.components.mealPlanner.meals.footer.MealPlannerFooter
+import com.miam.sdk.components.mealPlanner.meals.footer.MealsFooterParameters
+
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
 import java.util.*
 
 class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFooter {
     @Composable
-    override fun Content(budgetPlannerFooterParameters: BudgetPlannerFooterParameters) {
-        val ratio = budgetPlannerFooterParameters.recipesPrice / budgetPlannerFooterParameters.budget
+    override fun Content(params: MealsFooterParameters) {
+        val ratio = params.recipesPrice / params.budget
         FooterBase(
-            totalPrice = budgetPlannerFooterParameters.recipesPrice,
-            progressRatio = budgetPlannerFooterParameters.recipesPrice / budgetPlannerFooterParameters.budget,
-            progressDelta = budgetPlannerFooterParameters.recipesPrice - budgetPlannerFooterParameters.budget,
-            action = { budgetPlannerFooterParameters.addAllToBasket() }
+            totalPrice = params.recipesPrice,
+            progressRatio = params.recipesPrice / params.budget,
+            progressDelta = params.recipesPrice - params.budget,
+            action = { params.addAllToBasket() }
         ) {
             Icon(
                 painterResource(id = Image.cart),
@@ -69,12 +70,12 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
     }
 
     @Composable
-    override fun Content(mealPlannerBasketPreviewFooterParameters: MealPlannerBasketPreviewFooterParameters) {
+    override fun Content(params: MealPlannerBasketPreviewFooterParameters) {
         FooterBase(
-            totalPrice = mealPlannerBasketPreviewFooterParameters.totalPrice,
-            progressRatio = mealPlannerBasketPreviewFooterParameters.totalPrice / mealPlannerBasketPreviewFooterParameters.budget,
-            progressDelta = mealPlannerBasketPreviewFooterParameters.totalPrice - mealPlannerBasketPreviewFooterParameters.budget,
-            action = { mealPlannerBasketPreviewFooterParameters.confirmAction() }
+            totalPrice = params.totalPrice,
+            progressRatio = params.totalPrice / params.budget,
+            progressDelta = params.totalPrice - params.budget,
+            action = { params.confirmAction() }
         ) {
             Text(
                 text = "Finaliser",

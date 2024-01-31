@@ -19,48 +19,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.miam.kmm_miam_sdk.android.ressource.Image.miamEmpty
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.catalog.customization.CatalogImage
+import com.miam.sdk.components.baseComponent.emptyPage.EmptyPage
+import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 
-@Composable()
-fun EmptyPage(goToCatalog: () -> Unit ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Colors.primary)
-    ) {
-        Column(
-            Modifier
-                .align(Alignment.Center)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+
+ class EmptyPage : EmptyPage {
+    @Composable()
+    override fun Content(params : EmptyPageParameters){
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Colors.primary)
         ) {
-            Image(
-                painter = painterResource(CatalogImage.empty),
-                contentDescription = null,
-                Modifier.padding(vertical = 16.dp)
-            )
-            Text(
-                text = "Vous n’avez aucune idée repas.",
-                color = Colors.white,
-                style = Typography.subtitleBold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                modifier = Modifier.height(50.dp),
-                onClick = { goToCatalog() },
-                colors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = Colors.ternary,
-                    contentColor = Colors.white
-                ),
-                shape = RoundedCornerShape(50),
+            Column(
+                Modifier
+                    .align(Alignment.Center)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Je découvre les recettes")
+                Image(
+                    painter = painterResource( miamEmpty),
+                    contentDescription = null,
+                    Modifier.padding(vertical = 16.dp)
+                )
+                Text(
+                    text = "Vous n’avez aucune idée repas.",
+                    color = Colors.white,
+                    style = Typography.subtitleBold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    modifier = Modifier.height(50.dp),
+                    onClick = { params.action() },
+                    colors =
+                    ButtonDefaults.buttonColors(
+                        backgroundColor = Colors.ternary,
+                        contentColor = Colors.white
+                    ),
+                    shape = RoundedCornerShape(50),
+                ) {
+                    Text(text = "Je découvre les recettes")
+                }
             }
         }
     }
 }
+

@@ -1,13 +1,14 @@
 package tech.miam.coursesUDemoApp.features.miam.template
 
 import android.content.Context
-import com.miam.kmmMiamCore.handler.Basket.BasketHandler
-import com.miam.kmmMiamCore.handler.Basket.BasketHandlerInstance
-import com.miam.kmmMiamCore.handler.ContextHandlerInstance
-import com.miam.kmmMiamCore.handler.GroceriesListHandler
-import com.miam.kmmMiamCore.handler.PointOfSaleHandler
-import com.miam.kmmMiamCore.handler.UserHandler
-import com.miam.kmmMiamCore.miam_core.model.RetailerProduct
+import com.miam.core.Mealz
+import com.miam.core.handler.LogHandler
+import com.miam.core.init.basket
+import com.miam.core.init.subscriptions
+import com.miam.core.init.sdkRequirement
+import com.miam.core.model.SupplierProduct
+import com.miam.core.subscription.publisher.BasketPublisher
+import com.miam.core.subscription.subscriber.BasketSubscriber
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,19 +20,18 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.basket.BasketEvent
 import tech.miam.coursesUDemoApp.data.models.Product
+import tech.miam.coursesUDemoApp.features.miam.template.MiamSdkHelper.pushProductToRetailer
 import tech.miam.coursesUDemoApp.features.products.ProductsRepository
 import tech.miam.coursesuui.config.MiamTemplateManager
 import timber.log.Timber
 
-object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent {
+object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent, BasketPublisher, BasketSubscriber {
     private const val TAG = "MiamSdkHelper"
 
     private var isInitialized = false
     private lateinit var applicationContext: Context
 
     private lateinit var userId: String
-    private var supplierId: Int = -1
-    private lateinit var supplierOrigin: String
     private lateinit var storeId: String
     private var enableUserProfiling: Boolean = true
 
@@ -43,7 +43,9 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
     private var _basketMiamFlow = MutableStateFlow<BasketEvent>(BasketEvent.Loading)
     val basketMiamFlow = _basketMiamFlow.asStateFlow()
 
-    private var basketHandler: BasketHandler = BasketHandlerInstance.instance
+    val supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlBST0QiCn0"
+
+
 
     /** should not be changed during session */
     private var enableLike: Boolean = true
@@ -51,9 +53,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
     private val productsRepository by inject<ProductsRepository>()
 
     fun initialize(
-        context: Context,
-        supplierId: Int,
-        supplierOrigin: String,
+        appContext: Context,
         basket: MutableList<Product>,
         userId: String,
         storeId: String
@@ -61,42 +61,48 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
 
         if (userId.isBlank()) throw Exception("userId Cannot be null or empty or blank")
         if (storeId.isBlank()) throw Exception("storeId Cannot be null or empty or blank")
-        if (supplierOrigin.isBlank()) throw Exception("supplierOrigin Cannot be null or empty or blank")
 
-        MiamTemplateManager()
+
+
         if (isInitialized) return@apply
-        applicationContext = context.applicationContext
+        applicationContext = appContext.applicationContext
+        startMealz(this)
+        MiamTemplateManager()
         isInitialized = true
-
-        setSupplier(supplierId, supplierOrigin)
         setUser(userId)
         setStore(storeId)
         setEnableLike(enableLike)
         setUserProfiling(enableUserProfiling)
-
         setBasket(basket)
-        setListenToRetailerBasket(basketHandler)
-        setPushProductToBasket(basketHandler)
+        Mealz.environment.setAllowsSponsoredProducts(true)
 
-        ContextHandlerInstance.instance.setContext(applicationContext)
-
-        launch {
-            ContextHandlerInstance.instance.observeReadyEvent().collect {
-                Timber.tag(TAG).i("🟢 Miam SDK is initialized and ready to be used")
-            }
+        Mealz.notifications.availability.listen {
+                if(it)  Timber.tag(TAG).i("🟢 Miam SDK is on and ready to be used")
+                else    Timber.tag(TAG).i("🔴 Miam SDK is off and not ready to be used")
         }
 
-        launch {
-            GroceriesListHandler.getRecipeCountChangeFlow().collect {
-                Timber.tag(TAG).d("recipes count by flow : $it")
-                _basketMiamRecipeCountFlow.emit(it.newRecipeCount)
-            }
-        }
-
-        GroceriesListHandler.onRecipeCountChange {
-            Timber.tag(TAG).d("recipes count by callback : $it")
+        Mealz.notifications.recipesCount.listen {
+            Timber.tag(TAG).d("recipes count by flow : $it")
             launch {
                 _basketMiamRecipeCountFlow.emit(it)
+            }
+        }
+
+    }
+
+    private fun startMealz(miamSdkHelper: MiamSdkHelper) {
+        Mealz.Core() {
+            sdkRequirement {
+                key = supplierKey
+                context = applicationContext
+            }
+            subscriptions {
+                basket  {
+                    // Listen to Miam's basket updates
+                    subscribe(miamSdkHelper)
+                    // Push client basket notifications
+                    register(miamSdkHelper)
+                }
             }
         }
     }
@@ -107,19 +113,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
      *
      *****************************************************************/
 
-    /**
-     * Set the current supplier
-     * @param id the supplier id (retailer name)
-     * @param origin the platform using Miam
-     */
-    fun setSupplier(id: Int, origin: String) = apply {
-        checkIfSdkInitialized({
-            supplierId = id
-            supplierOrigin = origin
-            PointOfSaleHandler.setSupplierOrigin(supplierOrigin)
-            PointOfSaleHandler.setSupplier(supplierId)
-        })
-    }
+
 
     /**
      * Set the current store of the current user
@@ -127,7 +121,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
      */
     fun setStore(id: String) = apply {
         storeId = id
-        PointOfSaleHandler.updateStoreId(storeId)
+        Mealz.user.setStoreId(storeId)
     }
 
     /**
@@ -137,9 +131,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
     fun setUser(id: String) = apply {
         checkIfSdkInitialized({
             userId = id
-            UserHandler.updateUserId(id)
-            //TODO(Julien) maybe we should restart as we change user during session,
-            // then we need to restart as data are different from one user to another one
+            Mealz.user.updateUserId(userId)
         })
     }
 
@@ -156,7 +148,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
      */
     fun setUserProfiling(enable: Boolean) = apply {
         enableUserProfiling = enable
-        UserHandler.setProfilingAllowed(enableUserProfiling)
+        Mealz.user.setProfilingAllowance(enableUserProfiling)
     }
 
     /**
@@ -165,7 +157,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
      * at Miam SDK initialization
      */
     private fun setEnableLike(enable: Boolean) {
-        UserHandler.setEnableLike(enable)
+        Mealz.user.setEnableLike(enable)
     }
 
     /**
@@ -194,46 +186,25 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         retailerBasketSubject = MutableStateFlow(products)
     }
 
-    private fun setListenToRetailerBasket(basketHandler: BasketHandler) {
-        with(basketHandler) {
-            setListenToRetailerBasket(MiamSdkHelper::initBasketListener)
-            pushProductsToMiamBasket(retailerBasketSubject.value.map { product ->
-                retailProductToMiamRetailerProduct(product)
-            })
-        }
-    }
-
-    private fun initBasketListener() {
-        launch {
-            retailerBasketSubject.collect {
-                Timber.tag(TAG).d("Basket emitted")
-                basketHandler.pushProductsToMiamBasket(it.map { product ->
-                    retailProductToMiamRetailerProduct(product)
-                })
-            }
-        }
-    }
-
-    private fun retailProductToMiamRetailerProduct(product: Product): RetailerProduct {
-        return RetailerProduct(
-            retailerId = product.id,
+    private fun productToSupplierProduct(product: Product): SupplierProduct  {
+        return SupplierProduct(
+            id = product.id,
             productIdentifier = product.identifier,
             quantity = product.quantity,
             name = product.attributes.name
         )
     }
-
-    private fun setPushProductToBasket(basketHandler: BasketHandler) {
-        basketHandler.setPushProductsToRetailerBasket(MiamSdkHelper::pushProductToRetailer)
+    override fun receive(event: List<SupplierProduct>) {
+        pushProductToRetailer(event)
     }
 
-    private fun pushProductToRetailer(retailerProducts: List<RetailerProduct>) {
+    private fun pushProductToRetailer(retailerProducts: List<SupplierProduct>) {
         retailerProducts.forEach { rp ->
-            val productToUpdateIdx = retailerBasketSubject.value.indexOfFirst { it.id == rp.retailerId }
+            val productToUpdateIdx = retailerBasketSubject.value.indexOfFirst { it.id == rp.id }
             if (productToUpdateIdx == -1) {
                 runBlocking {
                     withContext(Dispatchers.Default) {
-                        productsRepository.getProduct(rp.retailerId).body()?.data
+                        productsRepository.getProduct(rp.id).body()?.data
                     }?.let {
                         retailerBasketSubject.value.add(it.copy(quantity = rp.quantity))
                     }
@@ -251,4 +222,18 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
             _basketMiamFlow.emit(BasketEvent.Changed(retailerBasketSubject.value))
         }
     }
+
+    override var initialValue: List<SupplierProduct> = retailerBasketSubject.value.map { productToSupplierProduct(it) }
+
+
+    override fun onBasketUpdate(sendUpdateToSDK: (List<SupplierProduct>) -> Unit) {
+        launch {
+            retailerBasketSubject.collect { state ->
+                LogHandler.debug("[New Mealz] push basket update from supplier")
+                sendUpdateToSDK(state.map { SupplierProduct(it.id, it.quantity) })
+            }
+        }
+    }
+
+
 }

@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -39,27 +38,28 @@ import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.counter.CounterColor
 import com.miam.kmm_miam_sdk.android.ui.components.counter.CounterStyle
-import com.miam.kmm_miam_sdk.android.ui.components.price.formatPrice
-import com.miam.sdk.templateInterfaces.mealPlanner.basketPreview.MealPlannerBasketPreviewProduct
-import com.miam.sdk.templateParameters.mealPlanner.basketPreview.MealPlannerBasketPreviewProductParameters
+import com.miam.sdk.components.mealPlanner.basketPreview.success.found.FoundProductsConfig
+import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProduct
+import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProductParameters
+import com.miam.sdk.components.price.formatPrice
+
 import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
 
-class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
+class CoursesUBasketPreviewProductImp: FoundProduct {
 
     @Composable
-    override fun Content(mealPlannerBasketPreviewProductParameters: MealPlannerBasketPreviewProductParameters) {
+    override fun Content(params: FoundProductParameters) {
         Column {
             Row(
                 modifier = Modifier.fillMaxWidth()
                     .background(Color.White)
                     .padding(Dimension.lPadding)
             ) {
-                val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewProductParameters.picture)
+                val backgroundImage: Painter = rememberImagePainter(params.productPicture)
 
                 Image(  painter = backgroundImage, contentDescription = null, modifier = Modifier
                     .height(60.dp)
@@ -71,27 +71,25 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    if (mealPlannerBasketPreviewProductParameters.sharedRecipeCount > 1) {
-                        UtilizedInManyRecipes(mealPlannerBasketPreviewProductParameters.sharedRecipeCount)
+                    if (params.shareInRecipeCount > 1) {
+                        UtilizedInManyRecipes(params.shareInRecipeCount)
                     }
                     Text(
-                        text = mealPlannerBasketPreviewProductParameters.name.capitalize(),
+                        text = params.productName.capitalize(),
                         color = Color.Black,
                         style = Typography.bodyBold
                     )
                     Text(
-                        text = mealPlannerBasketPreviewProductParameters.description,
+                        text = "${params.productName} \n ${params.productCapacityUnit}",
                         color = Color.Gray,
                         style = Typography.bodySmall
                     )
-                    if (mealPlannerBasketPreviewProductParameters.isSubstitutable) {
                         Text(
                             text = "Changer d'article",
                             color = colorResource(R.color.miam_courses_u_primary),
                             style = Typography.link.copy(textDecoration = TextDecoration.Underline, fontWeight = FontWeight.Normal,),
-                            modifier = Modifier.clickable { mealPlannerBasketPreviewProductParameters.changeProduct() }
+                            modifier = Modifier.clickable { params.replace() }
                         )
-                    }
                     Spacer(Modifier.height(4.dp))
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -100,20 +98,20 @@ class CoursesUBasketPreviewProductImp: MealPlannerBasketPreviewProduct {
                             .fillMaxWidth()
                     ) {
                         Text(
-                            text = formatPrice(mealPlannerBasketPreviewProductParameters.price),
+                            text = params.price.formatPrice(),
                             color = Color.Black,
                             style = Typography.subtitleBold.copy( fontSize = 22.sp)
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         CounterForProduct(
-                            key = mealPlannerBasketPreviewProductParameters.id ,
-                            isLoading = mealPlannerBasketPreviewProductParameters.isLoading,
-                            initialCount = mealPlannerBasketPreviewProductParameters.quantity,
+                            key = params.ingredientId ,
+                            isLoading = params.isReloading,
+                            initialCount = params.quantity,
                             isDisable = false,
-                            onCounterChanged = { count -> mealPlannerBasketPreviewProductParameters.onQuantityChanged(count) })
+                            onCounterChanged = { count -> params.onQuantityChanged(count) })
                         IconButton(
                             onClick = {
-                                mealPlannerBasketPreviewProductParameters.delete()
+                                params.delete()
                             }
                         ) {
                         Image(
@@ -162,11 +160,11 @@ fun CounterForProduct(
     initialCount: Int?,
     isDisable: Boolean,
     onCounterChanged: (newValue: Int) -> Unit,
-    isLoading: Flow<Boolean> ,
+    isLoading: Boolean ,
     key: Any? = null
 ) {
     var localCount by remember("$key$initialCount") { mutableStateOf(initialCount) }
-    val isLoadingState by isLoading.collectAsState(initial = false)
+
 
     fun newValueBounded(newValue: Int): Boolean {
         return ( newValue >= 0)
@@ -226,16 +224,16 @@ fun CounterForProduct(
         ) {
             CounterButton(
                 Icons.Default.Remove,
-                enable= !minusDisabled() && !isLoadingState,
+                enable= !minusDisabled() && !isLoading,
                 if (minusDisabled()) Color.Gray else Colors.primary,
                 modifier =Modifier.size(30.dp),
             ) {
                 decrease()
             }
-            MiddleText(localCount, isLoadingState)
+            MiddleText(localCount, isLoading)
             CounterButton(
                 Icons.Default.Add,
-                enable= !plusDisabled() && !isLoadingState,
+                enable= !plusDisabled() && !isLoading,
                 if (plusDisabled()) Color.Gray else Colors.primary,
                 modifier = Modifier.size(30.dp),
             ) {

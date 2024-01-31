@@ -18,15 +18,15 @@ import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
 import com.miam.kmm_miam_sdk.android.theme.Typography.body
 import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
-import com.miam.sdk.templateInterfaces.mealPlanner.callToAction.MealPlannerCallToAction
-import com.miam.sdk.templateParameters.mealPlanner.callToAction.MealPlannerCallToActionParameters
+import com.miam.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccess
+import com.miam.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccessParameters
 
-class MealPlannerCallToActionU: MealPlannerCallToAction {
+class MealPlannerCallToActionU: MealPlannerCallToActionSuccess {
     @Composable
-    override fun Content(mealPlannerCallToActionParameters: MealPlannerCallToActionParameters) {
+    override fun Content(params: MealPlannerCallToActionSuccessParameters) {
         Card(modifier = Modifier
             .padding(horizontal = 12.dp)
-            .clickable { mealPlannerCallToActionParameters.action() }) {
+            .clickable { params.onclick() }) {
             Box(contentAlignment = Alignment.Center) {
                 Image(painter = painterResource(id = R.drawable.ic_blue_wave), contentDescription = null, Modifier.offset(y = 36.dp))
                 Image(

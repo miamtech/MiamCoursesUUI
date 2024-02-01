@@ -7,6 +7,8 @@ plugins {
     id("maven-publish")
     id("signing")
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+    id("com.google.gms.google-services") version "4.3.15" apply false
+    id("com.google.firebase.appdistribution") version "4.0.0" apply false
 }
 
 

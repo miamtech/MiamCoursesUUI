@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/callToActionFragment">
+    app:startDestination="@id/shelfFragment">
 
     <fragment
         android:id="@+id/callToActionFragment"
@@ -30,8 +30,6 @@
         <action
             android:id="@+id/action_mealPlannerMealsFragment_to_mealPlannerBasketPreview"
             app:destination="@id/mealPlannerBasketPreview" />
-        <argument android:name="index"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mealPlannerSearchFragment"
@@ -40,8 +38,6 @@
         <action
             android:id="@+id/action_mealPlannerSearchFragment_to_mealPlannerMealsFragment"
             app:destination="@id/mealPlannerMealsFragment" />
-        <argument android:name="index"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mealPlannerRecapFragment"
@@ -58,4 +54,16 @@
             android:id="@+id/action_mealPlannerBasketPreview_to_mealPlannerFormFragment"
             app:destination="@id/mealPlannerFormFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.CatalogFragment"
+        android:label="CatalogFragment" />
+    <fragment
+        android:id="@+id/myMealsFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.MyMealsFragment"
+        android:label="MyMealsFragment" />
+    <fragment
+        android:id="@+id/shelfFragment"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.ShelfFragment"
+        android:label="ShelfFragment" />
 </navigation>

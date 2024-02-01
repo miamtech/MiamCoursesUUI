@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")
 }
 
 android {
@@ -14,7 +16,7 @@ android {
         minSdk 21
         targetSdk 33
         versionCode = 1
-        versionName = "0.0.9"
+        versionName = "1.1.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -26,6 +28,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            firebaseAppDistribution {
+                artifactType = "APK"
+                releaseNotes= "test Courses U test app"
+                testers = "thomas.huyghues@miam.tech"
+                serviceCredentialsFile = "miamandroid-14845a0ac147.json"
+            }
         }
     }
     compileOptions {
@@ -73,4 +83,9 @@ dependencies {
     implementation "io.insert-koin:koin-android:3.2.3"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
     implementation "com.jakewharton.timber:timber:5.0.1"
+
+    implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation("com.google.firebase:firebase-appdistribution:16.0.0-beta10")
+    implementation("com.google.firebase:firebase-appdistribution-api:16.0.0-beta10")
+    implementation("com.google.firebase:firebase-appdistribution-ktx:16.0.0-beta02")
 }

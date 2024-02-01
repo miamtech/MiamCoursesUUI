@@ -24,6 +24,7 @@ import tech.miam.coursesuui.template.recipeDetail.ignore.CoursesUIgnore
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUStep
+import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
 
 class MiamTemplateManager {
@@ -127,6 +128,9 @@ class MiamTemplateManager {
                         }
                         steps {
                             view= CoursesUStep()
+                        }
+                        tag {
+                            view = CoursesUTags()
                         }
                     }
                 }

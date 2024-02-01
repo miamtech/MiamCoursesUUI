@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "miamandroid",
+  "private_key_id": "14845a0ac147d56a93b8234315c9de2b257f559e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC917qvOIJi/CcD\nj3bAsFWWYbMWmmLdWznHl5e/TSrBuKl6MC0bvFgT/c1fyf8IXFqK0aj9eGfyKL+R\ni2Bb49XqoHy6+Fm+CRcqa9OLBdrHXEnkSJots6WeE+miwpzUr7MlKSJimC5m+SuS\nNzmcDjyAD8L39+sm2ZdspqAJxJkcO2iUDast7Z5ZujZxPZzNSk3/exWHEc8Pe/t6\n5iiCqjQaqIg7c+5d0dtQ8UCDugGlk+pq37aMlVSYvWGPyFvNuAX5H4NJbumKKXIe\nUKNLQGjPhOEUTaKuqAKmuXvLs1c0iMxULzHjJBseC5kpF+HFQrS5+pvbK54bjGXf\nU0CKBsLDAgMBAAECggEAF/OaWZYTGUL/9xqIHIqC2dzMuArVc2EZmp19J0UoolVW\niJSAdHHgWPFaEn5NP3RLdh06qXQiBTLv7IB9sUo/CIGkCwDfbbL+6bq971nXPvTd\nW8BvN1nliNqxTPgpykm6m/MjI/ZYUGSagzGVgqNnLa8PZbKxR+8HBE3HfkQAH0gF\nsEH+e5BUTFthAda1su93IyT2bmljh+F+/C+NrzB1HGLs+1S26bapAAq9pfvwchhg\n5woruiO18ZE2g2JhzCf9L1IVu5PMvUhPjmAwDilkWv5J1uxV4tC0B0lJ+QbjS4o6\n6uER2+Qi58Gz2Ux9ji7ylcvYl28lSLnWpWGBwxJj3QKBgQDxTkdMTr3YPMROHS45\n5UFJnJu7C5uhqlDaNuOL2FMt5o8YpwtNQvLFG0Re7TUkm+CZPUvvu88jWv2L0Po1\n6UkS1ABqHo2NblbMpt3yRn909Ey70ZXiUJQpCaOO8I8JULk3gnbRm0uo7HGwtoqX\n8wqzwaH627IEquYNjmNDhtoqNQKBgQDJZzEF+zo+MGn763unxjyAuME93OK2Y4Lg\nkTm1+976yKYEjjXge+53uuxoMupHJ7zqQEpz+FgXyGMmrI6cVPuYMBa4xAryKHQM\n5q7R04cOIVNlc5GRLa7UXbbh/pSyn5KDJxRqWBmgAPFehEgwLiBDkysO1qVPMyhe\ngGVPZZgYFwKBgC/gcx79xIcBz4UcHw7XoLOFQhTDgdZ6n14cY9tcSWyjASNICWMD\n9H0NIuyerducndxpoAZpwfhm1kWGag6GQbxdmdN0SmuUR96FASZPvHws+IiPVei4\nSh02T2BN9GNJw+XymbaO1F0oxInmPetWCnqN4aCPNGveqJRp+uHsAJ89AoGAMvrg\n6N+v3YAJw8/WrCA8vmSF3a/k30APJ+L61brctWRGyc5pito0AbCaGMISlVJUuoLt\nla9eNR7vIiH5s067pMk/ZyOQlb1xqrZVuB0wCX6cCokXZsVGhND38vqrDw/fWT1y\nKH0Gd37lmgQn9bInTpOZCZeBnquXY1xiyJcxyZ8CgYA65VYS7DJYhtdBMvMK3LAM\nftG1eI/pAvNkOWuMGpXZtCM0jPy+htSSXadJTdUGMYTHxT6VJ1Jwe99vsYMAPAFd\nebRKzh/HWrVK4ZX71n3wgUmlv/GatkpfmNwe2lLhftv7P7lvS1mLOxPfzjMEhWoz\na2lDd80+t9XSB2K4yA5T+A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "test-app-android-deployement-a@miamandroid.iam.gserviceaccount.com",
+  "client_id": "101661671185430992135",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-app-android-deployement-a%40miamandroid.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -5,6 +5,7 @@ import com.miam.sdk.components.MiamTheme
 import com.miam.sdk.components.MiamTheme.defaultViews
 import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.mealPlanner
+import com.miam.sdk.components.MiamTheme.myMeal
 import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
 import tech.miam.coursesuui.R
@@ -22,6 +23,7 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePla
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
+import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.ignore.CoursesUIgnore
@@ -152,6 +154,17 @@ class MiamTemplateManager {
                     view = CoursesUSelectItemSuccess()
                 }
             }
+            ////// END ITEM SELECTOR //////////
+            ////// MY MEAL  //////////
+            myMeal {
+                this.
+                recipeCard {
+                    success {
+                        view = CoursesUMyMealRecipe()
+                    }
+                }
+            }
+            ///// END MY MEAL  //////////
         }
     }
 

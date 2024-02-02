@@ -33,6 +33,7 @@ import tech.miam.coursesuui.theme.Typography
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
+import com.miam.sdk.components.baseComponent.likeButton.LikeButton
 import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
 
 @Composable
@@ -55,7 +56,7 @@ fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
 fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
 
     val backgroundImage: Painter = rememberImagePainter(params.recipe.attributes?.mediaUrl)
-   // val likeButton = LikeButton().apply { bind(params.recipe.id) }
+   val likeButton = LikeButton(recipeId = params.recipe.id)
 
     Box(
         modifier = Modifier
@@ -79,7 +80,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                     contentScale = ContentScale.Crop
                 )
                 Box(modifier = Modifier.offset(8.dp, 8.dp)) {
-                   // likeButton.Content()
+                    likeButton.Content()
                 }
             }
             Column(Modifier.padding(horizontal = 16.dp)) {

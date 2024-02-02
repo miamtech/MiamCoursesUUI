@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.theme.Typography
@@ -40,8 +41,8 @@ fun RecipeCardMetric(text: String, image: Int, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = text,
-            color = Colors.grey,
-            style = Typography.body,
+            color = Colors.black,
+            style = Typography.body.copy( fontWeight = FontWeight(600)),
             textAlign = TextAlign.Center,
         )
     }

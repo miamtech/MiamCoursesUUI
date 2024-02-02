@@ -68,7 +68,7 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
+                    modifier = Modifier.fillMaxWidth()
                         .padding(top = 12.dp)
                         .height(35.dp)
 
@@ -79,7 +79,8 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
                             .height(32.dp)
                             .width(1.dp)
                     )
-                    Column {
+                    Column(
+                    ) {
                         when (params.recipe.attributes!!.difficulty) {
                             1 -> RecipeCardMetric(
                                 Localisation.Recipe.lowDifficulty.localised,
@@ -101,18 +102,21 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
                         }
                     }
                 }
-                Row(
-                    modifier = Modifier
-                        .padding(vertical = 12.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(color = Color(0xFFD4F8DD))
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 32.dp),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    RecipePrice(params.recipe.id, BudgetRepository.guestCount)
+                params.recipe.attributes?.price?.price?.let {
+                    Row(
+                        modifier = Modifier
+                            .padding(vertical = 12.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(color = Color(0xFFD4F8DD))
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 32.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RecipeCardPrice(it)
+                    }
                 }
+
                 Divider(thickness = 1.dp, color = Color.LightGray)
                 Row(Modifier.padding(top = 8.dp)) {
                     Button(

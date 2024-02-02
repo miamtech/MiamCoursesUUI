@@ -2,8 +2,14 @@ package tech.miam.coursesUDemoApp
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miam.core.Mealz
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +34,13 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             Mealz.notifications.availability.listen {
                 if (it) {
-                    val navHostFragment = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
-                    navHostFragment.visibility = View.VISIBLE
+                    val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                    val navController = navHostFragment.navController
+                    val fragmentContainerView = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
+                    val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+                    findViewById<BottomNavigationView>(R.id.activity_main_bottom_nav_view).setupWithNavController(navController)
+                    fragmentContainerView.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
                 }
             }
         }

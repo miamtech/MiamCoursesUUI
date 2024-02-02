@@ -23,6 +23,6 @@ class CallToActionFragment : Fragment(){
         val callToAction = view.findViewById<MealPlannerCallToAction>(R.id.CallToActionU)
         val recipe = view.findViewById<RecipeJourney>(R.id.Recipe)
         callToAction.bind { findNavController().navigate(R.id.action_callToActionFragment_to_mealPlannerFormFragment) }
-        recipe.bind(recipeId = "1234")
+        recipe.bind(recipeId = "15434")
     }
 }

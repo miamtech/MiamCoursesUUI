@@ -62,8 +62,6 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         if (userId.isBlank()) throw Exception("userId Cannot be null or empty or blank")
         if (storeId.isBlank()) throw Exception("storeId Cannot be null or empty or blank")
 
-
-
         if (isInitialized) return@apply
         applicationContext = appContext.applicationContext
         startMealz(this)

@@ -48,7 +48,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                 Modifier
                     .fillMaxWidth()
                     .background(color = Colors.primary)
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = 8.dp)
                     .height(60.dp),
                 verticalAlignment = Alignment.CenterVertically
 
@@ -59,7 +59,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                         Image(
                             painter = painterResource(Image.toggleCaret),
                             contentDescription = null,
-                            colorFilter = ColorFilter.tint(Colors.primary),
+                            colorFilter = ColorFilter.tint(Colors.white),
                             modifier = Modifier
                                 .rotate(180f)
                                 .padding(vertical = 8.dp).padding(end = 8.dp)

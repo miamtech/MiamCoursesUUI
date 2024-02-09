@@ -3,12 +3,15 @@ package tech.miam.coursesuui.config
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.sdk.components.MiamTheme
 import com.miam.sdk.components.MiamTheme.defaultViews
+import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.mealPlanner
 import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
+import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
+import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.MealPlannerBasketPreviewSectionTitleU
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.RecipeCardOverview
@@ -20,6 +23,7 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
+import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.ignore.CoursesUIgnore
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUProduct
@@ -132,12 +136,24 @@ class MiamTemplateManager {
                         tag {
                             view = CoursesUTags()
                         }
+                        footer {
+                            view = CoursesURecipeDetailFooter()
+                        }
                     }
+                }
+            }
+            ///////// END RECIPE DETAIL //////////
+            //////// ITEM SELECTOR //////////
+            itemSelector {
+                selectedItem {
+                    view = CoursesUSelectedItem()
+                }
+                success {
+                    view = CoursesUSelectItemSuccess()
                 }
             }
         }
     }
-
 
     private fun overrideIcon() {
         Image.favorite = R.drawable.ic_favourite_unselected

@@ -6,6 +6,7 @@ import com.miam.sdk.components.MiamTheme.defaultViews
 import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.mealPlanner
 import com.miam.sdk.components.MiamTheme.myMeal
+import com.miam.sdk.components.MiamTheme.price
 import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
 import tech.miam.coursesuui.R
@@ -19,11 +20,14 @@ import tech.miam.coursesuui.template.mealPlanner.basketPreview.RecipeCardOvervie
 import tech.miam.coursesuui.template.mealPlanner.callToAction.MealPlannerCallToActionU
 import tech.miam.coursesuui.template.mealPlanner.form.CoursesUBudgetForm
 import tech.miam.coursesuui.template.mealPlanner.planner.CoursesUBudgetPlannerToolbar
+import tech.miam.coursesuui.template.mealPlanner.recap.MealPlannerRecapU
+import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipeCardU
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePlaceholderU
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
+import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.ignore.CoursesUIgnore
@@ -47,6 +51,9 @@ class MiamTemplateManager {
                 }
                 searchConfig {
                     view = MealPlannerReplaceRecipeSearchU()
+                }
+                recipeCardConfig {
+                        view = MealPlannerRecipeCardU()
                 }
                 callToActionConfig {
                     success {
@@ -80,8 +87,7 @@ class MiamTemplateManager {
                     }
                 }
                 recapConfig {
-                    //TODO fix in SDK
-                    //view = MealPlannerRecapU()
+                    view = MealPlannerRecapU()
                 }
 
                 // TODO should be in recipe config
@@ -91,11 +97,6 @@ class MiamTemplateManager {
                 // TODO should be in recipe config
                 recipeLoadingConfig {
                     view = RecipeLoadingViewU()
-                }
-                recipeCardConfig {
-                    //TODO fix in SDK
-                    //view = MealPlannerRecipeCardU()
-
                 }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()
@@ -165,6 +166,16 @@ class MiamTemplateManager {
                 }
             }
             ///// END MY MEAL  //////////
+            //// PRICE  //////////
+
+            price {
+                footerPrice{
+                    success {
+                        view = CoursesURecipeDetailCookOnlyFooter()
+                    }
+                }
+            }
+            //// END PRICE  //////////
         }
     }
 

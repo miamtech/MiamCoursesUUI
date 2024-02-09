@@ -2,6 +2,7 @@ package tech.miam.coursesuui.config
 
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.sdk.components.MiamTheme
+import com.miam.sdk.components.MiamTheme.catalog
 import com.miam.sdk.components.MiamTheme.defaultViews
 import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.mealPlanner
@@ -12,6 +13,7 @@ import com.miam.sdk.components.MiamTheme.recipeDetail
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
+import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
@@ -167,7 +169,6 @@ class MiamTemplateManager {
             }
             ///// END MY MEAL  //////////
             //// PRICE  //////////
-
             price {
                 footerPrice{
                     success {
@@ -176,11 +177,21 @@ class MiamTemplateManager {
                 }
             }
             //// END PRICE  //////////
+            //////// CATALOGUE //////////
+            catalog {
+                success {
+                    toolbar {
+                        view = CoursesUCatalogToolbar()
+                    }
+                }
+            }
+            //// END CATALOGUE //////////
         }
     }
 
     private fun overrideIcon() {
         Image.favorite = R.drawable.ic_favourite_unselected
         Image.favoriteFilled = R.drawable.ic_favourite_selected
+        Image.filter = R.drawable.ic_filters
     }
 }

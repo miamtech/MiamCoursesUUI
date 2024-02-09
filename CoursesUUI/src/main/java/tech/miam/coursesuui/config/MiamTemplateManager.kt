@@ -10,10 +10,12 @@ import com.miam.sdk.components.MiamTheme.myMeal
 import com.miam.sdk.components.MiamTheme.price
 import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
+import com.miam.sdk.components.MiamTheme.recipesPage
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
+import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
@@ -183,9 +185,19 @@ class MiamTemplateManager {
                     toolbar {
                         view = CoursesUCatalogToolbar()
                     }
+                    categories {
+                        category {
+                            view = CoursesUCatalogCategory()
+                        }
+                    }
                 }
             }
             //// END CATALOGUE //////////
+            recipesPage {
+                success {
+                    catalogPageColumns = 2
+                }
+            }
         }
     }
 

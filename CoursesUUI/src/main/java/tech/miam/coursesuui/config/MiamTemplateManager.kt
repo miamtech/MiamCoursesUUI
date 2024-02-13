@@ -16,6 +16,7 @@ import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
+import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
 import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
@@ -152,6 +153,9 @@ class MiamTemplateManager {
             ///////// END RECIPE DETAIL //////////
             //////// ITEM SELECTOR //////////
             itemSelector {
+                search {
+                    view = CoursesUItemSelectorSearch()
+                }
                 selectedItem {
                     view = CoursesUSelectedItem()
                 }
@@ -205,5 +209,7 @@ class MiamTemplateManager {
         Image.favorite = R.drawable.ic_favourite_unselected
         Image.favoriteFilled = R.drawable.ic_favourite_selected
         Image.filter = R.drawable.ic_filters
+        Image.search = R.drawable.search
+        Image.cart = R.drawable.basket
     }
 }

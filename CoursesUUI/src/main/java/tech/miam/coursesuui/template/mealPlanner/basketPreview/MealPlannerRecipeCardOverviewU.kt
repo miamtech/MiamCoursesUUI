@@ -15,6 +15,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,19 +49,20 @@ import java.util.*
 class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
     @Composable
     override fun Content(params: MealPlannerBasketPreviewSuccessRecipeRowParameters) {
-    /**
+
         val likeButton = remember {
-            LikeButton().apply { bind(params.id) }
+            LikeButton(recipeId = params.recipeId)
         }
-        */
 
-
+        val isLocked = params.isLock.collectAsState()
 
         val mealPlannerBasketPreviewRecipeOverviewParametersState by remember(
                 params.name +
                     "${params.isDeleting}" +
                     "${params.isPriceRefreshing}" +
-                    "${params.price}",
+                    "${params.price}" +
+                    "${params.numberOfGuest}"
+
         ) {
             mutableStateOf(params)
         }
@@ -89,7 +91,7 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 contentScale = ContentScale.Crop
                             )
                             Box(modifier = Modifier.offset(8.dp, 8.dp)) {
-                                //likeButton.Content()
+                                likeButton.Content()
                             }
                         }
                         Column(Modifier.padding(horizontal = 16.dp)) {
@@ -98,18 +100,17 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 modifier = Modifier
                                     .padding(vertical = 8.dp)
                                     .defaultMinSize(minHeight = 40.dp)
-                                    .clickable { mealPlannerBasketPreviewRecipeOverviewParametersState.openRecipeDetail() },
+                                    .clickable { params.openRecipeDetail() },
                                 style = Typography.subtitleBold.copy(fontSize = 14.sp),
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis
                             )
-                            Text(
-                                text = Localisation.Recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParametersState.productCount).localised,
-                                style = body.copy(fontSize = 12.sp)
-                            )
-
+                                Text(
+                                    text = Localisation.Recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParametersState.productCount).localised,
+                                    style = body.copy(fontSize = 12.sp)
+                                )
                             SuccessViewPerGuest(
-                                mealPlannerBasketPreviewRecipeOverviewParametersState.price / mealPlannerBasketPreviewRecipeOverviewParametersState.numberOfGuest
+                                mealPlannerBasketPreviewRecipeOverviewParametersState.price / mealPlannerBasketPreviewRecipeOverviewParametersState.numberOfGuest,
                             )
                             Row(
                                 modifier = Modifier
@@ -127,7 +128,7 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                         .height(32.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    if (mealPlannerBasketPreviewRecipeOverviewParametersState.isPriceRefreshing){
+                                    if (params.isChildrenLoading || params.isPriceRefreshing || isLocked.value){
                                         ProgressIndicatorU(progressIndicatorSize = 20.dp, progressIndicatorColor = Colors.primary, borderStroke = 1.dp)
                                     } else {
                                         PriceView(mealPlannerBasketPreviewRecipeOverviewParametersState.price)
@@ -140,6 +141,7 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 )
                                 GuestNumberComponent(
                                     mealPlannerBasketPreviewRecipeOverviewParametersState.numberOfGuest,
+                                    isLoading = isLocked.value
                                 ) { guestValue ->
                                     mealPlannerBasketPreviewRecipeOverviewParametersState.onGuestChange(guestValue)
                                 }
@@ -149,7 +151,8 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 horizontalArrangement = Arrangement.Start,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                CollapseButton(initaleState = mealPlannerBasketPreviewRecipeOverviewParametersState.isExpanded) {
+                                CollapseButton(initaleState = mealPlannerBasketPreviewRecipeOverviewParametersState.isExpanded,
+                                    isLoading = params.isChildrenLoading || params.isPriceRefreshing || isLocked.value) {
                                     mealPlannerBasketPreviewRecipeOverviewParametersState.toggleCollapse()
                                 }
                                 Spacer(
@@ -160,14 +163,16 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 if (mealPlannerBasketPreviewRecipeOverviewParametersState.isDeleting) {
                                     ProgressIndicatorU(progressIndicatorSize = 20.dp, progressIndicatorColor = Colors.primary, borderStroke = 1.dp)
                                 } else {
-                                    IconButton(onClick = { mealPlannerBasketPreviewRecipeOverviewParametersState.delete() }) {
+                                    IconButton(
+                                        onClick = { mealPlannerBasketPreviewRecipeOverviewParametersState.delete() },
+                                        enabled = !params.isDeleting && !isLocked.value && !params.isChildrenLoading
+                                    ) {
                                         Icon(painter = painterResource(Image.delete), contentDescription = null)
                                     }
                                 }
                             }
                         }
                     }
-                   // mealPlannerBasketPreviewRecipeOverviewParametersState.Content()
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -201,7 +206,7 @@ fun PriceView(price: Double) {
 }
 
 @Composable
-fun SuccessViewPerGuest(price: Double) {
+fun SuccessViewPerGuest(price: Double ) {
     val numberFormat = NumberFormat.getCurrencyInstance()
     numberFormat.currency = Currency.getInstance(Localisation.Price.currency.localised)
     Row(
@@ -222,7 +227,7 @@ fun SuccessViewPerGuest(price: Double) {
 }
 
 @Composable
-fun GuestNumberComponent(initialValue: Int, onGuestChange: (Int) -> Unit) {
+fun GuestNumberComponent(initialValue: Int,isLoading: Boolean, onGuestChange: (Int) -> Unit ) {
     var guestNumber by remember { mutableStateOf(initialValue) }
     Row {
         IconButton(onClick = {
@@ -230,7 +235,9 @@ fun GuestNumberComponent(initialValue: Int, onGuestChange: (Int) -> Unit) {
                 guestNumber--
                 onGuestChange(guestNumber)
             }
-        }, modifier = Modifier.size(30.dp)) {
+        },
+            enabled = !isLoading,
+            modifier = Modifier.size(30.dp)) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_minus_u),
                 contentDescription = null,
@@ -247,7 +254,8 @@ fun GuestNumberComponent(initialValue: Int, onGuestChange: (Int) -> Unit) {
                 guestNumber++
                 onGuestChange(guestNumber)
             }
-        }, modifier = Modifier.size(30.dp)) {
+        },   enabled = !isLoading,
+            modifier = Modifier.size(30.dp)) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_plus_u),
                 contentDescription = null,
@@ -259,7 +267,7 @@ fun GuestNumberComponent(initialValue: Int, onGuestChange: (Int) -> Unit) {
 }
 
 @Composable
-private fun CollapseButton(initaleState: Boolean, action: () -> Unit) {
+private fun CollapseButton(initaleState: Boolean, isLoading: Boolean, action: () -> Unit) {
     var expandedState by remember { mutableStateOf(initaleState) }
     val rotationState by animateFloatAsState(
         targetValue = if (expandedState) 180f else 0f
@@ -267,7 +275,7 @@ private fun CollapseButton(initaleState: Boolean, action: () -> Unit) {
     TextButton(onClick = {
         action()
         expandedState = !expandedState
-    }) {
+    }, enabled = !isLoading) {
         Text(
             text = Localisation.Basket.moreDetails.localised,
             style = Typography.subtitle.copy(fontSize = 14.sp),

@@ -31,12 +31,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import com.miam.core.helpers.formatPrice
 import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
@@ -145,9 +144,8 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
     @Composable
     internal fun RecipeImage(imageUrl: String, numberOfGuests: Int) {
         Box {
-            val backgroundImage: Painter = rememberImagePainter(imageUrl)
-            Image(
-                painter = backgroundImage,
+            AsyncImage(
+                model = imageUrl,
                 contentDescription = "Recipe Image",
                 modifier = Modifier
                     .height(Dimension.myMealPictureCardSize)

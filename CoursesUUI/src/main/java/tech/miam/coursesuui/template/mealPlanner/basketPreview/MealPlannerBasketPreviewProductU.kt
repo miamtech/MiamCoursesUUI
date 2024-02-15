@@ -30,21 +30,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.kmm_miam_sdk.android.ui.components.counter.CounterStyle
-import com.miam.sdk.components.mealPlanner.basketPreview.success.found.FoundProductsConfig
 import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProduct
 import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProductParameters
 import com.miam.sdk.components.price.formatPrice
-
-import kotlinx.coroutines.flow.Flow
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
@@ -59,9 +55,10 @@ class CoursesUBasketPreviewProductImp: FoundProduct {
                     .background(Color.White)
                     .padding(Dimension.lPadding)
             ) {
-                val backgroundImage: Painter = rememberImagePainter(params.productPicture)
-
-                Image(  painter = backgroundImage, contentDescription = null, modifier = Modifier
+                AsyncImage(
+                    model = params.productPicture,
+                    contentDescription = null,
+                    modifier = Modifier
                     .height(60.dp)
                     .width(60.dp),
                     contentScale = ContentScale.Crop)

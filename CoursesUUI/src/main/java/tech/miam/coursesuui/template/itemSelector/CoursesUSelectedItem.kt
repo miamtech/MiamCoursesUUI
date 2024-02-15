@@ -22,7 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
+
 import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.sdk.components.price.formatPrice
@@ -35,8 +36,8 @@ internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
             Surface(color = Colors.backgroundLightGrey, modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                        Image(
-                            painter = rememberImagePainter(item.attributes?.image ?: ""),
+                        AsyncImage(
+                            model = item.attributes?.image ?: "",
                             contentDescription = "Product image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier

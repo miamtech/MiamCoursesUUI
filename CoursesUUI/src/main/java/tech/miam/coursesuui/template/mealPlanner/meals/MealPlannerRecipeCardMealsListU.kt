@@ -26,7 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
 
@@ -54,9 +54,7 @@ fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
 
 @Composable
 fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
-
-    val backgroundImage: Painter = rememberImagePainter(params.recipe.attributes?.mediaUrl)
-   val likeButton = LikeButton(recipeId = params.recipe.id)
+    val likeButton = LikeButton(recipeId = params.recipe.id)
 
     Box(
         modifier = Modifier
@@ -68,8 +66,8 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
     ) {
         Row(Modifier.background(Color.White)) {
             Box {
-                Image(
-                    painter = backgroundImage,
+                AsyncImage(
+                    model = params.recipe.attributes?.mediaUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .height(Dimension.mealPlannerCardHeight)
@@ -153,7 +151,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                             modifier = Modifier.padding(end = 4.dp)
                         )
                         Text(
-                            text = Localisation.Budget.myBudgetChangeRecipe.localised,
+                            text = "changer",
                             style = Typography.title.copy(fontWeight = FontWeight.Normal),
                             color = Colors.primary
                         )

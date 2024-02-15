@@ -39,8 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
-import com.miam.core.di.MiamDI
+import coil.compose.AsyncImage
 import com.miam.core.helpers.formatPrice
 import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
@@ -129,8 +128,8 @@ fun RecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
             .height(225.dp)
             .fillMaxWidth()
     ) {
-        Image(
-            painter = rememberImagePainter(recipePicture),
+        AsyncImage(
+            model = recipePicture,
             contentDescription = "Recipe Picture",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -164,8 +163,8 @@ fun SponsorLogo(sponsorLogo: String?) {
             elevation = 1.dp,
             modifier = Modifier.padding(8.dp)
         ) {
-            Image(
-                painter = rememberImagePainter(sponsorLogo),
+            AsyncImage(
+                model = sponsorLogo,
                 contentDescription = "sponsor picture",
                 contentScale = ContentScale.Inside,
                 modifier = Modifier

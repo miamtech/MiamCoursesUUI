@@ -227,5 +227,6 @@ class MiamTemplateManager {
         Image.filter = R.drawable.ic_filters
         Image.search = R.drawable.search
         Image.cart = R.drawable.basket
+        Image.check = R.drawable.ic_cart_check
     }
 }

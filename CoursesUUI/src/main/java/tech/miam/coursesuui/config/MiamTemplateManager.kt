@@ -211,6 +211,8 @@ class MiamTemplateManager {
             recipesPage {
                 success {
                     catalogPageColumns = 2
+                    catalogPageHorizontalSpacing = 8
+                    catalogPageVerticalSpacing = 8
                 }
             }
             //// END RECIPE PAGE //////////

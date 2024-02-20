@@ -110,7 +110,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                         }
                     }
                     if (params.content == CatalogContent.CATEGORIES_LIST) {
-                        IconButton(onClick = { params.openSearch() }) {
+                        IconButton(onClick = { params.goToFavorite() }) {
                             Image(
                                 painter = painterResource(Image.favorite),
                                 contentDescription = null,

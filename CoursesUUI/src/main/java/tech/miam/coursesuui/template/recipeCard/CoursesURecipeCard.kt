@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -29,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -47,6 +49,7 @@ import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.components.baseComponent.likeButton.LikeButton
 import kotlinx.coroutines.flow.MutableStateFlow
+import tech.miam.coursesuui.R
 
 class CoursesURecipeCard: RecipeCardSuccess {
     @Composable
@@ -65,22 +68,7 @@ class CoursesURecipeCard: RecipeCardSuccess {
                     Column {
                         Box {
                             params.recipe.attributes?.let {
-                                RecipeCardImageView(it.mediaUrl) { params.goToDetail() }
-                            }
-                            Row(
-                                Modifier
-                                    .fillMaxWidth()
-                                    .align(Alignment.TopStart),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                if (params.isSponsor) {
-                                    SponsorLogo(params.sponsorLogo)
-                                } else {
-                                    Spacer(Modifier.weight(1f))
-                                }
-                                if (params.likeIsEnabled) {
-                                    RecipeLikeButton(params.recipe.id)
-                                }
+                                RecipeCardImageView(it.mediaUrl,params.sponsorLogo) { params.goToDetail() }
                             }
                             Row(
                                 Modifier
@@ -109,7 +97,7 @@ class CoursesURecipeCard: RecipeCardSuccess {
                                 modifier = Modifier
                                     .weight(1f)
                             ) {
-                                RecipeCardCTAView(params.isInCart) {
+                                RecipeCardCTAView(params.recipe.id, params.isInCart) {
                                     params.goToDetail()
                                 }
                             }
@@ -122,7 +110,7 @@ class CoursesURecipeCard: RecipeCardSuccess {
 }
 
 @Composable
-fun RecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
+fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, goToDetail: () -> Unit) {
     Box(
         modifier = Modifier
             .height(225.dp)
@@ -137,6 +125,13 @@ fun RecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
                 .fillMaxWidth()
                 .clickable { goToDetail() }
         )
+        Image(
+            modifier = Modifier
+                .padding(12.dp)
+                .align(Alignment.TopStart),
+            painter = painterResource(id = R.drawable.ic_meal_idea),
+            contentDescription = "meal Idea" )
+        SponsorLogo(sponsorLogo, Modifier.align(Alignment.TopEnd))
         Box(
             modifier = Modifier
                 .height(225.dp)
@@ -155,13 +150,13 @@ fun RecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
 }
 
 @Composable
-fun SponsorLogo(sponsorLogo: String?) {
+fun SponsorLogo(sponsorLogo: String?, modifier: Modifier) {
     if (sponsorLogo != null) {
         Surface(
             shape = RoundedCornerShape(100.dp),
-            color = Colors.white,
+            color = Color.White,
             elevation = 1.dp,
-            modifier = Modifier.padding(8.dp)
+            modifier = modifier.padding(8.dp)
         ) {
             AsyncImage(
                 model = sponsorLogo,
@@ -186,58 +181,41 @@ fun RecipeCardTitleView(title: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Composable
-fun RecipeLikeButton(recipeId: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp, end = 8.dp),
-        horizontalArrangement = Arrangement.End
-    ) {
-        LikeButton(recipeId = recipeId).Content()
-    }
-}
 
 @Composable
 fun RecipeCardCTAView(
+    recipeId: String,
     isInCart: Boolean,
     actionOnClick: () -> Unit
 ) {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-
-        Surface(
-            modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
-                .border(
-                    border = BorderStroke(
-                        1.dp,
-                        if (isInCart) Colors.primary else Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .clickable { actionOnClick() },
-            elevation = 8.dp
-        ) {
-            Row(
-                Modifier
-                    .background(if (isInCart) Colors.white else Colors.primary)
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Image(
-                    painter = painterResource(if (isInCart) Image.check else Image.cart),
-                    contentDescription = "recipe is in cart icon",
-                    colorFilter = ColorFilter.tint(if (isInCart) Colors.primary else Colors.white),
-                    modifier = Modifier
-                        .size(24.dp)
-                )
-                Text(
-                    text = if (isInCart) Localisation.Recipe.showDetails.localised else Localisation.Recipe.add.localised,
-                    color = if (isInCart) Colors.primary else Colors.white,
-                    style = Typography.bodyBold
-                )
-            }
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
+        LikeButton(recipeId = recipeId).Content()
+        Spacer(modifier = Modifier.width(8.dp))
+        Box {
+            Surface(
+                shape = CircleShape,
+                color = if(isInCart) Color.Transparent else Colors.primary ,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(40.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(
+                        border = BorderStroke(
+                            1.dp,
+                            if (isInCart) Colors.primary else Color.Transparent
+                        ),
+                        shape = CircleShape
+                    )
+                    .clickable { actionOnClick() }
+            ) {}
+            Image(
+                painter = painterResource(if (isInCart) Image.check else Image.cart),
+                contentDescription = "recipe is in cart icon",
+                colorFilter = ColorFilter.tint(if (isInCart) Colors.primary else Colors.white),
+                modifier = Modifier
+                    .size(20.dp)
+                    .align(Alignment.Center)
+            )
         }
     }
 }
@@ -267,11 +245,12 @@ internal fun BadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
 
     val numberOfGuestsState by numberOfGuests.collectAsState()
     Row(
-        Modifier.width(100.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        Surface(shape = RoundedCornerShape(100.dp), color = Colors.white) {
-            Row(modifier = Modifier.padding(horizontal = 4.dp)) {
+        Surface(shape = RoundedCornerShape(100.dp), color = Color.White) {
+            Row(modifier = Modifier.padding(horizontal = 8.dp, vertical =2.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
                     numberOfGuestsState.toString(),
                     style = Typography.bodyBold.copy(
@@ -283,8 +262,8 @@ internal fun BadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
                     painter = painterResource(id = Image.miamGuest),
                     contentDescription = "guests icon",
                     Modifier
-                        .size(24.dp)
-                        .padding(start = 2.dp)
+                        .size(16.dp)
+                        .padding(start = 4.dp)
                 )
             }
         }

@@ -1,4 +1,4 @@
-package tech.miam.coursesuui.template.recipeDetail.ignore
+package tech.miam.coursesuui.template.recipeDetail.removeFromBasket
 
 import com.miam.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
 import com.miam.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
@@ -8,14 +8,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -29,12 +27,24 @@ import androidx.compose.ui.unit.sp
 import com.miam.core.localisation.Localisation
 import com.miam.core.viewModels.quantityFormatter.QuantityFormatter
 import com.miam.kmm_miam_sdk.android.theme.Colors
+import com.miam.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProduct
+import com.miam.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProductParameters
+import kotlinx.coroutines.flow.MutableStateFlow
 
-class CoursesUIgnore: ProductIgnore {
+class CoursesUProductRemovedFromBasket: ProductIgnore, OftenDeletedProduct {
     @Composable
     override fun Content(params: ProductIgnoreParameters) {
+        Product(params.ingredientName, params.ingredientQuantity, params.ingredientUnit, params.guestsCount, params.defaultRecipeGuest, params.chooseProduct)
+    }
 
-        val guestsCount = params.guestsCount.collectAsState()
+    @Composable
+    override fun Content(params: OftenDeletedProductParameters) {
+        Product(params.ingredientName, params.ingredientQuantity, params.ingredientUnit, params.guestsCount, params.defaultRecipeGuest, params.chooseProduct)
+    }
+
+    @Composable
+    private fun Product(ingredientName: String, ingredientQuantity: String, ingredientUnit: String, guestsCount: MutableStateFlow<Int>, defaultRecipeGuest :Int, chooseProduct: () -> Unit) {
+        val guestsCount = guestsCount.collectAsState()
 
         Box(
             modifier = Modifier
@@ -45,7 +55,7 @@ class CoursesUIgnore: ProductIgnore {
                 .clip(RoundedCornerShape(20.dp))
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
-                ProductHeader(params.ingredientName, params.ingredientQuantity, params.ingredientUnit, guestsCount.value, params.defaultRecipeGuest)
+                ProductHeader(ingredientName, ingredientQuantity, ingredientUnit, guestsCount.value, defaultRecipeGuest)
                 Column(
                     Modifier
                         .fillMaxWidth()
@@ -63,7 +73,7 @@ class CoursesUIgnore: ProductIgnore {
                         color = Colors.white
                     ) {
                         Text(modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp).clickable {
-                            params.chooseProduct()
+                            chooseProduct()
                         },
                             text = Localisation.Ingredient.chooseProduct.localised,
                             style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight(700), color = Colors.primary)
@@ -111,4 +121,6 @@ class CoursesUIgnore: ProductIgnore {
             )
         }
     }
+
+
 }

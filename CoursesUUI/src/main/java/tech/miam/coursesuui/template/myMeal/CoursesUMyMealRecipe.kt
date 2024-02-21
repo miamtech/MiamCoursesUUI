@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.myMeal
 
+import androidx.compose.foundation.BorderStroke
 import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccess
 import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccessParameters
 import androidx.compose.foundation.Image
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
@@ -28,89 +30,92 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.miam.core.helpers.formatPrice
 import com.miam.core.localisation.Localisation
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
 
 
 class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     override fun Content(params: MyMealRecipeCardSuccessParameters) {
         Surface(
             Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(12.dp)
                 .border(
                     width = 1.dp,
                     color = Colors.disabledText,
-                    shape = RoundedCornerShape(8.dp)
-                )
+                    shape = RoundedCornerShape(12.dp))
         ) {
-            Row(
-                Modifier.padding(8.dp)
-            )
+            Row(Modifier.padding(12.dp))
             {
                 RecipeImage(imageUrl = params.recipe.attributes?.mediaUrl ?: "", params.guestCount)
                 Column(
-                    Modifier.padding(start = 8.dp)
+                    Modifier
+                        .padding(start = 12.dp)
+                        .height(144.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Row {
-                        Text(
-                            text = params.recipe.attributes?.title ?: "",
-                            style = Typography.subtitleBold.copy(lineBreak = LineBreak.Simple),
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.width(130.dp),
-                        )
-                        Spacer(modifier = Modifier.weight(1f))
-                        DeleteButton(params.isDeleting, params.delete)
-                    }
-                    Text(
-                        text = Localisation.MyMeals.products(params.numberOfProductsInRecipe).localised,
-                        style = Typography.bodySmall,
-                        color = Colors.disabledText
-                    )
-                    PricePerPerson(
-                        params.totalPrice,
-                        params.guestCount
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    TextButton(
-                        modifier = Modifier
-                            .border(
-                                2.dp,
-                                color = Colors.primary,
-                                shape = RoundedCornerShape(64.dp)
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.Top,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = params.recipe.attributes?.title ?: "",
+                                style = Typography.subtitleBold.copy(lineBreak = LineBreak.Simple),
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.width(130.dp),
                             )
-                            .fillMaxWidth(),
+                            DeleteButton(params.isDeleting, params.delete)
+                        }
+                        Column(modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.Start
+                        ) {
+                            Text(
+                                text = Localisation.MyMeals.products(params.numberOfProductsInRecipe).localised,
+                                style = Typography.bodySmall,
+                                color = Colors.disabledText,
+                            )
+                            PricePerPerson(
+                                params.totalPrice,
+                                params.guestCount
+                            )
+                        }
+
+                    Spacer(modifier = Modifier.weight(1f))
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        border = BorderStroke(1.dp, color = Colors.primary,),
                         onClick = params.openRecipeDetail,
+
                     ) {
-                        Row {
+                        Row(horizontalArrangement = Arrangement.SpaceEvenly,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
+                            ) {
                             Text(
                                 text = Localisation.Recipe.showBasketPreview.localised,
-                                style = Typography.subtitle,
+                                style = Typography.subtitle.copy(fontSize = 14.sp),
                                 color = Colors.primary
                             )
                             Icon(
-                                painter = painterResource(Image.previous),
+                                painter = painterResource(Image.toggleCaret),
                                 contentDescription = "Icon arrow view products",
-                                modifier = Modifier
-                                    .graphicsLayer {
-                                        translationY = 4.dp.toPx()
-                                        rotationZ = 180f
-                                    }
-                                    .padding(top = 4.dp),
                                 tint = Colors.primary
                             )
                         }
@@ -123,18 +128,23 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
     @Composable
     internal fun BadgeViewGuest(numberOfGuests: Int, modifier: Modifier = Modifier) {
         Surface(
-            modifier = modifier,
+            modifier = modifier
+                .padding(bottom = 8.dp, end = 8.dp)
+                .clip(RoundedCornerShape(50.dp))
+                .background(Colors.white),
         ) {
-            Row (modifier = Modifier.padding(horizontal = 4.dp)) {
+            Row (modifier = Modifier.padding(horizontal = 4.dp)
+                , verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
                     numberOfGuests.toString(),
-                    style = Typography.bodyBold,
+                    style = Typography.bodyBold.copy(fontSize = 16.sp),
                 )
                 Icon(
-                    painter = painterResource(id = Image.guests),
+                    painter = painterResource(id = Image.miamGuest),
                     contentDescription = "guests icon",
                     Modifier
-                        .size(24.dp)
+                        .size(16.dp)
                         .padding(start = 4.dp)
                 )
             }
@@ -148,33 +158,29 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                 model = imageUrl,
                 contentDescription = "Recipe Image",
                 modifier = Modifier
-                    .height(Dimension.myMealPictureCardSize)
-                    .width(Dimension.myMealPictureCardSize)
-                    .clip(RoundedCornerShape(8.dp)),
+                    .size(144.dp)
+                    .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Crop
             )
             BadgeViewGuest(
                 numberOfGuests = numberOfGuests,
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(bottom = 8.dp, end = 8.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Colors.white)
             )
         }
     }
 
     @Composable
     internal fun DeleteButton(isDeleting: Boolean, delete: () -> Unit) {
-        IconButton(onClick = delete) {
+        IconButton(modifier = Modifier.size(24.dp),onClick = delete) {
             if (isDeleting) {
-                CircularProgressIndicator(color = Colors.boldText,modifier= Modifier.size(16.dp))
+                CircularProgressIndicator(color = Colors.boldText, modifier= Modifier.size(16.dp))
             } else {
                 Image(
                     painter = painterResource(Image.delete),
                     contentDescription = "Delete",
                     colorFilter = ColorFilter.tint(Colors.grey),
-                    modifier = Modifier.size(28.dp)
+                    modifier = Modifier.size(20.dp)
                 )
             }
         }

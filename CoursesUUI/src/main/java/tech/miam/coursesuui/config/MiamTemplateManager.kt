@@ -39,6 +39,7 @@ import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
+import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.removeFromBasket.CoursesUProductRemovedFromBasket
@@ -127,6 +128,9 @@ class MiamTemplateManager {
             recipeCard {
                 success {
                     view = CoursesURecipeCard()
+                }
+                loading {
+                    view = CoursesURecipeCardLoading()
                 }
             }
             ///////// END RECIPE CARD TEMPLATING //////////////

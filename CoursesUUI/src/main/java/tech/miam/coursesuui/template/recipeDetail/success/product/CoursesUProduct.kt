@@ -1,4 +1,4 @@
-package tech.miam.coursesuui.template.recipeDetail.success
+package tech.miam.coursesuui.template.recipeDetail.success.product
 
 import com.miam.sdk.components.recipeDetail.success.product.success.ProductSuccess
 import com.miam.sdk.components.recipeDetail.success.product.success.ProductSuccessParameters
@@ -45,7 +45,8 @@ import com.miam.kmm_miam_sdk.android.theme.Colors.grey
 import com.miam.kmm_miam_sdk.android.theme.Colors.lightgrey
 import com.miam.kmm_miam_sdk.android.theme.Colors.primary
 import com.miam.kmm_miam_sdk.android.theme.Colors.white
-import com.miam.kmm_miam_sdk.android.ui.components.counter.Counter
+import com.miam.sdk.components.baseComponent.counter.CounterParameters
+import com.miam.sdk.di.TemplateDI
 
 class CoursesUProduct: ProductSuccess {
     @Composable
@@ -56,12 +57,11 @@ class CoursesUProduct: ProductSuccess {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
                 .border(
                     1.dp,
                     if (params.isInBasket) primary else lightgrey, RoundedCornerShape(8.dp)
-                )
-                .clip(RoundedCornerShape(8.dp))
+                ).clip(RoundedCornerShape(8.dp))
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
                 ProductHeader(
@@ -102,7 +102,7 @@ class CoursesUProduct: ProductSuccess {
                     ) {
                         Text(
                             text = Localisation.Ingredient.productsSharedRecipe(params.numberOfRecipeConcernsByProduct).localised,
-                            style = TextStyle(fontSize = 12.sp, color = grey)
+                            style = TextStyle(fontSize = 12.sp, color = grey, fontWeight = FontWeight.Bold)
                         )
                     }
                 }
@@ -142,7 +142,7 @@ class CoursesUProduct: ProductSuccess {
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 21.sp,
-                    fontWeight = FontWeight(500),
+                    fontWeight = FontWeight(400),
                     color = if (isInBasket) white else boldText
                 )
             )
@@ -182,7 +182,7 @@ class CoursesUProduct: ProductSuccess {
                 )
                 Text(
                     text = productName,
-                    style = TextStyle(fontSize = 12.sp, lineHeight = 18.sp, fontWeight = FontWeight(500))
+                    style = TextStyle(fontSize = 12.sp, lineHeight = 18.sp, fontWeight = FontWeight(400))
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Surface(shape = RoundedCornerShape(100.dp), color = lightgrey) {
@@ -207,7 +207,7 @@ class CoursesUProduct: ProductSuccess {
                 TextButton(onClick = { replaceProduct() }) {
                     Text(
                         text = Localisation.Budget.replaceItem.localised,
-                        style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = primary)
+                        style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(600), color = primary)
                     )
                 }
             }
@@ -237,12 +237,14 @@ class CoursesUProduct: ProductSuccess {
                 style = TextStyle(fontSize = 20.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color = black)
             )
             if (isInBasket) {
-                Counter(
-                    initialCount = productQuantity,
-                    onCounterChanged = { changeCount(it) },
-                    lightMode = true,
-                    isDisable = isLocked,
-                    isLoading = isLocked
+                TemplateDI.recipeDetail.success.product.counter?.view?.Content(
+                    params = CounterParameters(
+                        initialCount = productQuantity,
+                        onCounterChanged = { changeCount(it) },
+                        lightMode = true,
+                        isDisable = isLocked,
+                        isLoading = isLocked
+                    )
                 )
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -254,25 +256,24 @@ class CoursesUProduct: ProductSuccess {
                     }
                     Surface(
                         Modifier
-                            .size(48.dp)
+                            .size(40.dp)
                             .clickable { addProduct() }, shape =CircleShape, color = primary
                     ) {
                         if (isLocked) {
                             Row(
                                 modifier = Modifier
-                                    .size(16.dp)
-                                    .padding(16.dp),
-                                verticalAlignment = Alignment.CenterVertically
+                                    .size(40.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
                             ) {
-                                CircularProgressIndicator(color = white, modifier = Modifier.size(16.dp))
+                                CircularProgressIndicator(color = white, modifier = Modifier.size(20.dp))
                             }
                         } else {
                             Image(
                                 painter = painterResource(id = cart),
                                 contentDescription = "buy",
-                                contentScale = ContentScale.Fit,
                                 modifier = Modifier
-                                    .size(16.dp)
+                                    .size(20.dp)
                                     .padding(8.dp)
                             )
                         }

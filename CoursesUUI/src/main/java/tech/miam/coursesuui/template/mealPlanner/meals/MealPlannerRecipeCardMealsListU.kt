@@ -153,7 +153,7 @@ fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
                             modifier = Modifier.padding(end = 4.dp)
                         )
                         Text(
-                            text = Localisation.Basket.swapProduct.localised,
+                            text = Localisation.Budget.myBudgetChangeRecipe.localised,
                             style = Typography.title.copy(fontWeight = FontWeight.Normal),
                             color = Colors.primary
                         )

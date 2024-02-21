@@ -46,7 +46,6 @@ import java.util.*
 class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFooter {
     @Composable
     override fun Content(params: MealsFooterParameters) {
-        val ratio = params.recipesPrice / params.budget
         FooterBase(
             totalPrice = params.recipesPrice,
             progressRatio = params.recipesPrice / params.budget,

@@ -31,7 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
+
 import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
 import com.miam.kmm_miam_sdk.android.ressource.Image
@@ -67,7 +68,6 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
             mutableStateOf(params)
         }
 
-        val backgroundImage: Painter = rememberImagePainter(mealPlannerBasketPreviewRecipeOverviewParametersState.picture)
         Column {
             Spacer(modifier = Modifier.height(8.dp))
             Card(
@@ -83,8 +83,10 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                 ) {
                     Row(modifier = Modifier.height(184.dp)) {
                         Box {
-                            Image(
-                                painter = backgroundImage, contentDescription = null, modifier = Modifier
+                            AsyncImage(
+                                model = mealPlannerBasketPreviewRecipeOverviewParametersState.picture,
+                                contentDescription = null,
+                                modifier = Modifier
                                     .height(Dimension.mealPlannerCardHeight)
                                     .width(150.dp)
                                     .clickable { mealPlannerBasketPreviewRecipeOverviewParametersState.openRecipeDetail() },

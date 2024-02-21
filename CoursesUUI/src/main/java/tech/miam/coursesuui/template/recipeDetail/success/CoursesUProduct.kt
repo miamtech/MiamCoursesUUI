@@ -34,7 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import com.miam.core.localisation.Localisation
 import com.miam.core.viewModels.quantityFormatter.QuantityFormatter
 import com.miam.kmm_miam_sdk.android.ressource.Image.cart
@@ -165,8 +165,8 @@ class CoursesUProduct: ProductSuccess {
                 .padding(top = 12.dp)
                 .padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Image(
-                painter = rememberImagePainter(productImage),
+            AsyncImage(
+                model = productImage,
                 contentDescription = "Product image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

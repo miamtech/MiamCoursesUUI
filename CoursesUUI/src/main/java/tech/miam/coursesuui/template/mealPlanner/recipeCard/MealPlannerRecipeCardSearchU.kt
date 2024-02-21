@@ -23,8 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
-import com.miam.core.data.repository.BudgetRepository
+import coil.compose.AsyncImage
 import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
 import com.miam.kmm_miam_sdk.android.ressource.Image
@@ -36,7 +35,6 @@ import com.miam.sdk.components.price.RecipePrice
 
 @Composable
 fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
-    val backgroundImage: Painter = rememberImagePainter(params.recipe.attributes?.mediaUrl)
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,8 +48,9 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
             Box(Modifier.clickable {
                 params.openDetail()
             }) {
-                Image(
-                    painter = backgroundImage, contentDescription = null, modifier = Modifier
+                AsyncImage(
+                    model = params.recipe.attributes?.mediaUrl
+                    , contentDescription = null, modifier = Modifier
                         .height(120.dp)
                         .fillMaxWidth(),
                     contentScale = ContentScale.Crop

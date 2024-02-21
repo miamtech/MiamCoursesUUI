@@ -39,7 +39,6 @@ import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.sdk.components.itemSelector.search.ItemSelectorSearch
 import com.miam.sdk.components.itemSelector.search.ItemSelectorSearchParameters
-import tech.miam.coursesuui.R
 import java.util.Locale
 
 class CoursesUItemSelectorSearch : ItemSelectorSearch {

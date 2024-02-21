@@ -56,7 +56,6 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
             modifier = Modifier
                 .height(330.dp)
                 .width(240.dp)
-                .padding(8.dp)
         ) {
             Column {
                 Box {
@@ -102,9 +101,10 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                     Box(modifier = Modifier.width(100.dp)) {
                         CatalogPricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
                     }
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(1f),
+                        horizontalArrangement = Arrangement.End
                     ) {
                         CatalogRecipeCardCTAView(params.isInCart) {
                             params.goToDetail()
@@ -188,7 +188,16 @@ fun CatalogRecipeLikeButton(recipeId: String) {
             .padding(top = 8.dp, end = 8.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        LikeButton(recipeId = recipeId).Content()
+        Box {
+            Surface(
+                shape = CircleShape,
+                color =  Colors.white ,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(36.dp)
+            ) {}
+            LikeButton(recipeId = recipeId).Content()
+        }
     }
 }
 
@@ -197,10 +206,14 @@ fun CatalogRecipeCardCTAView(
     isInCart: Boolean,
     actionOnClick: () -> Unit
 ) {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+    Box {
         Surface(
+            shape = CircleShape,
+            color = if(isInCart) Color.Transparent else Colors.primary ,
             modifier = Modifier
-                .clip(CircleShape)
+                .align(Alignment.Center)
+                .size(40.dp)
+                .clip(RoundedCornerShape(8.dp))
                 .border(
                     border = BorderStroke(
                         1.dp,
@@ -208,29 +221,16 @@ fun CatalogRecipeCardCTAView(
                     ),
                     shape = CircleShape
                 )
-                .clickable { actionOnClick() },
-            elevation = 8.dp
-        ) {
-            Row(
-                Modifier
-                    .background(if (isInCart) Colors.white else Colors.primary)
-                    .padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                if (isInCart) {
-                    Text(text = "Voir", color = Colors.primary ,style = TextStyle(fontWeight = FontWeight(600)) )
-                } else {
-                    Image(
-                        painter = painterResource(  Image.cart),
-                    contentDescription = "recipe is in cart icon",
-                    colorFilter = ColorFilter.tint( Colors.white),
-                    modifier = Modifier
-                        .size(24.dp)
-                    )
-                }
-            }
-        }
+                .clickable { actionOnClick() }
+        ) {}
+        Image(
+            painter = painterResource(if (isInCart) Image.check else Image.cart),
+            contentDescription = "recipe is in cart icon",
+            colorFilter = ColorFilter.tint(if (isInCart) Colors.primary else Colors.white),
+            modifier = Modifier
+                .size(20.dp)
+                .align(Alignment.Center)
+        )
     }
 }
 
@@ -259,11 +259,13 @@ internal fun CatalogBadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
 
     val numberOfGuestsState by numberOfGuests.collectAsState()
     Row(
-        Modifier.width(60.dp),
+
         horizontalArrangement = Arrangement.End
     ) {
-        Surface(shape = RoundedCornerShape(100.dp), color = Colors.white) {
-            Row(modifier = Modifier.padding(horizontal = 4.dp)) {
+        Surface(shape = RoundedCornerShape(100.dp), color = Color.White) {
+            Row(modifier = Modifier.padding(horizontal = 8.dp, vertical =2.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
                     numberOfGuestsState.toString(),
                     style = Typography.bodyBold.copy(
@@ -275,8 +277,8 @@ internal fun CatalogBadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
                     painter = painterResource(id = Image.miamGuest),
                     contentDescription = "guests icon",
                     Modifier
-                        .size(24.dp)
-                        .padding(start = 2.dp)
+                        .size(16.dp)
+                        .padding(start = 4.dp)
                 )
             }
         }

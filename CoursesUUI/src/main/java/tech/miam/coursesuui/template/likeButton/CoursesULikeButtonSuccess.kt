@@ -42,6 +42,7 @@ class CoursesULikeButtonSuccess: LikeButtonSuccess {
                         painter = painterResource(Image.favoriteFilled),
                         contentDescription = "favorite filled",
                         modifier = Modifier.size(20.dp)
+                            .padding(start = 2.dp)
                     )
                 } else {
                     Image(

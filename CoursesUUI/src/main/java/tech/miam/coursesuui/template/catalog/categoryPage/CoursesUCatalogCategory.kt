@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.miam.core.localisation.Localisation
 import com.miam.core.model.Recipe
 import com.miam.kmm_miam_sdk.android.ressource.Image.previous
+import com.miam.kmm_miam_sdk.android.ressource.Image.toggleCaret
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.sdk.components.recipeJourney.RecipeJourney
@@ -35,7 +37,9 @@ import com.miam.sdk.components.recipeJourney.RecipeJourney
 class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
     @Composable
     override fun Content(param: CatalogCategoriesPageCategoryParameters) {
-        Column (verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column (
+            Modifier.padding(top = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -73,15 +77,13 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                         ) {
                             Text(
                                 text = Localisation.Catalog.showAll.localised,
-                                style = TextStyle(textDecoration = TextDecoration.Underline),
                                 color = Colors.primary,
                             )
                             Image(
-                                painter = painterResource(previous),
+                                painter = painterResource(toggleCaret),
                                 contentDescription = null,
                                 colorFilter = ColorFilter.tint(Colors.primary),
                                 modifier = Modifier
-                                    .rotate(180f)
                                     .padding(vertical = 8.dp).padding(end = 8.dp)
                             )
                         }
@@ -89,7 +91,7 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                 }
             }
 
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(start = 8.dp)) {
                 items(
                     key = { item: Recipe -> item.id },
                     items = (param.category.relationships?.recipes?.data ?: emptyList())

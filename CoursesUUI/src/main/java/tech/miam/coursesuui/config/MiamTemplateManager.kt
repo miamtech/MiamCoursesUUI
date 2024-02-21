@@ -42,8 +42,9 @@ import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.removeFromBasket.CoursesUProductRemovedFromBasket
-import tech.miam.coursesuui.template.recipeDetail.success.CoursesUProduct
+import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUStep
+import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProductCounter
 import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
 
@@ -139,6 +140,9 @@ class MiamTemplateManager {
                         }
                     }
                     products {
+                        counter {
+                            view = CoursesUProductCounter()
+                        }
                         success {
                             view = CoursesUProduct()
                         }

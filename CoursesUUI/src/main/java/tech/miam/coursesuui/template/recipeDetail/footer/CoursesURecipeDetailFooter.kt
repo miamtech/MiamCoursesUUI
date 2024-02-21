@@ -89,7 +89,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
 
     @Composable
     fun LoadingButton() {
-        Surface(shape = RoundedCornerShape(10.dp), color = Colors.primary) {
+        Surface(shape = RoundedCornerShape(50), color = Colors.primary) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -104,7 +104,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
     @Composable
     fun AddButton(text: String, action: () -> Unit = {}) {
         Surface(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(50),
             color = Colors.primary,
             onClick = { action() }) {
             Row(
@@ -114,7 +114,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
             ) {
                 Image(painter = painterResource(cart), contentDescription = "$cart")
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = text, style = TextStyle(fontSize = 16.sp, color = Colors.white, fontWeight = FontWeight.Black))
+                Text(text = text, style = TextStyle(fontSize = 14.sp, color = Colors.white, fontWeight = FontWeight(600)))
             }
         }
     }
@@ -123,7 +123,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
     @Composable
     fun ContinueButton(text: String, action: () -> Unit = {}) {
         Surface(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(50),
             border = BorderStroke(1.dp, Colors.primary),
             color = Colors.white,
             onClick = { action() }) {
@@ -132,7 +132,11 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(text = text, style = TextStyle(fontSize = 16.sp, color = Colors.primary, fontWeight = FontWeight.Black))
+                Text(text = text,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        color = Colors.primary,
+                        fontWeight = FontWeight(600)))
             }
         }
     }

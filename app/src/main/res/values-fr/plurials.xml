@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="com_miam_my_meals_meal_in_basket">
+        <item quantity="one">%d repas</item>
+        <item quantity="other">%d repas</item>
+    </plurals>
+</resources>

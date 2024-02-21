@@ -8,6 +8,7 @@ import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.likeButton
 import com.miam.sdk.components.MiamTheme.mealPlanner
 import com.miam.sdk.components.MiamTheme.myMeal
+import com.miam.sdk.components.MiamTheme.myMealButton
 import com.miam.sdk.components.MiamTheme.price
 import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
@@ -34,6 +35,7 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePla
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
+import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
@@ -205,11 +207,14 @@ class MiamTemplateManager {
                 }
             }
             //// END CATALOGUE //////////
+            //// RECIPE PAGE //////////
             recipesPage {
                 success {
                     catalogPageColumns = 2
                 }
             }
+            //// END RECIPE PAGE //////////
+            //// LIKE BUTTON //////////
             likeButton {
                 loading {
                     view = CoursesULikeButtonLoading()
@@ -218,6 +223,14 @@ class MiamTemplateManager {
                     view = CoursesULikeButtonSuccess()
                 }
             }
+             //// END LIKE BUTTON //////////
+            //// MY MEAL BUTTON  //////////$
+            myMealButton {
+                success {
+                    view = CoursesUMyMealButton()
+                }
+            }
+             //// END MY MEAL BUTTON  //////////
         }
     }
 

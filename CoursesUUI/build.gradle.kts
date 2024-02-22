@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    api ("tech.miam.sdk:kmm-miam-sdk:4.0.0-beta4")
+    api ("tech.miam.sdk:kmm-miam-sdk:4.0.0-beta5")
     api ("androidx.core:core-ktx:1.10.1")
     api ("androidx.appcompat:appcompat:1.6.1")
     api ("com.google.android.material:material:1.9.0")
@@ -47,11 +47,12 @@ dependencies {
     api ("androidx.compose.material:material-icons-core:1.4.3")
     api ("androidx.compose.material:material-icons-extended:1.4.3")
     api ("androidx.compose.runtime:runtime-rxjava2:1.4.3")
-    api ("io.coil-kt:coil-compose:1.3.1")
-    api ("io.coil-kt:coil-svg:1.3.1")
+    api ("io.coil-kt:coil-compose:2.2.0")
+    api ("io.coil-kt:coil-svg:2.2.0")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
 }
 
 val PUBLISH_GROUP_ID by extra("io.github.miamtech")

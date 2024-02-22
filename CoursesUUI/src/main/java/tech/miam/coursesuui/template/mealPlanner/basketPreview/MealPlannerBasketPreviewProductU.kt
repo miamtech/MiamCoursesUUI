@@ -36,8 +36,8 @@ import coil.compose.AsyncImage
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
+import com.miam.kmm_miam_sdk.android.theme.Dimension.sPadding
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.counter.CounterStyle
 import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProduct
 import com.miam.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProductParameters
 import com.miam.sdk.components.price.formatPrice
@@ -205,7 +205,10 @@ fun CounterForProduct(
         }
     }
     Row(
-        modifier = CounterStyle.mainRowContainer.height(50.dp)
+        modifier = Modifier.padding(
+            horizontal = sPadding,
+            vertical = sPadding
+        ).height(50.dp)
             .clip(RoundedCornerShape(size = 50.dp))
             .background(colorResource(R.color.miam_courses_u_background_gray_light))
             .border(

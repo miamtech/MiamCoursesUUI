@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_selector_no_result">Aucun produits trouvés pour cette recherche.</string>
+    <string name="item_selector_try_again">Essayez avec un autre mot-clés.</string>
+</resources>

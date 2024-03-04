@@ -94,7 +94,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                 Row(
                     Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 12.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {

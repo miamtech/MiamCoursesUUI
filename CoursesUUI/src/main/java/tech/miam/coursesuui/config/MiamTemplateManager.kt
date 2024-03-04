@@ -18,6 +18,7 @@ import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
+import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
@@ -41,6 +42,7 @@ import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFo
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
+import tech.miam.coursesuui.template.recipeDetail.info.CoursesURecipeDetailInfo
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.removeFromBasket.CoursesUProductRemovedFromBasket
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
@@ -142,6 +144,9 @@ class MiamTemplateManager {
                         product {
                             view = CoursesUProductRemovedFromBasket()
                         }
+                        info {
+                            view = CoursesURecipeDetailInfo()
+                        }
                     }
                     products {
                         counter {
@@ -179,6 +184,9 @@ class MiamTemplateManager {
                 }
                 success {
                     view = CoursesUSelectItemSuccess()
+                }
+                empty {
+                    view = CoursesUItemSelectorEmpty()
                 }
             }
             ////// END ITEM SELECTOR //////////

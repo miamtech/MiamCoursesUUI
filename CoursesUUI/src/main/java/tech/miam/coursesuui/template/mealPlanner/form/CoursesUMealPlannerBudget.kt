@@ -32,7 +32,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import clearFocusOnKeyboardDismiss
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.sdk.theme.Typography
 
 @Composable
 fun CoursesUCurrency(text: String) {

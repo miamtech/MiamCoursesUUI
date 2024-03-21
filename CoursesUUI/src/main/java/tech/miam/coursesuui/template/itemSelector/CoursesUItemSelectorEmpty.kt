@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPage
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 import tech.miam.coursesuui.R
 
 class CoursesUItemSelectorEmpty: EmptyPage {

@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.itemSelector
 
-import com.miam.sdk.components.itemSelector.success.ItemSelectorSuccess
-import com.miam.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccess
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.Item
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.Item
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesUSelectItemSuccess: ItemSelectorSuccess {
 

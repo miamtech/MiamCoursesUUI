@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.recipeCard
 
+import ai.mealz.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoading
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -26,7 +27,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.miam.sdk.components.recipeCard.loading.RecipeCardLoading
+import ai.mealz.sdk.components.recipeCard.loading.RecipeCardLoading
 
 class CoursesURecipeCardLoading: RecipeCardLoading {
 

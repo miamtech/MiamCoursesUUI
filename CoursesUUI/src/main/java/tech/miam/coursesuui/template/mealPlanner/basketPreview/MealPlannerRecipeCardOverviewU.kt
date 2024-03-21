@@ -33,16 +33,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-import com.miam.core.localisation.Localisation
+import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.theme.Typography.body
-import com.miam.sdk.components.baseComponent.likeButton.LikeButton
-import com.miam.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRow
-import com.miam.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRowParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.theme.Typography.body
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRow
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRowParameters
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
 import java.util.*

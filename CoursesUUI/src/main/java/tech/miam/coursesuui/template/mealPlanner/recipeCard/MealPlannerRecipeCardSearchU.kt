@@ -1,7 +1,6 @@
 package tech.miam.coursesuui.template.mealPlanner.recipeCard
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -24,17 +23,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.miam.core.localisation.Localisation
+import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.mealPlanner.recipe.success.BudgetLikeButton
-import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
-import com.miam.sdk.components.price.RecipePrice
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.mealPlanner.recipe.success.BudgetLikeButton
+import ai.mealz.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
 
 
 @Composable
-fun RecipeCardSearch(params: MealPlannerRecipeCardParameters) {
+fun RecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

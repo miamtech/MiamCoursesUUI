@@ -13,13 +13,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.miam.sdk.components.mealPlanner.callToAction.MealPlannerCallToAction
+            <ai.mealz.sdk.components.mealPlanner.callToAction.MealPlannerCallToAction
                 android:id="@+id/CallToActionU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                />
 
-            <com.miam.sdk.components.recipeJourney.RecipeJourney
+            <ai.mealz.sdk.components.recipeJourney.RecipeJourney
                 android:id="@+id/Recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

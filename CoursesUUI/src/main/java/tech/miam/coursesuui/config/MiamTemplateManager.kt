@@ -1,18 +1,18 @@
 package tech.miam.coursesuui.config
 
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.sdk.components.MiamTheme
-import com.miam.sdk.components.MiamTheme.catalog
-import com.miam.sdk.components.MiamTheme.defaultViews
-import com.miam.sdk.components.MiamTheme.itemSelector
-import com.miam.sdk.components.MiamTheme.likeButton
-import com.miam.sdk.components.MiamTheme.mealPlanner
-import com.miam.sdk.components.MiamTheme.myMeal
-import com.miam.sdk.components.MiamTheme.myMealButton
-import com.miam.sdk.components.MiamTheme.price
-import com.miam.sdk.components.MiamTheme.recipeCard
-import com.miam.sdk.components.MiamTheme.recipeDetail
-import com.miam.sdk.components.MiamTheme.recipesPage
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.components.MiamTheme
+import ai.mealz.sdk.components.MiamTheme.catalog
+import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.itemSelector
+import ai.mealz.sdk.components.MiamTheme.likeButton
+import ai.mealz.sdk.components.MiamTheme.mealPlanner
+import ai.mealz.sdk.components.MiamTheme.myMeal
+import ai.mealz.sdk.components.MiamTheme.myMealButton
+import ai.mealz.sdk.components.MiamTheme.price
+import ai.mealz.sdk.components.MiamTheme.recipeCard
+import ai.mealz.sdk.components.MiamTheme.recipeDetail
+import ai.mealz.sdk.components.MiamTheme.recipesPage
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.component.EmptyPage
@@ -57,19 +57,29 @@ class MiamTemplateManager {
         MiamTheme.Template {
             //////// MEAL PLANNER TEMPLATING /////////////////
             mealPlanner {
-                plannerFooterConfig {
-                    view = CoursesUMealPlannerFooter()
-                }
-                plannerToolbarConfig {
-                    view = CoursesUBudgetPlannerToolbar()
-                }
-                searchConfig {
+                search {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
-                recipeCardConfig {
+                recipeCard {
+                    success {
                         view = MealPlannerRecipeCardU()
+                    }
+                    placeholder {
+                        view = MealPlannerRecipePlaceholderU()
+                    }
+                    loading {
+                        view = RecipeLoadingViewU()
+                    }
                 }
-                callToActionConfig {
+                meals {
+                    toolbar {
+                        view = CoursesUBudgetPlannerToolbar()
+                    }
+                    footer {
+                        view = CoursesUMealPlannerFooter()
+                    }
+                }
+                callToAction {
                     success {
                         view = MealPlannerCallToActionU()
                     }
@@ -95,22 +105,13 @@ class MiamTemplateManager {
                     }
                 }
 
-                formConfig {
+                form {
                     success {
                         view = CoursesUBudgetForm()
                     }
                 }
-                recapConfig {
+                recap {
                     view = MealPlannerRecapU()
-                }
-
-                // TODO should be in recipe config
-                recipePlaceholderConfig {
-                    view = MealPlannerRecipePlaceholderU()
-                }
-                // TODO should be in recipe config
-                recipeLoadingConfig {
-                    view = RecipeLoadingViewU()
                 }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()

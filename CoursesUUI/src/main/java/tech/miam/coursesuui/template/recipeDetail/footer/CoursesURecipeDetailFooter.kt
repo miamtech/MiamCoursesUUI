@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeDetail.footer
 
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -28,12 +28,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.base.state.ComponentUiState
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
-import com.miam.kmm_miam_sdk.android.ressource.Image.cart
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
+import ai.mealz.sdk.ressource.Image.cart
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
     @Composable

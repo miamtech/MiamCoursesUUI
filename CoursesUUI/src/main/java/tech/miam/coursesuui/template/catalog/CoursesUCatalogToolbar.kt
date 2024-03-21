@@ -1,13 +1,9 @@
 package tech.miam.coursesuui.template.catalog
 
-import com.miam.sdk.components.catalog.success.toolbar.CatalogSuccessToolbar
-import com.miam.sdk.components.catalog.success.toolbar.CatalogSuccessToolbarParameters
-import androidx.compose.foundation.BorderStroke
+import ai.mealz.sdk.components.catalog.success.toolbar.CatalogSuccessToolbar
+import ai.mealz.sdk.components.catalog.success.toolbar.CatalogSuccessToolbarParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,12 +29,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.catalog.CatalogContent
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.common.Clickable
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.catalog.CatalogContent
+import ai.mealz.sdk.components.mealPlanner.meals.toolbar.MealPlannerToolbar
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 
 class CoursesUCatalogToolbar: CatalogSuccessToolbar {
     @Composable

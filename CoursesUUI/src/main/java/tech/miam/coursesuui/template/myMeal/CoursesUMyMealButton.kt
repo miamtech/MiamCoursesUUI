@@ -24,11 +24,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccess
-import com.miam.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccessParameters
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccess
+import ai.mealz.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccessParameters
 
 class CoursesUMyMealButton: MyMealButtonSuccess {
     @Composable

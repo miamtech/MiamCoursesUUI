@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.recipeDetail.tags
 
 import androidx.compose.foundation.BorderStroke
-import com.miam.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTag
-import com.miam.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTagParameters
+import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTag
+import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTagParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,17 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.RecipeDifficulty
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.RecipeDifficulty
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 import kotlin.time.Duration
 
 class CoursesUTags: RecipeDetailSuccessTag {

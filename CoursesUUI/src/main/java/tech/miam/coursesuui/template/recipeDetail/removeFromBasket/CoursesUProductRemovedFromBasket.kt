@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeDetail.removeFromBasket
 
-import com.miam.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
-import com.miam.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -24,11 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.quantityFormatter.QuantityFormatter
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProduct
-import com.miam.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProductParameters
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.quantityFormatter.QuantityFormatter
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProduct
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct.OftenDeletedProductParameters
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class CoursesUProductRemovedFromBasket: ProductIgnore, OftenDeletedProduct {

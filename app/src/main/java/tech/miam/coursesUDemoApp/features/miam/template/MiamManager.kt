@@ -1,14 +1,14 @@
 package tech.miam.coursesUDemoApp.features.miam.template
 
 import android.content.Context
-import com.miam.core.Mealz
-import com.miam.core.handler.LogHandler
-import com.miam.core.init.basket
-import com.miam.core.init.subscriptions
-import com.miam.core.init.sdkRequirement
-import com.miam.core.model.SupplierProduct
-import com.miam.core.subscription.publisher.BasketPublisher
-import com.miam.core.subscription.subscriber.BasketSubscriber
+import ai.mealz.core.Mealz
+import ai.mealz.core.handler.LogHandler
+import ai.mealz.core.init.basket
+import ai.mealz.core.init.subscriptions
+import ai.mealz.core.init.sdkRequirement
+import ai.mealz.core.model.SupplierProduct
+import ai.mealz.core.subscription.publisher.BasketPublisher
+import ai.mealz.core.subscription.subscriber.BasketSubscriber
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

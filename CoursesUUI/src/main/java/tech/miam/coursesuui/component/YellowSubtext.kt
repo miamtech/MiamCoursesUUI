@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.sdk.theme.Typography
 import tech.miam.coursesuui.R
 
 @Composable

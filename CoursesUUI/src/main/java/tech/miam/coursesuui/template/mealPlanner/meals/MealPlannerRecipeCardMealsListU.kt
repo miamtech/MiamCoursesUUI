@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.mealPlanner.recipeCard
 
+import ai.mealz.core.localisation.Localisation
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,17 +28,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.miam.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
 
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.sdk.components.baseComponent.likeButton.LikeButton
-import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
 
 @Composable
-fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
+fun RecipeCardMealsList(params: MealPlannerRecipeCardSuccessParameters) {
     val focusManager = LocalFocusManager.current
     Column(
         modifier = Modifier.pointerInput(Unit) {
@@ -53,7 +53,7 @@ fun RecipeCardMealsList(params: MealPlannerRecipeCardParameters) {
 }
 
 @Composable
-fun RecipeCardRow(params: MealPlannerRecipeCardParameters) {
+fun RecipeCardRow(params: MealPlannerRecipeCardSuccessParameters) {
     val likeButton = LikeButton(recipeId = params.recipe.id)
 
     Box(

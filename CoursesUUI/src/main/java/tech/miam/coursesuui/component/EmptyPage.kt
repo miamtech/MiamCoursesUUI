@@ -19,11 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.ressource.Image.miamEmpty
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPage
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.sdk.ressource.Image.miamEmpty
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 
 
  class EmptyPage : EmptyPage {

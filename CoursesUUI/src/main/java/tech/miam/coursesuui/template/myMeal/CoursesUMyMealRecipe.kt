@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.myMeal
 
 import androidx.compose.foundation.BorderStroke
-import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccess
-import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccessParameters
+import ai.mealz.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccess
+import ai.mealz.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccessParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -38,11 +38,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.miam.core.helpers.formatPrice
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.core.helpers.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 
 
 class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {

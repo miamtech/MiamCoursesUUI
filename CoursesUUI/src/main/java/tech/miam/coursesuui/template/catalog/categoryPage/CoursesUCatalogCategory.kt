@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.catalog.categoryPage
 
 import androidx.compose.foundation.Image
-import com.miam.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategory
-import com.miam.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategoryParameters
+import ai.mealz.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategory
+import ai.mealz.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategoryParameters
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,13 +26,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.Recipe
-import com.miam.kmm_miam_sdk.android.ressource.Image.previous
-import com.miam.kmm_miam_sdk.android.ressource.Image.toggleCaret
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.recipeJourney.RecipeJourney
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.Recipe
+import ai.mealz.sdk.ressource.Image.previous
+import ai.mealz.sdk.ressource.Image.toggleCaret
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.recipeJourney.RecipeJourney
 
 class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
     @Composable

@@ -11,13 +11,11 @@ plugins {
     id("com.google.firebase.appdistribution") version "4.0.0" apply false
 }
 
-
 buildscript {
     dependencies {
         classpath ("io.github.gradle-nexus:publish-plugin:1.1.0")
     }
 }
-
 
 /**
  * Maven central deploy script

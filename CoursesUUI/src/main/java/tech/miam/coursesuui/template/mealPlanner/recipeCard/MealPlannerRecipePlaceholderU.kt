@@ -24,13 +24,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholder
-import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholderParameters
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.components.mealPlanner.recipe.placeholder.MealPlannerRecipePlaceholder
+import ai.mealz.sdk.components.mealPlanner.recipe.placeholder.MealPlannerRecipePlaceholderParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
 
 
 class MealPlannerRecipePlaceholderU: MealPlannerRecipePlaceholder {

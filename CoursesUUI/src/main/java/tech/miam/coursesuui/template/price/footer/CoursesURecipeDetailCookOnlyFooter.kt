@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.price.footer
 
-import com.miam.sdk.components.price.footer.success.FooterPriceSuccess
-import com.miam.sdk.components.price.footer.success.FooterPriceSuccessParameters
+import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccess
+import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccessParameters
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -24,11 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
     @Composable

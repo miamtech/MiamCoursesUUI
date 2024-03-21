@@ -1,16 +1,17 @@
 package tech.miam.coursesuui.template.mealPlanner.recipeCard
 
+import ai.mealz.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
+import ai.mealz.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeSuccessCard
 import androidx.compose.runtime.Composable
-import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCard
-import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardParameters
 
 
-class MealPlannerRecipeCardU: MealPlannerRecipeCard {
+
+class MealPlannerRecipeCardU: MealPlannerRecipeSuccessCard{
     @Composable
-    override fun Content(mealPlannerRecipeCardParameters: MealPlannerRecipeCardParameters) {
-        if (mealPlannerRecipeCardParameters.isInSearchPage)
-            RecipeCardSearch(params = mealPlannerRecipeCardParameters)
+    override fun Content(params: MealPlannerRecipeCardSuccessParameters) {
+        if (params.isInSearchPage)
+            RecipeCardSearch(params = params)
         else
-            RecipeCardMealsList(params = mealPlannerRecipeCardParameters)
+            RecipeCardMealsList(params = params)
     }
 }

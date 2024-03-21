@@ -28,16 +28,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.ressource.Image.trait
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
-import com.miam.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooter
-import com.miam.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooterParameters
-import com.miam.sdk.components.mealPlanner.meals.footer.MealPlannerFooter
-import com.miam.sdk.components.mealPlanner.meals.footer.MealsFooterParameters
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.ressource.Image.trait
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.theme.Typography.bodyBold
+import ai.mealz.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooter
+import ai.mealz.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooterParameters
+import ai.mealz.sdk.components.mealPlanner.meals.footer.MealPlannerFooter
+import ai.mealz.sdk.components.mealPlanner.meals.footer.MealsFooterParameters
 
 import java.text.NumberFormat
 import tech.miam.coursesuui.R

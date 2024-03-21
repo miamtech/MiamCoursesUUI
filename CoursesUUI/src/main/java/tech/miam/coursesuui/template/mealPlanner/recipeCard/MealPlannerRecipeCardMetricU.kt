@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.theme.Typography
-import com.miam.kmm_miam_sdk.android.theme.Colors
+import ai.mealz.sdk.theme.Colors
 
 @SuppressLint("UnnecessaryComposedModifier")
 @Composable

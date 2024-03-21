@@ -1,5 +1,8 @@
 package tech.miam.coursesuui.template.mealPlanner.recipeCard
 
+import ai.mealz.sdk.components.mealPlanner.recipe.loading.Component
+import ai.mealz.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoading
+import ai.mealz.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoadingParameters
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,11 +26,8 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.sdk.components.mealPlanner.recipe.loading.Component
-import com.miam.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoading
-import com.miam.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoadingParameters
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
 
 
 class RecipeLoadingViewU: MealPlannerRecipeLoading {

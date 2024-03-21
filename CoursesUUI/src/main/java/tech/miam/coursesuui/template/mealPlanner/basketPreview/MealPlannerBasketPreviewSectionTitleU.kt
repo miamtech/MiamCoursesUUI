@@ -27,8 +27,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.miam.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeader
-import com.miam.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeaderParameters
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeader
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.notInBasket.header.NotInBasketProductHeaderParameters
 import tech.miam.coursesuui.R
 
 class MealPlannerBasketPreviewSectionTitleU: NotInBasketProductHeader {

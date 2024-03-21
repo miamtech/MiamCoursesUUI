@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.miam.sdk.components.mealPlanner.recap.MealPlannerRecap
+import ai.mealz.sdk.components.mealPlanner.recap.MealPlannerRecap
 import tech.miam.coursesUDemoApp.R
 
 class MealPlannerRecapFragment : Fragment() {

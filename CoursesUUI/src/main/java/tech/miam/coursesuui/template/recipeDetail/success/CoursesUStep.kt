@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeDetail.success
 
-import com.miam.sdk.components.recipeDetail.success.steps.RecipeDetailSteps
-import com.miam.sdk.components.recipeDetail.success.steps.RecipeDetailStepsParamters
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailSteps
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailStepsParamters
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,9 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 
 class CoursesUStep: RecipeDetailSteps {
     @Composable

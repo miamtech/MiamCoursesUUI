@@ -35,7 +35,10 @@ android {
 }
 
 dependencies {
-    api ("tech.miam.sdk:kmm-miam-sdk:4.0.0")
+    //api("ai.mealz.android:mealz-android:1.0.0", )
+    //api("ai.mealz.core:mealz-core:1.0.0")
+    api(files("../../../Workspace/MealzCore/mealzcore/build/outputs/aar/mealzcore-release.aar"))
+    api(files("../../../Workspace/MealzAndroid/sdk/build/outputs/aar/sdk-release.aar"))
     api ("androidx.core:core-ktx:1.10.1")
     api ("androidx.appcompat:appcompat:1.6.1")
     api ("com.google.android.material:material:1.9.0")
@@ -52,6 +55,7 @@ dependencies {
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
 
 }
 

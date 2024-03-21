@@ -13,10 +13,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.kmm_miam_sdk.android.theme.Typography.body
-import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
-import com.miam.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmpty
-import com.miam.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmptyParameters
+import ai.mealz.sdk.theme.Typography.body
+import ai.mealz.sdk.theme.Typography.bodyBold
+import ai.mealz.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmpty
+import ai.mealz.sdk.components.mealPlanner.search.empty.MealPlannerSearchEmptyParameters
 import tech.miam.coursesuui.R
 
 

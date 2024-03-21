@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.miam.sdk.components.mealPlanner.form.MealPlannerForm
+import ai.mealz.sdk.components.mealPlanner.form.MealPlannerForm
 import tech.miam.coursesUDemoApp.R
 
 class MealPlannerFormFragment : Fragment() {

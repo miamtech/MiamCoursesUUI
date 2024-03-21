@@ -25,10 +25,10 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.search.MealPlannerSearch
-import com.miam.sdk.components.mealPlanner.search.MealPlannerSearchParameters
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.mealPlanner.search.MealPlannerSearch
+import ai.mealz.sdk.components.mealPlanner.search.MealPlannerSearchParameters
 
 
 class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
@@ -64,7 +64,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 )
                 IconButton(onClick = params.filtersTapped) {
                     Image(
-                        painter = painterResource(com.miam.kmm_miam_sdk.android.ressource.Image.filter),
+                        painter = painterResource(ai.mealz.sdk.ressource.Image.filter),
                         contentDescription = "Filter Icon",
                         colorFilter = ColorFilter.tint(Colors.primary)
                     )
@@ -93,7 +93,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 leadingIcon = {
                     IconButton(onClick = { isFocused = false }) {
                         Image(
-                            painter = painterResource(com.miam.kmm_miam_sdk.android.ressource.Image.search),
+                            painter = painterResource(ai.mealz.sdk.ressource.Image.search),
                             contentDescription = "Search Icon",
                             colorFilter = ColorFilter.tint(Colors.black)
                         )

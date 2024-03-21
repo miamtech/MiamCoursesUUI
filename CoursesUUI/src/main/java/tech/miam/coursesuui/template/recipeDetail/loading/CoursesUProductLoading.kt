@@ -25,9 +25,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
-import com.miam.sdk.components.recipeDetail.success.product.loading.ProductSuccess
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductSuccess
 
 class CoursesUProductLoading: ProductSuccess {
     @Composable

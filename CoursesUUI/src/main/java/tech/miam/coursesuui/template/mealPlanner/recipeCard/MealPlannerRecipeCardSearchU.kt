@@ -6,11 +6,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -54,7 +56,17 @@ fun RecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
                         .fillMaxWidth(),
                     contentScale = ContentScale.Crop
                 )
-                BudgetLikeButton(recipeId = params.recipe.id, sizeOfImage = 208.dp)
+
+                Box {
+                    Surface(
+                        shape = CircleShape,
+                        color = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd).offset(x =-12.dp, y = 4.dp)
+                            .size(30.dp))
+                    {}
+                    BudgetLikeButton(recipeId = params.recipe.id, sizeOfImage = 208.dp)
+                }
             }
             Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
                 Text(

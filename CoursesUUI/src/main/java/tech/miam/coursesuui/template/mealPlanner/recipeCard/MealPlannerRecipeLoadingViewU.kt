@@ -41,17 +41,26 @@ class RecipeLoadingViewU: MealPlannerRecipeLoading {
 
     @Composable
     fun ShimmerMealPlannerRecipeCardRow() {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .height(Dimension.mealPlannerCardHeight)
-                .clip(RoundedCornerShape( 10.dp))
-                .dashedBorder(2.dp, Colors.primary, 10.dp)
-                .background(color = Color(0x88FFFFFF)),
-            contentAlignment = Alignment.Center
-        ) {
-            ProgressIndicatorU(progressIndicatorSize = 40.dp, progressIndicatorColor = Colors.primary, borderStroke = 2.dp)
+        BoxWithConstraints {
+            val boxWithConstraintsScope = this
+            if (boxWithConstraintsScope.maxWidth >= 300.dp) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .height(Dimension.mealPlannerCardHeight)
+                        .clip(RoundedCornerShape(10.dp))
+                        .dashedBorder(2.dp, Colors.primary, 10.dp)
+                        .background(color = Color(0x88FFFFFF)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    ProgressIndicatorU(
+                        progressIndicatorSize = 40.dp,
+                        progressIndicatorColor = Colors.primary,
+                        borderStroke = 2.dp
+                    )
+                }
+            } else ShimmerMealPlannerRecipeCardColumn()
         }
     }
 

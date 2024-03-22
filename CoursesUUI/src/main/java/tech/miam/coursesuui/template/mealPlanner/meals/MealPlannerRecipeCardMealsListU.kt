@@ -7,10 +7,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
@@ -78,7 +80,15 @@ fun RecipeCardRow(params: MealPlannerRecipeCardSuccessParameters) {
                     contentScale = ContentScale.Crop
                 )
                 Box(modifier = Modifier.offset(8.dp, 8.dp)) {
+                    Box {
+                        Surface(
+                            shape = CircleShape,
+                            color =  Color.White ,
+                            modifier = Modifier
+                                .size(40.dp)
+                        ) {}
                     likeButton.Content()
+                    }
                 }
             }
             Column(Modifier.padding(horizontal = 16.dp)) {

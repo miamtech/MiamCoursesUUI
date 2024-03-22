@@ -32,7 +32,7 @@ import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Colors.primary)
+                .background(Colors.white)
         ) {
             Column(
                 Modifier
@@ -47,7 +47,7 @@ import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
                 )
                 Text(
                     text = "Vous n’avez aucune idée repas.",
-                    color = Colors.white,
+                    color = Colors.primary,
                     style = Typography.subtitleBold,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(horizontal = 16.dp)

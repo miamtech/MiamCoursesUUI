@@ -57,19 +57,29 @@ class MiamTemplateManager {
         MiamTheme.Template {
             //////// MEAL PLANNER TEMPLATING /////////////////
             mealPlanner {
-                plannerFooterConfig {
-                    view = CoursesUMealPlannerFooter()
-                }
-                plannerToolbarConfig {
-                    view = CoursesUBudgetPlannerToolbar()
-                }
-                searchConfig {
+                search {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
-                recipeCardConfig {
+                recipeCard {
+                    success {
                         view = MealPlannerRecipeCardU()
+                    }
+                    placeholder {
+                        view = MealPlannerRecipePlaceholderU()
+                    }
+                    loading {
+                        view = RecipeLoadingViewU()
+                    }
                 }
-                callToActionConfig {
+                meals {
+                    toolbar {
+                        view = CoursesUBudgetPlannerToolbar()
+                    }
+                    footer {
+                        view = CoursesUMealPlannerFooter()
+                    }
+                }
+                callToAction {
                     success {
                         view = MealPlannerCallToActionU()
                     }
@@ -95,22 +105,13 @@ class MiamTemplateManager {
                     }
                 }
 
-                formConfig {
+                form {
                     success {
                         view = CoursesUBudgetForm()
                     }
                 }
-                recapConfig {
+                recap {
                     view = MealPlannerRecapU()
-                }
-
-                // TODO should be in recipe config
-                recipePlaceholderConfig {
-                    view = MealPlannerRecipePlaceholderU()
-                }
-                // TODO should be in recipe config
-                recipeLoadingConfig {
-                    view = RecipeLoadingViewU()
                 }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()

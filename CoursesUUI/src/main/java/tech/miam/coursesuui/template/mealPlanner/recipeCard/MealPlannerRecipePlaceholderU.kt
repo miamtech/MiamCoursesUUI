@@ -29,8 +29,8 @@ import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholder
-import com.miam.sdk.components.mealPlanner.recipe.success.placeholder.MealPlannerRecipePlaceholderParameters
+import com.miam.sdk.components.mealPlanner.recipe.placeholder.MealPlannerRecipePlaceholder
+import com.miam.sdk.components.mealPlanner.recipe.placeholder.MealPlannerRecipePlaceholderParameters
 
 
 class MealPlannerRecipePlaceholderU: MealPlannerRecipePlaceholder {

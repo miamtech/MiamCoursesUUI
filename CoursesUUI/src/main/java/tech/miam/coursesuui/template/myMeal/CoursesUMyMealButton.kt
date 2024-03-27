@@ -4,12 +4,14 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
@@ -44,10 +46,12 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                 color = Colors.primary,
                 contentColor = Colors.white
             ) {
-
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .clickable { params.onClick() }
+                    .padding(12.dp)
             ) {
                 Icon(
                     painter = painterResource(id = Image.cart),
@@ -64,10 +68,6 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                         fontWeight = FontWeight(600),
                     ),
                 )
-                IconButton(
-                    onClick = { params.onClick() },
-                    modifier = Modifier.padding(start = 16.dp)
-                ) {
                     Icon(
                         Icons.Filled.KeyboardArrowRight,
                         contentDescription = "icon button categories page floating",
@@ -75,7 +75,6 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                             .padding(start = 16.dp)
                             .size(16.dp)
                     )
-                }
             }
         }
         }

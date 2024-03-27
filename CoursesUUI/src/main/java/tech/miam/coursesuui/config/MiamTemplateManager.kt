@@ -1,6 +1,8 @@
 package tech.miam.coursesuui.config
 
+import androidx.compose.ui.graphics.Color
 import com.miam.kmm_miam_sdk.android.ressource.Image
+import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.sdk.components.MiamTheme
 import com.miam.sdk.components.MiamTheme.catalog
 import com.miam.sdk.components.MiamTheme.defaultViews
@@ -39,8 +41,8 @@ import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSe
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
-import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
+import tech.miam.coursesuui.template.recipeCard.StandaloneCoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.info.CoursesURecipeDetailInfo
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
@@ -53,23 +55,34 @@ import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
 class MiamTemplateManager {
     init {
+        overrideMealzColors()
         overrideIcon()
         MiamTheme.Template {
             //////// MEAL PLANNER TEMPLATING /////////////////
             mealPlanner {
-                plannerFooterConfig {
-                    view = CoursesUMealPlannerFooter()
+                meals {
+                    footer {
+                        view = CoursesUMealPlannerFooter()
+                    }
+                    toolbar {
+                        view = CoursesUBudgetPlannerToolbar()
+                    }
+                    recipe {
+                        success {
+                            view = MealPlannerRecipeCardU()
+                        }
+                        placeholder {
+                            view = MealPlannerRecipePlaceholderU()
+                        }
+                        loading {
+                            view = RecipeLoadingViewU()
+                        }
+                    }
                 }
-                plannerToolbarConfig {
-                    view = CoursesUBudgetPlannerToolbar()
-                }
-                searchConfig {
+                search {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
-                recipeCardConfig {
-                        view = MealPlannerRecipeCardU()
-                }
-                callToActionConfig {
+                callToAction {
                     success {
                         view = MealPlannerCallToActionU()
                     }
@@ -94,24 +107,10 @@ class MiamTemplateManager {
                         view = CoursesUMealPlannerFooter()
                     }
                 }
-
-                formConfig {
-                    success {
-                        view = CoursesUBudgetForm()
-                    }
+                form {
+                    success { view = CoursesUBudgetForm() }
                 }
-                recapConfig {
-                    view = MealPlannerRecapU()
-                }
-
-                // TODO should be in recipe config
-                recipePlaceholderConfig {
-                    view = MealPlannerRecipePlaceholderU()
-                }
-                // TODO should be in recipe config
-                recipeLoadingConfig {
-                    view = RecipeLoadingViewU()
-                }
+                recap { view = MealPlannerRecapU() }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()
                 }
@@ -129,7 +128,7 @@ class MiamTemplateManager {
 
             recipeCard {
                 success {
-                    view = CoursesURecipeCard()
+                    view = StandaloneCoursesURecipeCard()
                 }
                 loading {
                     view = CoursesURecipeCardLoading()
@@ -259,5 +258,9 @@ class MiamTemplateManager {
         Image.search = R.drawable.search
         Image.cart = R.drawable.basket
         Image.check = R.drawable.ic_cart_check
+    }
+
+    private fun overrideMealzColors() {
+        Colors.primary = Color(0,125,143)
     }
 }

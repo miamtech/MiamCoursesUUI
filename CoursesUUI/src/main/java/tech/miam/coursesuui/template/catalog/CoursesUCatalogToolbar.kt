@@ -32,13 +32,16 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.miam.core.localisation.Localisation
 import com.miam.core.viewModels.catalog.CatalogContent
 import com.miam.kmm_miam_sdk.android.ressource.Image
 import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Typography
 import com.miam.kmm_miam_sdk.android.ui.components.common.Clickable
+import tech.miam.coursesuui.R
 
 class CoursesUCatalogToolbar: CatalogSuccessToolbar {
     @Composable
@@ -95,7 +98,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                             if (params.getActiveFilterCount() != 0) {
                                 Box(
                                     modifier = Modifier
-                                        .size(20.dp)
+                                        .size(14.dp)
                                         .clip(CircleShape)
                                         .background(Color.Red)
                                         .align(Alignment.TopEnd)
@@ -103,7 +106,9 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                                     Text(
                                         text = params.getActiveFilterCount().toString(),
                                         color = Colors.white,
-                                        modifier = Modifier.align(Alignment.Center)
+                                        fontSize = 10.sp,
+                                        modifier = Modifier
+                                            .align(Alignment.Center)
                                     )
                                 }
                             }
@@ -112,7 +117,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                     if (params.content == CatalogContent.CATEGORIES_LIST) {
                         IconButton(onClick = { params.goToFavorite() }) {
                             Image(
-                                painter = painterResource(Image.favorite),
+                                painter = painterResource(R.drawable.heart),
                                 contentDescription = null,
                                 colorFilter = ColorFilter.tint(Colors.primary),
                             )

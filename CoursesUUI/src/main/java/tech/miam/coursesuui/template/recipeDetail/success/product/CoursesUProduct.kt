@@ -82,7 +82,7 @@ class CoursesUProduct: ProductSuccess {
                     params.replaceProduct
                 )
                 ActionRow(
-                    params.productPrice,
+                    params.formattedUnitPrice,
                     params.productQuantity,
                     params.isInBasket,
                     params.isLocked,

@@ -35,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -75,7 +76,6 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                         } else {
                             Spacer(Modifier.weight(1f))
                         }
-                        CatalogRecipeLikeButton(params.recipe.id)
                     }
                     Row(
                         Modifier
@@ -98,7 +98,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box(modifier = Modifier.width(100.dp)) {
+                    Box() {
                         CatalogPricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
                     }
                     Row(
@@ -106,7 +106,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                             .weight(1f),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        CatalogRecipeCardCTAView(params.isInCart) {
+                        CatalogRecipeCardCTAView(params.recipe.id, params.isInCart) {
                             params.goToDetail()
                         }
                     }
@@ -173,7 +173,8 @@ fun CatalogSponsorLogo(sponsorLogo: String?) {
 fun CatalogRecipeCardTitleView(title: String, modifier: Modifier = Modifier) {
     Text(
         text = title,
-        maxLines = 3,
+        maxLines = 2,
+        overflow = TextOverflow.Ellipsis,
         style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp),
         color = Colors.white,
         modifier = modifier
@@ -181,56 +182,44 @@ fun CatalogRecipeCardTitleView(title: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CatalogRecipeLikeButton(recipeId: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp, end = 8.dp),
-        horizontalArrangement = Arrangement.End
-    ) {
-        Box {
-            Surface(
-                shape = CircleShape,
-                color =  Colors.white ,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .size(36.dp)
-            ) {}
-            LikeButton(recipeId = recipeId).Content()
-        }
-    }
-}
-
-@Composable
 fun CatalogRecipeCardCTAView(
+    recipeId: String,
     isInCart: Boolean,
     actionOnClick: () -> Unit
 ) {
-    Box {
-        Surface(
-            shape = CircleShape,
-            color = if(isInCart) Color.Transparent else Colors.primary ,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(40.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .border(
-                    border = BorderStroke(
-                        1.dp,
-                        if (isInCart) Colors.primary else Color.Transparent
-                    ),
-                    shape = CircleShape
-                )
-                .clickable { actionOnClick() }
-        ) {}
-        Image(
-            painter = painterResource(if (isInCart) Image.check else Image.cart),
-            contentDescription = "recipe is in cart icon",
-            colorFilter = ColorFilter.tint(if (isInCart) Colors.primary else Colors.white),
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.Center)
-        )
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        LikeButton(recipeId = recipeId).Content()
+        Spacer(modifier = Modifier.width(4.dp))
+        Box {
+            Surface(
+                shape = CircleShape,
+                color = if (isInCart) Color.Transparent else Colors.primary,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(40.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(
+                        border = BorderStroke(
+                            1.dp,
+                            if (isInCart) Colors.primary else Color.Transparent
+                        ),
+                        shape = CircleShape
+                    )
+                    .clickable { actionOnClick() }
+            ) {}
+            Image(
+                painter = painterResource(if (isInCart) Image.check else Image.cart),
+                contentDescription = "recipe is in cart icon",
+                colorFilter = ColorFilter.tint(if (isInCart) Colors.primary else Colors.white),
+                modifier = Modifier
+                    .size(20.dp)
+                    .align(Alignment.Center)
+            )
+        }
     }
 }
 

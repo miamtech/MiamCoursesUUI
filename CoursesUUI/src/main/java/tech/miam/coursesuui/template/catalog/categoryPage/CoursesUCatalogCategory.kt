@@ -64,7 +64,8 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                             Text(
                                 text = it,
                                 color = Colors.black,
-                                modifier = Modifier.weight(1f)
+                                modifier = Modifier.weight(1f),
+                                maxLines = 1
                             )
                         } ?: Spacer(modifier = Modifier.weight(1f))
 

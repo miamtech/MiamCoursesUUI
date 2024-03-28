@@ -75,8 +75,7 @@ class CoursesUProduct: ProductSuccess {
                 ProductInformation(
                     params.productName,
                     params.productBrand,
-                    params.productCapacityVolume,
-                    params.productUnit,
+                    params.combinedCapacity,
                     params.productImage,
                     params.isSponsored,
                     params.replaceProduct
@@ -153,8 +152,7 @@ class CoursesUProduct: ProductSuccess {
     private fun ProductInformation(
         productName: String,
         productBrand: String,
-        productCapacityVolume: String,
-        productUnit: String,
+        combinedCapacity: String,
         productImage: String,
         isSponsor: Boolean,
         replaceProduct: () -> Unit
@@ -188,7 +186,7 @@ class CoursesUProduct: ProductSuccess {
                     Surface(shape = RoundedCornerShape(100.dp), color = lightgrey) {
                         Text(
                             modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
-                            text = "$productCapacityVolume $productUnit",
+                            text = combinedCapacity,
                             style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight(500), color = boldText)
                         )
                     }

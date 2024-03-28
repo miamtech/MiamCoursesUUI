@@ -33,6 +33,7 @@ import com.miam.sdk.components.baseComponent.myMealButton.success.MyMealButtonSu
 import com.miam.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccessParameters
 
 class CoursesUMyMealButton: MyMealButtonSuccess {
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     override fun Content(params: MyMealButtonSuccessParameters) {
         AnimatedVisibility(
@@ -44,13 +45,16 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
                 shape = RoundedCornerShape( 50 ,50),
                 color = Colors.primary,
-                contentColor = Colors.white
+                contentColor = Colors.white,
             ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .clickable { params.onClick() }
+                    .clickable {
+                        println("MEALZDEBUG: click row")
+                        params.onClick()
+                    }
                     .padding(12.dp)
             ) {
                 Icon(

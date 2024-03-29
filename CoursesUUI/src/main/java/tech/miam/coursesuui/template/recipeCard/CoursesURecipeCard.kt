@@ -221,22 +221,42 @@ fun RecipeCardCTAView(
 }
 
 @Composable
-fun PricePerPerson(price: Double) {
+fun PricePerPerson(price: Double, sameLine: Boolean = false) {
     val formattedPrice = price.formatPrice()
-    Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
-        Text(
-            text = formattedPrice,
-            style = Typography.subtitleBold,
-            textAlign = TextAlign.Left,
-            maxLines = 2,
-            color = Colors.black
-        )
-        Text(
-            text = Localisation.MyMeals.perPerson.localised,
-            style = Typography.bodySmall,
-            textAlign = TextAlign.Left,
-            color = Colors.grey
-        )
+
+    if (sameLine) {
+        Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp), verticalAlignment = Alignment.Bottom) {
+            Text(
+                text = formattedPrice,
+                style = Typography.subtitleBold,
+                textAlign = TextAlign.Left,
+                maxLines = 2,
+                color = Colors.black
+            )
+            Text(
+                text = Localisation.MyMeals.perPerson.localised,
+                style = Typography.bodySmall,
+                textAlign = TextAlign.Left,
+                color = Colors.grey
+            )
+        }
+    }
+    else {
+        Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
+            Text(
+                text = formattedPrice,
+                style = Typography.subtitleBold,
+                textAlign = TextAlign.Left,
+                maxLines = 2,
+                color = Colors.black
+            )
+            Text(
+                text = Localisation.MyMeals.perPerson.localised,
+                style = Typography.bodySmall,
+                textAlign = TextAlign.Left,
+                color = Colors.grey
+            )
+        }
     }
 }
 

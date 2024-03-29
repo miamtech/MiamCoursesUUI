@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -85,6 +86,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                             painter = painterResource(Image.search),
                             contentDescription = null,
                             colorFilter = ColorFilter.tint(Colors.primary),
+                            modifier = Modifier.graphicsLayer(scaleX = -1f) // flip direction
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))

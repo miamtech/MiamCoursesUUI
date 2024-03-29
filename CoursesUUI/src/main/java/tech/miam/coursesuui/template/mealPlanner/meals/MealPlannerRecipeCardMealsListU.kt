@@ -1,4 +1,4 @@
-package tech.miam.coursesuui.template.mealPlanner.recipeCard
+package tech.miam.coursesuui.template.mealPlanner.meals
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -32,9 +32,11 @@ import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.kmm_miam_sdk.android.theme.Dimension
 import com.miam.sdk.components.baseComponent.likeButton.LikeButton
 import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
+import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeCardMetric
+import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeCardPrice
 
 @Composable
-fun RecipeCardMealsList(params: MealPlannerRecipeCardSuccessParameters) {
+fun CoursesURecipeCardMealsList(params: MealPlannerRecipeCardSuccessParameters) {
     val focusManager = LocalFocusManager.current
     Column(
         modifier = Modifier.pointerInput(Unit) {

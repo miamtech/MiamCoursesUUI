@@ -31,7 +31,7 @@ import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardS
 
 
 @Composable
-fun RecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
+fun CoursesURecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

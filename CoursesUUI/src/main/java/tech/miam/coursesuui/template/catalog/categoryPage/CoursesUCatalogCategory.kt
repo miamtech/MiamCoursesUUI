@@ -25,6 +25,7 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.miam.core.localisation.Localisation
 import com.miam.core.model.Recipe
@@ -65,7 +66,8 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                                 text = it,
                                 color = Colors.black,
                                 modifier = Modifier.weight(1f),
-                                maxLines = 1
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
                             )
                         } ?: Spacer(modifier = Modifier.weight(1f))
 

@@ -2,4 +2,8 @@
 <resources>
     <string name="item_selector_no_result">Aucun produits de substitution trouvés.</string>
     <string name="item_selector_try_again"></string>
+    <string name="com_miam_recipe_difficulty_low">Facile</string>
+    <string name="com_miam_recipe_difficulty_medium">Moyen</string>
+    <string name="com_miam_recipe_difficulty_high">Difficile</string>
+    <string name="com_miam_my_meals_no_meal_in_basket">Vous n\'avez pas encore ajouté de repas</string>
 </resources>

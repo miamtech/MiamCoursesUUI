@@ -55,8 +55,10 @@ class StandaloneCoursesURecipeCard: RecipeCardSuccess {
     val height = 200.dp
     @Composable
     override fun Content(params: RecipeCardSuccessParams) {
+
         BoxWithConstraints {
-            if(maxWidth < 300.dp) {
+            val width = maxWidth
+            if(width < 300.dp) {
                 CoursesUCatalogCategoryRecipeCard(params)
             } else {
                 Surface(
@@ -88,7 +90,10 @@ class StandaloneCoursesURecipeCard: RecipeCardSuccess {
 
                         }
                         Column {
-                            RecipeCardTitleView(params.recipeTitle, Modifier.weight(1f).padding(12.dp))
+                            RecipeCardTitleView(params.recipeTitle,
+                                Modifier
+                                    .weight(1f)
+                                    .padding(12.dp))
 
                             Row(
                                 Modifier
@@ -97,18 +102,29 @@ class StandaloneCoursesURecipeCard: RecipeCardSuccess {
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                ;
-                                Box(modifier = Modifier.width(70.dp)) {
-                                    PricePerPerson(
-                                        params.recipe.attributes?.price?.pricePerServe ?: 0.0
-                                    )
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                ) {
-                                    RecipeCardCTAView(params.recipe.id, params.isInCart) {
-                                        params.goToDetail()
+                                if (width < 375.dp) {
+                                    Column(
+                                        Modifier.fillMaxHeight(),
+                                        verticalArrangement = Arrangement.Bottom
+                                    ) {
+                                        Spacer(modifier = Modifier.weight(2f))
+                                        Box {
+                                            PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0, true)
+                                        }
+                                        Box(modifier = Modifier.weight(1f)) {
+                                            RecipeCardCTAView(params.recipe.id, params.isInCart) {
+                                                params.goToDetail()
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    Box(modifier = Modifier.width(70.dp)) {
+                                        PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
+                                    }
+                                    Box(modifier = Modifier.weight(1f)) {
+                                        RecipeCardCTAView(params.recipe.id, params.isInCart) {
+                                            params.goToDetail()
+                                        }
                                     }
                                 }
                             }

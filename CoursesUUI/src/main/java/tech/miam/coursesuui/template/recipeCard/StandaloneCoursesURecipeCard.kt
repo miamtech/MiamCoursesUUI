@@ -98,7 +98,7 @@ class StandaloneCoursesURecipeCard: RecipeCardSuccess {
                             Row(
                                 Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = 12.dp),
+                                    .padding(horizontal = 14.dp, vertical = 8.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {

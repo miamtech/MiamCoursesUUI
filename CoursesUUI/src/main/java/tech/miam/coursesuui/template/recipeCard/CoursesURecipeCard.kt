@@ -190,7 +190,7 @@ fun RecipeCardCTAView(
 ) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
         LikeButton(recipeId = recipeId).Content()
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Box {
             Surface(
                 shape = CircleShape,

@@ -1,5 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MiamCoursesUUI</string>
-    <string name="bonjour">Hei !!</string>
     <string name="com_miam_favorites_no_favorites" tools:ignore="ExtraTranslation">Vous n\'avez aucune idées repas</string>
 </resources>

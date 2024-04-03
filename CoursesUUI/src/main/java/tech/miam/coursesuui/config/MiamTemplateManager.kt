@@ -6,6 +6,7 @@ import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.sdk.components.MiamTheme
 import com.miam.sdk.components.MiamTheme.catalog
 import com.miam.sdk.components.MiamTheme.defaultViews
+import com.miam.sdk.components.MiamTheme.favoritePage
 import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.likeButton
 import com.miam.sdk.components.MiamTheme.mealPlanner
@@ -16,8 +17,8 @@ import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
 import com.miam.sdk.components.MiamTheme.recipesPage
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
-import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
@@ -38,8 +39,8 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePla
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
+import tech.miam.coursesuui.template.myMeal.CoursesUMyMealAndFavoritesEmpty
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
-import tech.miam.coursesuui.template.myMeal.CoursesUMyMealEmpty
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
@@ -120,8 +121,14 @@ class MiamTemplateManager {
             /////// DEFAULT VIEW TEMPLATING //////////////////
             defaultViews {
                 empty {
-                    view = EmptyPage()
+                    view = CoursesUEmptyPage()
                 }
+            }
+            /////// END DEFAULT VIEW TEMPLATING //////////////////
+
+            /////// FAVORITES PAGE TEMPLATING //////////////////
+            favoritePage {
+                empty { view = CoursesUMyMealAndFavoritesEmpty() }
             }
             /////// END DEFAULT VIEW TEMPLATING //////////////////
 
@@ -198,7 +205,7 @@ class MiamTemplateManager {
                         view = CoursesUMyMealRecipe()
                     }
                 }
-                empty { view = CoursesUMyMealEmpty() }
+                empty { view = CoursesUMyMealAndFavoritesEmpty() }
             }
             ///// END MY MEAL  //////////
             //// PRICE  //////////
@@ -222,6 +229,7 @@ class MiamTemplateManager {
                         }
                     }
                 }
+                empty { view = CoursesUEmptyPage() }
             }
             //// END CATALOGUE //////////
             //// RECIPE PAGE //////////
@@ -230,7 +238,9 @@ class MiamTemplateManager {
                     catalogPageColumns = 2
                     catalogPageHorizontalSpacing = 8
                     catalogPageVerticalSpacing = 8
+                    empty { view = CoursesUEmptyPage() }
                 }
+                empty { view = CoursesUEmptyPage() }
             }
             //// END RECIPE PAGE //////////
             //// LIKE BUTTON //////////

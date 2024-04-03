@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -62,43 +61,37 @@ class StandaloneCoursesURecipeCard: RecipeCardSuccess {
                             ) {
                                 BadgeViewGuest(params.guest)
                             }
-
                         }
                         Column {
                             RecipeCardTitleView(params.recipeTitle,
-                                Modifier
-                                    .weight(1f)
-                                    .padding(12.dp))
-
+                                Modifier.weight(1f).padding(12.dp))
                             Row(
                                 Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = 14.dp, vertical = 8.dp),
+                                    .padding(vertical = 8.dp)
+                                    .padding(start = 12.dp, end = 16.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                if (width < 325.dp) {
-                                    Column(
-                                        Modifier.fillMaxHeight(),
-                                        verticalArrangement = Arrangement.Bottom
-                                    ) {
-                                        Spacer(modifier = Modifier.weight(2f))
-                                        Box {
-                                            PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0, true)
-                                        }
-                                        Box(modifier = Modifier.weight(1f)) {
-                                            RecipeCardCTAView(params.recipe.id, params.isInCart) {
-                                                params.goToDetail()
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    Box(modifier = Modifier.width(70.dp)) {
+                                if (width > 400.dp) {
+                                    Box(modifier = Modifier.width(80.dp)) {
                                         PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
                                     }
                                     Box(modifier = Modifier.weight(1f)) {
                                         RecipeCardCTAView(params.recipe.id, params.isInCart) {
                                             params.goToDetail()
+                                        }
+                                    }
+                                } else {
+                                    Column(
+                                        Modifier.height(80.dp),
+                                        verticalArrangement = Arrangement.Bottom
+                                    ) {
+                                        Box {PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0, true) }
+                                        Box(modifier = Modifier.weight(1f)) {
+                                            RecipeCardCTAView(params.recipe.id, params.isInCart) {
+                                                params.goToDetail()
+                                            }
                                         }
                                     }
                                 }

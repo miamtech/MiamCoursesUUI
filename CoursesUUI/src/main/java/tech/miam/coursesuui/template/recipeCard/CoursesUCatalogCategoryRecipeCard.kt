@@ -98,7 +98,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box() {
+                    Box {
                         CatalogPricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
                     }
                     Row(

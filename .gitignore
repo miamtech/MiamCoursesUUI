@@ -16,4 +16,5 @@ local.properties
 app/google-services.json
 miamandroid-e8aaba9e4d7b.json
 .idea/gradle.xml
+.idea/migrations.xml
 .idea/misc.xml

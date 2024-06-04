@@ -47,31 +47,28 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                 color = Colors.primary,
                 contentColor = Colors.white,
             ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .clickable {
-                        println("MEALZDEBUG: click row")
-                        params.onClick()
-                    }
-                    .padding(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = Image.cart),
-                    contentDescription = "icon categories page floating",
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(start = 16.dp)
-                        .size(16.dp)
-                )
-                Text(
-                    text = Localisation.MyMeals.mealsInBasket(params.recipeCount).localised,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 20.sp,
-                        fontWeight = FontWeight(600),
-                    ),
-                )
+                        .clickable { params.onClick() }
+                        .padding(12.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = Image.cart),
+                        contentDescription = "icon categories page floating",
+                        modifier = Modifier
+                            .padding(start = 16.dp)
+                            .size(16.dp)
+                    )
+                    Text(
+                        text = Localisation.MyMeals.mealsInBasket(params.recipeCount).localised,
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 20.sp,
+                            fontWeight = FontWeight(600),
+                        ),
+                    )
                     Icon(
                         Icons.Filled.KeyboardArrowRight,
                         contentDescription = "icon button categories page floating",
@@ -79,8 +76,8 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                             .padding(start = 16.dp)
                             .size(16.dp)
                     )
+                }
             }
-        }
         }
     }
 }

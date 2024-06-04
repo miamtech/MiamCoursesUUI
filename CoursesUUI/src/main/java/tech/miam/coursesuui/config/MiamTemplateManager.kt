@@ -39,7 +39,6 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePla
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
-import tech.miam.coursesuui.template.myMeal.CoursesUMyMealAndFavoritesEmpty
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
@@ -128,7 +127,7 @@ class MiamTemplateManager {
 
             /////// FAVORITES PAGE TEMPLATING //////////////////
             favoritePage {
-                empty { view = CoursesUMyMealAndFavoritesEmpty() }
+                empty { view = CoursesUEmptyPage("Vous n'avez aucune idées repas") }
             }
             /////// END DEFAULT VIEW TEMPLATING //////////////////
 
@@ -205,7 +204,7 @@ class MiamTemplateManager {
                         view = CoursesUMyMealRecipe()
                     }
                 }
-                empty { view = CoursesUMyMealAndFavoritesEmpty() }
+                empty { view = CoursesUEmptyPage("Vous n'avez aucune idées repas") }
             }
             ///// END MY MEAL  //////////
             //// PRICE  //////////
@@ -229,7 +228,6 @@ class MiamTemplateManager {
                         }
                     }
                 }
-                empty { view = CoursesUEmptyPage() }
             }
             //// END CATALOGUE //////////
             //// RECIPE PAGE //////////
@@ -238,9 +236,7 @@ class MiamTemplateManager {
                     catalogPageColumns = 2
                     catalogPageHorizontalSpacing = 8
                     catalogPageVerticalSpacing = 8
-                    empty { view = CoursesUEmptyPage() }
                 }
-                empty { view = CoursesUEmptyPage() }
             }
             //// END RECIPE PAGE //////////
             //// LIKE BUTTON //////////

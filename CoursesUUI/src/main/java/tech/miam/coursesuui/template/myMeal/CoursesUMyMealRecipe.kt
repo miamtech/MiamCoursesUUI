@@ -64,7 +64,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                 Column(
                     Modifier
                         .padding(start = 12.dp)
-                        .height(144.dp),
+                        .height(160.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -91,6 +91,9 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                                 style = Typography.bodySmall,
                                 color = Colors.disabledText,
                             )
+                            TotalPrice(
+                                params.totalPrice
+                            )
                             PricePerPerson(
                                 params.totalPrice,
                                 params.guestCount
@@ -99,14 +102,14 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
 
                     Spacer(modifier = Modifier.weight(1f))
                     Surface(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
                         shape = RoundedCornerShape(50),
                         border = BorderStroke(1.dp, color = Colors.primary,),
                         onClick = params.openRecipeDetail,
-
                     ) {
                         Row(horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 12.dp)
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
                             ) {
                             Text(
                                 text = Localisation.Recipe.showBasketPreview.localised,
@@ -190,24 +193,24 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
     internal fun PricePerPerson(price: Double, numberOfGuests: Int) {
         val pricePerPerson = if (numberOfGuests != 0) price / numberOfGuests else 0.0
         val formattedPrice = pricePerPerson.formatPrice()
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier.padding(0.dp)
-        ) {
             Text(
-                text = formattedPrice,
-                style = Typography.subtitleBold,
+                text = Localisation.MyMeals.perPerson(formattedPrice).localised,
+                style = Typography.bodySmall,
                 textAlign = TextAlign.Left,
                 maxLines = 2,
                 color = Colors.black
             )
-            Text(
-                text = Localisation.MyMeals.perPerson.localised,
-                style = Typography.bodySmall,
-                textAlign = TextAlign.Left,
-                color = Colors.grey
-            )
-        }
+    }
+
+    @Composable
+    internal fun TotalPrice(price: Double) {
+        val formattedPrice = price.formatPrice()
+        Text(
+            text = formattedPrice,
+            style = Typography.subtitleBold,
+            textAlign = TextAlign.Left,
+            maxLines = 2,
+            color = Colors.black
+        )
     }
 }

@@ -38,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -109,10 +110,10 @@ class CoursesURecipeCard: RecipeCardSuccess {
 }
 
 @Composable
-fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, goToDetail: () -> Unit) {
+fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, height: Dp = 225.dp, sponsorAlignment: Alignment = Alignment.TopEnd, goToDetail: () -> Unit) {
     Box(
         modifier = Modifier
-            .height(225.dp)
+            .height(height)
             .fillMaxWidth()
     ) {
         AsyncImage(
@@ -120,7 +121,7 @@ fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, goToDetail:
             contentDescription = "Recipe Picture",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .height(225.dp)
+                .height(height)
                 .fillMaxWidth()
                 .clickable { goToDetail() }
         )
@@ -130,10 +131,9 @@ fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, goToDetail:
                 .align(Alignment.TopStart),
             painter = painterResource(id = R.drawable.ic_meal_idea),
             contentDescription = "meal Idea" )
-        SponsorLogo(sponsorLogo, Modifier.align(Alignment.TopEnd))
         Box(
             modifier = Modifier
-                .height(225.dp)
+                .height(height)
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .background(
@@ -145,6 +145,7 @@ fun RecipeCardImageView(recipePicture: String, sponsorLogo: String?, goToDetail:
                 )
         ) {
         }
+        SponsorLogo(sponsorLogo, Modifier.align(sponsorAlignment))
     }
 }
 
@@ -189,7 +190,7 @@ fun RecipeCardCTAView(
 ) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
         LikeButton(recipeId = recipeId).Content()
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Box {
             Surface(
                 shape = CircleShape,
@@ -220,22 +221,42 @@ fun RecipeCardCTAView(
 }
 
 @Composable
-fun PricePerPerson(price: Double) {
+fun PricePerPerson(price: Double, sameLine: Boolean = false) {
     val formattedPrice = price.formatPrice()
-    Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
-        Text(
-            text = formattedPrice,
-            style = Typography.subtitleBold,
-            textAlign = TextAlign.Left,
-            maxLines = 2,
-            color = Colors.black
-        )
-        Text(
-            text = Localisation.MyMeals.perPerson.localised,
-            style = Typography.bodySmall,
-            textAlign = TextAlign.Left,
-            color = Colors.grey
-        )
+
+    if (sameLine) {
+        Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp), verticalAlignment = Alignment.Bottom) {
+            Text(
+                text = formattedPrice,
+                style = Typography.subtitleBold,
+                textAlign = TextAlign.Left,
+                maxLines = 2,
+                color = Colors.black
+            )
+            Text(
+                text = Localisation.MyMeals.perPerson.localised,
+                style = Typography.bodySmall,
+                textAlign = TextAlign.Left,
+                color = Colors.grey
+            )
+        }
+    }
+    else {
+        Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
+            Text(
+                text = formattedPrice,
+                style = Typography.subtitleBold,
+                textAlign = TextAlign.Left,
+                maxLines = 2,
+                color = Colors.black
+            )
+            Text(
+                text = Localisation.MyMeals.perPerson.localised,
+                style = Typography.bodySmall,
+                textAlign = TextAlign.Left,
+                color = Colors.grey
+            )
+        }
     }
 }
 

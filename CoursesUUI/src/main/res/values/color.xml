@@ -30,5 +30,5 @@
     <color
         name="miam_courses_u_text_gray"
         >#575756</color>
-
+    <color name="button_background">#4B998F</color>
 </resources>

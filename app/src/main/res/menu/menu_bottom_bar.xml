@@ -3,9 +3,9 @@
     <item android:id="@+id/callToActionFragment"
         android:icon="@drawable/ic_cart"
         android:title="MealPlanner"/>
-    <item android:id="@+id/shelfFragment"
+    <item android:id="@+id/myFavoritesFragment"
         android:icon="@drawable/ic_favorite"
-        android:title="Shelf"/>
+        android:title="Favorites"/>
     <item android:id="@+id/myMealsFragment"
         android:icon="@drawable/ic_bin"
         android:title="MyMeals"/>

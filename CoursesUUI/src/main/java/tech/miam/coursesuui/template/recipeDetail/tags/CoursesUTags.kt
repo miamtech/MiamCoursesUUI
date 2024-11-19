@@ -95,7 +95,8 @@ class CoursesUTags: RecipeDetailSuccessTag {
             )
             Text(
                 text = difficultyLabel,
-                style = TextStyle(Colors.boldText, fontSize = 16.sp)
+                style = TextStyle(Colors.boldText, fontSize = 16.sp),
+                maxLines = 1
             )
         }
     }

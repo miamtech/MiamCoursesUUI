@@ -38,13 +38,13 @@ class CoursesULikeButtonLoading: LikeButtonLoading {
                     Image(
                         painter = painterResource(Image.favoriteFilled),
                         contentDescription = "favorite filled",
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(30.dp)
                     )
                 } else {
                     Image(
                         painter = painterResource(Image.favorite),
                         contentDescription = "favorite unfilled",
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(30.dp)
                             .padding(start = 2.dp),
                     )
                 }

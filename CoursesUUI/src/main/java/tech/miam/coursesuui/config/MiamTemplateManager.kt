@@ -1,9 +1,12 @@
 package tech.miam.coursesuui.config
 
+import androidx.compose.ui.graphics.Color
 import com.miam.kmm_miam_sdk.android.ressource.Image
+import com.miam.kmm_miam_sdk.android.theme.Colors
 import com.miam.sdk.components.MiamTheme
 import com.miam.sdk.components.MiamTheme.catalog
 import com.miam.sdk.components.MiamTheme.defaultViews
+import com.miam.sdk.components.MiamTheme.favoritePage
 import com.miam.sdk.components.MiamTheme.itemSelector
 import com.miam.sdk.components.MiamTheme.likeButton
 import com.miam.sdk.components.MiamTheme.mealPlanner
@@ -14,8 +17,8 @@ import com.miam.sdk.components.MiamTheme.recipeCard
 import com.miam.sdk.components.MiamTheme.recipeDetail
 import com.miam.sdk.components.MiamTheme.recipesPage
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
-import tech.miam.coursesuui.component.EmptyPage
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
@@ -36,11 +39,12 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePla
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
+import tech.miam.coursesuui.template.myMeal.CoursesUMyMealAndFavoritesEmpty
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
-import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCard
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
+import tech.miam.coursesuui.template.recipeCard.StandaloneCoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.info.CoursesURecipeDetailInfo
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
@@ -53,23 +57,34 @@ import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
 class MiamTemplateManager {
     init {
+        overrideMealzColors()
         overrideIcon()
         MiamTheme.Template {
             //////// MEAL PLANNER TEMPLATING /////////////////
             mealPlanner {
-                plannerFooterConfig {
-                    view = CoursesUMealPlannerFooter()
+                meals {
+                    footer {
+                        view = CoursesUMealPlannerFooter()
+                    }
+                    toolbar {
+                        view = CoursesUBudgetPlannerToolbar()
+                    }
+                    recipeCard {
+                        success {
+                            view = MealPlannerRecipeCardU()
+                        }
+                        placeholder {
+                            view = MealPlannerRecipePlaceholderU()
+                        }
+                        loading {
+                            view = RecipeLoadingViewU()
+                        }
+                    }
                 }
-                plannerToolbarConfig {
-                    view = CoursesUBudgetPlannerToolbar()
-                }
-                searchConfig {
+                search {
                     view = MealPlannerReplaceRecipeSearchU()
                 }
-                recipeCardConfig {
-                        view = MealPlannerRecipeCardU()
-                }
-                callToActionConfig {
+                callToAction {
                     success {
                         view = MealPlannerCallToActionU()
                     }
@@ -94,24 +109,10 @@ class MiamTemplateManager {
                         view = CoursesUMealPlannerFooter()
                     }
                 }
-
-                formConfig {
-                    success {
-                        view = CoursesUBudgetForm()
-                    }
+                form {
+                    success { view = CoursesUBudgetForm() }
                 }
-                recapConfig {
-                    view = MealPlannerRecapU()
-                }
-
-                // TODO should be in recipe config
-                recipePlaceholderConfig {
-                    view = MealPlannerRecipePlaceholderU()
-                }
-                // TODO should be in recipe config
-                recipeLoadingConfig {
-                    view = RecipeLoadingViewU()
-                }
+                recap { view = MealPlannerRecapU() }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()
                 }
@@ -120,8 +121,14 @@ class MiamTemplateManager {
             /////// DEFAULT VIEW TEMPLATING //////////////////
             defaultViews {
                 empty {
-                    view = EmptyPage()
+                    view = CoursesUEmptyPage()
                 }
+            }
+            /////// END DEFAULT VIEW TEMPLATING //////////////////
+
+            /////// FAVORITES PAGE TEMPLATING //////////////////
+            favoritePage {
+                empty { view = CoursesUMyMealAndFavoritesEmpty() }
             }
             /////// END DEFAULT VIEW TEMPLATING //////////////////
 
@@ -129,7 +136,7 @@ class MiamTemplateManager {
 
             recipeCard {
                 success {
-                    view = CoursesURecipeCard()
+                    view = StandaloneCoursesURecipeCard()
                 }
                 loading {
                     view = CoursesURecipeCardLoading()
@@ -198,6 +205,7 @@ class MiamTemplateManager {
                         view = CoursesUMyMealRecipe()
                     }
                 }
+                empty { view = CoursesUMyMealAndFavoritesEmpty() }
             }
             ///// END MY MEAL  //////////
             //// PRICE  //////////
@@ -221,6 +229,7 @@ class MiamTemplateManager {
                         }
                     }
                 }
+                empty { view = CoursesUEmptyPage() }
             }
             //// END CATALOGUE //////////
             //// RECIPE PAGE //////////
@@ -229,7 +238,9 @@ class MiamTemplateManager {
                     catalogPageColumns = 2
                     catalogPageHorizontalSpacing = 8
                     catalogPageVerticalSpacing = 8
+                    empty { view = CoursesUEmptyPage() }
                 }
+                empty { view = CoursesUEmptyPage() }
             }
             //// END RECIPE PAGE //////////
             //// LIKE BUTTON //////////
@@ -259,5 +270,9 @@ class MiamTemplateManager {
         Image.search = R.drawable.search
         Image.cart = R.drawable.basket
         Image.check = R.drawable.ic_cart_check
+    }
+
+    private fun overrideMealzColors() {
+        Colors.primary = Color(0,125,143)
     }
 }

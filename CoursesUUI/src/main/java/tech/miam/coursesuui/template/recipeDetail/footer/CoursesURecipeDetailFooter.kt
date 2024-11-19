@@ -39,7 +39,8 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
     @Composable
     override fun Content(params: RecipeDetailSuccessFooterParameters) {
 
-        val price = params.price.collectAsState()
+        val priceOfProductsInBasket = params.priceOfProductsInBasket.collectAsState()
+        val priceOfRemainingProducts = params.priceOfRemainingProducts.collectAsState()
         val isButtonLock = params.isButtonLock.collectAsState()
         Row(
             Modifier
@@ -55,33 +56,34 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                     }
 
                     ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
-
                         if (params.priceStatus == ComponentUiState.LOADING) {
                             Box(Modifier.size(16.dp)) {
                                 CircularProgressIndicator(color = Colors.primary)
                             }
-                        } else {
+                        }
+                        if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
                             Text(
-                                text = price.value.formatPrice(),
+                                text = priceOfProductsInBasket.value.formatPrice(),
                                 style = TextStyle(fontSize = 20.sp, color = Colors.black, fontWeight = FontWeight.Black)
                             )
+                            Text(
+                                    text = Localisation.RecipeDetails.inMyBasket.localised,
+                            style = TextStyle(fontSize = 10.sp, color = Colors.grey)
+                            )
                         }
-                        Text(
-                            text = Localisation.Price.perGuest.localised,
-                            style = TextStyle(fontSize = 13.sp, color = Colors.grey)
-                        )
                     }
                     else -> {}
                 }
-
             }
-            if (isButtonLock.value) {
-                LoadingButton()
-            } else {
+            if (isButtonLock.value) LoadingButton()
+            else {
                 when (params.ingredientsStatus.type) {
-                    IngredientStatusTypes.INITIAL_STATE -> AddButton(text = Localisation.RecipeDetails.addAllProducts.localised) { params.onConfirm() }
                     IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.RecipeDetails.continueShopping.localised) { params.onConfirm() }
-                    IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED -> AddButton(text = Localisation.Ingredient.addProduct(params.ingredientsStatus.count).localised) { params.onConfirm() }
+                    IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
+                        AddButton(text =
+                        "${Localisation.Ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
+                        ) { params.onConfirm() }
+                    }
                 }
             }
         }

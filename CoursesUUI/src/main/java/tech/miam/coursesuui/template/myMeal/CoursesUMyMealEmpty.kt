@@ -1,5 +1,6 @@
-package tech.miam.coursesuui.component
+package tech.miam.coursesuui.template.myMeal
 
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,15 +26,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
+import ai.mealz.sdk.theme.Typography
 import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 import ai.mealz.sdk.components.common.Clickable
-import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
 
-
-class CoursesUEmptyPage(private val overrideText: String? = null): EmptyPage {
+class CoursesUMyMealAndFavoritesEmpty: EmptyPage {
     @Composable
     override fun Content(params : EmptyPageParameters){
         Box(
@@ -55,7 +57,7 @@ class CoursesUEmptyPage(private val overrideText: String? = null): EmptyPage {
                     colorFilter = ColorFilter.tint(Color.White)
                 )
                 Text(
-                    text = overrideText ?: params.title,
+                    text = "Vous n'avez aucune idées repas",
                     style = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 24.sp,
@@ -64,18 +66,6 @@ class CoursesUEmptyPage(private val overrideText: String? = null): EmptyPage {
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                if (params.subtitle.isNotEmpty()) {
-                    Text(
-                        text = params.subtitle,
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 24.sp,
-                        ),
-                        fontWeight = FontWeight.Black,
-                        textAlign = TextAlign.Center,
-                        color = Color.White
-                    )
-                }
                 if (params.haveAnAction) {
                     Clickable(onClick = params.action) {
                         Box(

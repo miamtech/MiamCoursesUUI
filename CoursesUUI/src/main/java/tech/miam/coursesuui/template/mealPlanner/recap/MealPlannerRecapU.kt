@@ -20,11 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.recap.success.MealPlannerRecap
-import com.miam.sdk.components.mealPlanner.recap.success.MealPlannerRecapParameters
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecap
+import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecapParameters
+import ai.mealz.sdk.components.price.formatPrice
 
 class MealPlannerRecapU: MealPlannerRecap {
     @Composable

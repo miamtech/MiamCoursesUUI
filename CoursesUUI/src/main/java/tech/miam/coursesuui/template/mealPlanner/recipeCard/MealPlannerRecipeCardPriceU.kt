@@ -15,16 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
+import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
-import com.miam.kmm_miam_sdk.android.ressource.Image.trait
+import ai.mealz.sdk.ressource.Image.trait
 import java.text.NumberFormat
 import java.util.*
 
 @Composable
 fun RecipeCardPrice(price: Double) {
     val numberFormat = NumberFormat.getCurrencyInstance()
-    numberFormat.currency = Currency.getInstance(Localisation.Price.currency.localised)
+    numberFormat.currency = Currency.getInstance(Localisation.price.currency.localised)
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically

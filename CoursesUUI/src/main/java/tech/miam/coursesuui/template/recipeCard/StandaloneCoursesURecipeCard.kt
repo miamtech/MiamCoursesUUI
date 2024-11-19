@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeCard
 
-import com.miam.sdk.components.recipeCard.success.RecipeCardSuccess
-import com.miam.sdk.components.recipeCard.success.RecipeCardSuccessParams
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccess
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessParams
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,7 +23,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.kmm_miam_sdk.android.theme.Colors
+import ai.mealz.sdk.theme.Colors
 
 class StandaloneCoursesURecipeCard: RecipeCardSuccess {
     val height = 200.dp

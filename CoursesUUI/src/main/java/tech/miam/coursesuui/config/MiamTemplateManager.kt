@@ -1,21 +1,22 @@
 package tech.miam.coursesuui.config
 
+import ai.mealz.sdk.components.MiamTheme.favoritePage
+
+import ai.mealz.sdk.components.MiamTheme
+import ai.mealz.sdk.components.MiamTheme.catalog
+import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.itemSelector
+import ai.mealz.sdk.components.MiamTheme.likeButton
+import ai.mealz.sdk.components.MiamTheme.mealPlanner
+import ai.mealz.sdk.components.MiamTheme.myMeal
+import ai.mealz.sdk.components.MiamTheme.myMealButton
+import ai.mealz.sdk.components.MiamTheme.price
+import ai.mealz.sdk.components.MiamTheme.recipeCard
+import ai.mealz.sdk.components.MiamTheme.recipeDetail
+import ai.mealz.sdk.components.MiamTheme.recipesPage
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.MiamTheme
-import com.miam.sdk.components.MiamTheme.catalog
-import com.miam.sdk.components.MiamTheme.defaultViews
-import com.miam.sdk.components.MiamTheme.favoritePage
-import com.miam.sdk.components.MiamTheme.itemSelector
-import com.miam.sdk.components.MiamTheme.likeButton
-import com.miam.sdk.components.MiamTheme.mealPlanner
-import com.miam.sdk.components.MiamTheme.myMeal
-import com.miam.sdk.components.MiamTheme.myMealButton
-import com.miam.sdk.components.MiamTheme.price
-import com.miam.sdk.components.MiamTheme.recipeCard
-import com.miam.sdk.components.MiamTheme.recipeDetail
-import com.miam.sdk.components.MiamTheme.recipesPage
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
@@ -109,9 +110,13 @@ class MiamTemplateManager {
                     }
                 }
                 form {
-                    success { view = CoursesUBudgetForm() }
+                    success {
+                        view = CoursesUBudgetForm()
+                    }
                 }
-                recap { view = MealPlannerRecapU() }
+                recap {
+                    view = MealPlannerRecapU()
+                }
                 searchEmpty {
                     view = MealPlannerSearchEmptyU()
                 }

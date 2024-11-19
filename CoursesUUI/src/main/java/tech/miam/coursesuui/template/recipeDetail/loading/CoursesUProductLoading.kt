@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.recipeDetail.loading
 
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoading
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -25,11 +26,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
-import com.miam.sdk.components.recipeDetail.success.product.loading.ProductSuccess
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
 
-class CoursesUProductLoading: ProductSuccess {
+class CoursesUProductLoading: ProductLoading {
     @Composable
     override fun Content(params: ProductLoadingParameters) {
         val shimmerColors = listOf(

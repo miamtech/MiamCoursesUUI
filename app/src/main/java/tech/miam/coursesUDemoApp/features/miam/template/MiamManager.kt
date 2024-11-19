@@ -1,14 +1,16 @@
 package tech.miam.coursesUDemoApp.features.miam.template
 
+import ai.mealz.core.Mealz
+import ai.mealz.core.Mealz.basket
+import ai.mealz.core.handler.LogHandler
+import ai.mealz.core.init.basket
+import ai.mealz.core.init.sdkRequirement
+import ai.mealz.core.init.subscriptions
+import ai.mealz.core.localisation.Localisation.basket
+import ai.mealz.core.model.SupplierProduct
+import ai.mealz.core.subscription.publisher.BasketPublisher
+import ai.mealz.core.subscription.subscriber.BasketSubscriber
 import android.content.Context
-import com.miam.core.Mealz
-import com.miam.core.handler.LogHandler
-import com.miam.core.init.basket
-import com.miam.core.init.subscriptions
-import com.miam.core.init.sdkRequirement
-import com.miam.core.model.SupplierProduct
-import com.miam.core.subscription.publisher.BasketPublisher
-import com.miam.core.subscription.subscriber.BasketSubscriber
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,13 +21,15 @@ import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.basket.BasketEvent
+import tech.miam.coursesUDemoApp.data.models.Attributes
 import tech.miam.coursesUDemoApp.data.models.Product
 import tech.miam.coursesUDemoApp.features.miam.template.MiamSdkHelper.pushProductToRetailer
 import tech.miam.coursesUDemoApp.features.products.ProductsRepository
 import tech.miam.coursesuui.config.MiamTemplateManager
 import timber.log.Timber
 
-object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent, BasketPublisher, BasketSubscriber {
+object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent, BasketPublisher,
+    BasketSubscriber {
     private const val TAG = "MiamSdkHelper"
 
     private var isInitialized = false
@@ -184,7 +188,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         retailerBasketSubject = MutableStateFlow(products)
     }
 
-    private fun productToSupplierProduct(product: Product): SupplierProduct  {
+    private fun productToSupplierProduct(product: Product): SupplierProduct {
         return SupplierProduct(
             id = product.id,
             productIdentifier = product.identifier,
@@ -200,13 +204,24 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
         retailerProducts.forEach { rp ->
             val productToUpdateIdx = retailerBasketSubject.value.indexOfFirst { it.id == rp.id }
             if (productToUpdateIdx == -1) {
-                runBlocking {
-                    withContext(Dispatchers.Default) {
-                        productsRepository.getProduct(rp.id).body()?.data
-                    }?.let {
-                        retailerBasketSubject.value.add(it.copy(quantity = rp.quantity))
-                    }
-                }
+                val product = Product(
+                    rp.id,
+                    attributes = Attributes(
+                        name = rp.name ?: "a name",
+                        image = rp.imageURL ?: "",
+                        extId = rp.id,
+                        price = 1.0
+                    ),
+                    quantity = rp.quantity
+                )
+                retailerBasketSubject.value.add(product)
+//                runBlocking {
+//                    withContext(Dispatchers.Default) {
+//                        productsRepository.getProduct(rp.id).body()?.data
+//                    }?.let {
+//                        retailerBasketSubject.value.add(it.copy(quantity = rp.quantity))
+//                    }
+//                }
             } else if (rp.quantity == 0) {
                 retailerBasketSubject.value.removeAt(productToUpdateIdx)
             } else {

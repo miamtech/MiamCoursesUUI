@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.catalog
 
-import com.miam.sdk.components.catalog.success.toolbar.CatalogSuccessToolbar
-import com.miam.sdk.components.catalog.success.toolbar.CatalogSuccessToolbarParameters
+import ai.mealz.sdk.components.catalog.success.toolbar.CatalogSuccessToolbar
+import ai.mealz.sdk.components.catalog.success.toolbar.CatalogSuccessToolbarParameters
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,13 +35,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.catalog.CatalogContent
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.catalog.CatalogContent
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.common.Clickable
 import tech.miam.coursesuui.R
 
 class CoursesUCatalogToolbar: CatalogSuccessToolbar {
@@ -71,7 +70,7 @@ class CoursesUCatalogToolbar: CatalogSuccessToolbar {
                     }
                     Text(text = "Catalogue", color = Colors.white, style = Typography.subtitleBold,)
                 } else {
-                    Text(text = Localisation.Catalog.title.localised, color = Colors.white, style = Typography.subtitleBold,)
+                    Text(text = Localisation.catalog.title.localised, color = Colors.white, style = Typography.subtitleBold,)
              }
             }
             Row(

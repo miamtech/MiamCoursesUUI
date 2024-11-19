@@ -39,13 +39,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.miam.core.helpers.formatPrice
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.baseComponent.likeButton.LikeButton
-import com.miam.sdk.components.recipeCard.success.RecipeCardSuccessParams
+import ai.mealz.core.helpers.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessParams
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
@@ -235,7 +235,7 @@ fun CatalogPricePerPerson(price: Double) {
             color = Colors.black
         )
         Text(
-            text = Localisation.MyMeals.perPerson.localised,
+            text = Localisation.myMeals.perPerson.localised,
             style = Typography.bodySmall,
             textAlign = TextAlign.Left,
             color = Colors.grey

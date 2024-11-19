@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeDetail.footer
 
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -28,12 +28,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.base.state.ComponentUiState
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
-import com.miam.kmm_miam_sdk.android.ressource.Image.cart
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
+import ai.mealz.sdk.ressource.Image.cart
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
     @Composable
@@ -67,7 +67,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                                 style = TextStyle(fontSize = 20.sp, color = Colors.black, fontWeight = FontWeight.Black)
                             )
                             Text(
-                                    text = Localisation.RecipeDetails.inMyBasket.localised,
+                                    text = Localisation.recipeDetails.inMyBasket.localised,
                             style = TextStyle(fontSize = 10.sp, color = Colors.grey)
                             )
                         }
@@ -78,10 +78,10 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
             if (isButtonLock.value) LoadingButton()
             else {
                 when (params.ingredientsStatus.type) {
-                    IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.RecipeDetails.continueShopping.localised) { params.onConfirm() }
+                    IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.recipeDetails.continueShopping.localised) { params.onConfirm() }
                     IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
                         AddButton(text =
-                        "${Localisation.Ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
+                        "${Localisation.ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
                         ) { params.onConfirm() }
                     }
                 }

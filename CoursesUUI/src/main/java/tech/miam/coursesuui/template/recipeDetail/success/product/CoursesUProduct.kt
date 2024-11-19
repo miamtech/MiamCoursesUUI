@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.recipeDetail.success.product
 
-import com.miam.sdk.components.recipeDetail.success.product.success.ProductSuccess
-import com.miam.sdk.components.recipeDetail.success.product.success.ProductSuccessParameters
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccess
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccessParameters
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,18 +35,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.quantityFormatter.QuantityFormatter
-import com.miam.kmm_miam_sdk.android.ressource.Image.cart
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Colors.black
-import com.miam.kmm_miam_sdk.android.theme.Colors.boldText
-import com.miam.kmm_miam_sdk.android.theme.Colors.grey
-import com.miam.kmm_miam_sdk.android.theme.Colors.lightgrey
-import com.miam.kmm_miam_sdk.android.theme.Colors.primary
-import com.miam.kmm_miam_sdk.android.theme.Colors.white
-import com.miam.sdk.components.baseComponent.counter.CounterParameters
-import com.miam.sdk.di.TemplateDI
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.quantityFormatter.QuantityFormatter
+import ai.mealz.sdk.ressource.Image.cart
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Colors.black
+import ai.mealz.sdk.theme.Colors.boldText
+import ai.mealz.sdk.theme.Colors.grey
+import ai.mealz.sdk.theme.Colors.lightgrey
+import ai.mealz.sdk.theme.Colors.primary
+import ai.mealz.sdk.theme.Colors.white
+import ai.mealz.sdk.components.baseComponent.counter.CounterParameters
+import ai.mealz.sdk.di.TemplateDI
 
 class CoursesUProduct: ProductSuccess {
     @Composable
@@ -75,7 +75,7 @@ class CoursesUProduct: ProductSuccess {
                 ProductInformation(
                     params.productName,
                     params.productBrand,
-                    params.combinedCapacity,
+                    params.productCapacityVolume,
                     params.productImage,
                     params.isSponsored,
                     params.replaceProduct
@@ -100,7 +100,7 @@ class CoursesUProduct: ProductSuccess {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = Localisation.Ingredient.productsSharedRecipe(params.numberOfRecipeConcernsByProduct).localised,
+                            text = Localisation.recipeDetailsProduct.productsSharedRecipe(params.numberOfRecipeConcernsByProduct).localised,
                             style = TextStyle(fontSize = 12.sp, color = grey, fontWeight = FontWeight.Bold)
                         )
                     }
@@ -192,7 +192,7 @@ class CoursesUProduct: ProductSuccess {
                     }
                     if (isSponsor) {
                         Text(
-                            text = Localisation.Basket.sponsored.localised,
+                            text = Localisation.recipeDetailsProduct.sponsored.localised,
                             style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight(500), color = boldText),
                             modifier = Modifier
                                 .background(Color.Transparent, shape = RoundedCornerShape(100.dp))
@@ -204,7 +204,7 @@ class CoursesUProduct: ProductSuccess {
 
                 TextButton(onClick = { replaceProduct() }) {
                     Text(
-                        text = Localisation.Budget.replaceItem.localised,
+                        text = Localisation.recipeDetailsProduct.replaceItem.localised,
                         style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(600), color = primary)
                     )
                 }
@@ -248,7 +248,7 @@ class CoursesUProduct: ProductSuccess {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     TextButton(onClick = { ignoreProduct() }) {
                         Text(
-                            text = Localisation.Ingredient.ignoreProduct.localised,
+                            text = Localisation.recipeDetailsProduct.ignoreProduct.localised,
                             style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = grey)
                         )
                     }

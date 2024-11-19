@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.itemSelector
 
-import com.miam.sdk.components.itemSelector.selectedItem.ItemSelectorSelectedItem
-import com.miam.sdk.components.itemSelector.selectedItem.ItemSelectorSelectedItemParameters
+import ai.mealz.sdk.components.itemSelector.selectedItem.ItemSelectorSelectedItem
+import ai.mealz.sdk.components.itemSelector.selectedItem.ItemSelectorSelectedItemParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.price.formatPrice
 
 internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
     @Composable
@@ -102,7 +102,7 @@ internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
     private fun DisabledButton() {
         Surface(shape = RoundedCornerShape(100.dp), color = Colors.border) {
             Text(
-                text = Localisation.ItemSelector.selected.localised,
+                text = Localisation.itemSelector.selected.localised,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 16.sp,

@@ -51,6 +51,7 @@ import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.removeFromBasket.CoursesUProductRemovedFromBasket
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUStep
+import tech.miam.coursesuui.template.recipeDetail.success.header.CoursesURecipeDetailHeader
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProductCounter
 import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
@@ -181,6 +182,9 @@ class MiamTemplateManager {
                         footer {
                             view = CoursesURecipeDetailFooter()
                         }
+                    }
+                    header {
+                        view = CoursesURecipeDetailHeader()
                     }
                 }
             }

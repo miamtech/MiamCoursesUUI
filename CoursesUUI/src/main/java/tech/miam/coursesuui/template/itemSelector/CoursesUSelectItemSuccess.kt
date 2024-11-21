@@ -57,17 +57,17 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                                 .fillMaxSize()
                         )
                         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            selectableItem.attributes?.name?.let { name ->
+                            selectableItem.attributes?.brand?.let { brand ->
                                 Text(
-                                    text = name.uppercase(),
+                                    text = brand.uppercase(),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     lineHeight = 18.sp,
                                 )
                             }
-                            selectableItem.attributes?.itemDescription?.let { itemDescription ->
+                            selectableItem.attributes?.name?.let { name ->
                                 Text(
-                                    text = itemDescription,
+                                    text = name,
                                     fontSize = 12.sp,
                                     lineHeight = 18.sp
                                 )

@@ -19,6 +19,7 @@ import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
+import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
@@ -158,6 +159,11 @@ class MiamTemplateManager {
                         }
                         info {
                             view = CoursesURecipeDetailInfo()
+                        }
+                    }
+                    info {
+                        counter {
+                            view = CoursesUGuestsCounter()
                         }
                     }
                     products {

@@ -36,24 +36,6 @@ class CoursesURecipeDetailInfo: RecipeDetailInfo {
                         .height(280.dp)
                         .fillMaxWidth()
                 )
-                if (params.isLikeEnable) {
-                    Row(
-                        horizontalArrangement = Arrangement.End,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Surface(shape = CircleShape,
-                                color = Colors.white ,
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                            }
-                            LikeButton(RectangleShape, recipeId = params.recipe.id).Content()
-                        }
-                    }
-                }
                 if (params.showGuestCounter) {
                     Box(
                         Modifier

@@ -47,6 +47,9 @@ import ai.mealz.sdk.theme.Colors.primary
 import ai.mealz.sdk.theme.Colors.white
 import ai.mealz.sdk.components.baseComponent.counter.CounterParameters
 import ai.mealz.sdk.di.TemplateDI
+import ai.mealz.sdk.theme.Dimension
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 
 class CoursesUProduct: ProductSuccess {
     @Composable
@@ -54,14 +57,12 @@ class CoursesUProduct: ProductSuccess {
 
         val guestsCount = params.guestsCount.collectAsState()
 
-        Box(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .border(
-                    1.dp,
-                    if (params.isInBasket) primary else lightgrey, RoundedCornerShape(8.dp)
-                ).clip(RoundedCornerShape(8.dp))
+                .padding(horizontal = Dimension.lPadding),
+            shape = RoundedCornerShape(Dimension.mRoundedCorner),
+            border = BorderStroke(1.dp, if (params.isInBasket) primary else lightgrey)
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
                 ProductHeader(
@@ -72,13 +73,14 @@ class CoursesUProduct: ProductSuccess {
                     guestsCount.value,
                     params.defaultRecipeGuest
                 )
+                Surface(modifier = Modifier.height(32.dp).padding(vertical = 12.dp)) {}
                 ProductInformation(
                     params.productName,
                     params.productBrand,
                     params.productCapacityVolume,
                     params.productImage,
-                    params.isSponsored,
-                    params.replaceProduct
+                    params.pricePerUnitOfMeasure,
+                    params.isSponsored
                 )
                 ActionRow(
                     params.formattedUnitPrice,
@@ -86,8 +88,12 @@ class CoursesUProduct: ProductSuccess {
                     params.isInBasket,
                     params.isLocked,
                     params.addProduct,
-                    params.ignoreProduct,
                     params.updateProductQuantity
+                )
+                ReplaceOrIgnoreRow(
+                    params.isLocked,
+                    params.ignoreProduct,
+                    params.replaceProduct
                 )
 
                 if (params.numberOfRecipeConcernsByProduct > 1 && params.isInBasket) {
@@ -101,7 +107,7 @@ class CoursesUProduct: ProductSuccess {
                     ) {
                         Text(
                             text = Localisation.recipeDetailsProduct.productsSharedRecipe(params.numberOfRecipeConcernsByProduct).localised,
-                            style = TextStyle(fontSize = 12.sp, color = grey, fontWeight = FontWeight.Bold)
+                            style = TextStyle(fontSize = 12.sp, color = grey)
                         )
                     }
                 }
@@ -154,9 +160,8 @@ class CoursesUProduct: ProductSuccess {
         productBrand: String,
         combinedCapacity: String,
         productImage: String,
+        pricePerUnitOfMeasurement: String,
         isSponsor: Boolean,
-        replaceProduct: () -> Unit
-
     ) {
         Row(
             modifier = Modifier
@@ -200,12 +205,9 @@ class CoursesUProduct: ProductSuccess {
                                 .padding(horizontal = 12.dp, vertical = 4.dp)
                         )
                     }
-                }
-
-                TextButton(onClick = { replaceProduct() }) {
                     Text(
-                        text = Localisation.recipeDetailsProduct.replaceItem.localised,
-                        style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(600), color = primary)
+                        text = pricePerUnitOfMeasurement,
+                        modifier = Modifier.align(Alignment.CenterVertically)
                     )
                 }
             }
@@ -219,12 +221,11 @@ class CoursesUProduct: ProductSuccess {
         isInBasket: Boolean,
         isLocked: Boolean,
         addProduct: () -> Unit,
-        ignoreProduct: () -> Unit,
         changeCount: (Int) -> Unit
     ) {
         Row(
             modifier = Modifier
-                .padding(bottom = 12.dp)
+                .padding(top = 12.dp)
                 .padding(horizontal = 12.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -246,12 +247,6 @@ class CoursesUProduct: ProductSuccess {
                 )
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    TextButton(onClick = { ignoreProduct() }) {
-                        Text(
-                            text = Localisation.recipeDetailsProduct.ignoreProduct.localised,
-                            style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = grey)
-                        )
-                    }
                     Surface(
                         Modifier
                             .size(40.dp)
@@ -277,6 +272,45 @@ class CoursesUProduct: ProductSuccess {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @Composable
+    fun ReplaceOrIgnoreRow(
+        disable: Boolean,
+        ignoreProduct: () -> Unit,
+        replaceProduct: () -> Unit
+
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(Dimension.mPadding)
+        ) {
+            TextButton(onClick = { ignoreProduct() }, enabled = !disable) {
+                Text(
+                    text = Localisation.recipeDetailsProduct.ignoreProduct.localised,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight(700),
+                        color = grey
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.padding(Dimension.mPadding))
+            TextButton(onClick = { replaceProduct() }, enabled = !disable) {
+                Text(
+                    text = Localisation.recipeDetailsProduct.replaceItem.localised,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight(700),
+                        color = primary
+                    )
+                )
             }
         }
     }

@@ -25,43 +25,59 @@ import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccess
 import ai.mealz.sdk.components.baseComponent.myMealButton.success.MyMealButtonSuccessParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
 
 class CoursesUMyMealButton: MyMealButtonSuccess {
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     override fun Content(params: MyMealButtonSuccessParameters) {
-        AnimatedVisibility(
-            visible = true,
-            enter = slideInVertically { height -> height },
-            exit = slideOutVertically { height -> height }
+        Box(
+            modifier = Modifier.fillMaxWidth(), // Makes the Box take full width, allowing centering within it
+            contentAlignment = Alignment.Center // Centers its content horizontally
         ) {
-            Surface(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-                shape = RoundedCornerShape( 50 ,50),
-                color = Colors.primary,
-                contentColor = Colors.white,
+            AnimatedVisibility(
+                visible = true,
+                enter = slideInVertically { height -> height },
+                exit = slideOutVertically { height -> height }
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(start = 16.dp)
-                        .size(16.dp)
+                Surface(
+                    modifier = Modifier.padding(Dimension.mPadding),
+                    color = Colors.primary,
+                    shape = RoundedCornerShape(100.dp),
+                    onClick = params.onClick
                 ) {
-                Text(
-                    text = Localisation.myMeals.mealsInBasket(params.recipeCount).localised,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 20.sp,
-                        fontWeight = FontWeight(600),
-                    ),
-                )
-                    Icon(
-                        Icons.Filled.KeyboardArrowRight,
-                        contentDescription = "icon button categories page floating",
-                        modifier = Modifier
-                            .padding(start = 16.dp)
-                            .size(16.dp)
-                    )
+                    Row(
+                        modifier = Modifier.padding(Dimension.lPadding),
+                        horizontalArrangement = Arrangement.spacedBy(Dimension.lPadding),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            painter = painterResource(id = Image.meals),
+                            contentDescription = "icon categories page floating",
+                            modifier = Modifier
+                                .size(16.dp),
+                            tint = Colors.white
+                        )
+                        Text(
+                            text = Localisation.myMeals.mealsAdded(params.recipeCount).localised,
+                            style = Typography.bodyBold,
+                            color = Colors.white
+                        )
+                        Icon(
+                            painterResource(id = Image.previous),
+                            contentDescription = "icon button categories page floating",
+                            modifier = Modifier
+                                .size(20.dp)
+                                .graphicsLayer(rotationZ = 180f),
+                            tint = Colors.white
+                        )
+                    }
                 }
             }
         }

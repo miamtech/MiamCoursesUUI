@@ -10,15 +10,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import tech.miam.coursesUDemoApp.data.models.Product
 import tech.miam.coursesUDemoApp.di.LocalDI
-import tech.miam.coursesUDemoApp.features.products.ProductsRepository
 import tech.miam.coursesuui.config.MiamTemplateManager
 import timber.log.Timber
 
-object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinComponent {
+object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main) {
     private const val TAG = "MiamSdkHelper"
 
     private var isInitialized = false
@@ -39,8 +36,6 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main), KoinC
 
     /** should not be changed during session */
     private var enableLike: Boolean = true
-
-    private val productsRepository by inject<ProductsRepository>()
 
     fun initialize(
         appContext: Context,

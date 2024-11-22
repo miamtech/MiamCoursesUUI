@@ -3,8 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    id("com.google.gms.google-services")
-    id("com.google.firebase.appdistribution")
 }
 
 android {
@@ -28,14 +26,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-//            firebaseAppDistribution {
-//                artifactType = "APK"
-//                releaseNotes= "test Courses U test app"
-//                testers = "thomas.huyghues@miam.tech"
-//                serviceCredentialsFile = "miamandroid-14845a0ac147.json"
-//            }
         }
     }
     compileOptions {

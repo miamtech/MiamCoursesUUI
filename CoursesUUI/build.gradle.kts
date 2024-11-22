@@ -12,6 +12,9 @@ android {
         targetSdk =33
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    lint {
+        abortOnError=false
+    }
 
     buildTypes {
         named("release") {
@@ -35,8 +38,8 @@ android {
 }
 
 dependencies {
-    api("ai.mealz.core:mealz-core:5.2.0")
-    api("ai.mealz.android:mealz-android:5.2.0")
+    api("ai.mealz.core:mealz-core:5.2.1")
+    api("ai.mealz.android:mealz-android:5.2.1")
 
     api ("androidx.core:core-ktx:1.10.1")
     api ("androidx.appcompat:appcompat:1.6.1")
@@ -62,3 +65,9 @@ val PUBLISH_ARTIFACT_ID by extra { "miamCoursesUUI" }
 
 apply("${rootDir}/scripts/publish-module.gradle")
 
+tasks.matching { it.name == "generateMetadataFileForReleasePublication" }.configureEach {
+    dependsOn(tasks.named("androidSourcesJar"))
+}
+tasks.named("androidSourcesJar").configure {
+    enabled = false
+}

@@ -21,10 +21,8 @@ class CatalogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val catalog = view.findViewById<CatalogJourney>(R.id.catalogView)
 
-//        catalog?.bind(
-//            goToBasket = {
-//                findNavController().navigate(R.id.myMealsFragment)
-//            }
-//        )
+        catalog?.bind(
+            categoryId = null
+        )
     }
 }

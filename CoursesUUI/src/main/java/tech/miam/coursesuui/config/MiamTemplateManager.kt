@@ -42,6 +42,7 @@ import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
 import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
+import tech.miam.coursesuui.template.myMeal.CoursesUMyMealHeader
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
@@ -213,7 +214,9 @@ class MiamTemplateManager {
             ////// END ITEM SELECTOR //////////
             ////// MY MEAL  //////////
             myMeal {
-                this.
+                header {
+                    view = CoursesUMyMealHeader()
+                }
                 recipeCard {
                     success {
                         view = CoursesUMyMealRecipe()

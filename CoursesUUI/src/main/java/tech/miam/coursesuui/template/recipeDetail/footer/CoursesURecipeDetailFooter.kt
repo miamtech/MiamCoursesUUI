@@ -1,7 +1,13 @@
 package tech.miam.coursesuui.template.recipeDetail.footer
 
+import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
+import ai.mealz.sdk.components.price.formatPrice
 import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
 import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+import ai.mealz.sdk.ressource.Image.cart
+import ai.mealz.sdk.theme.Colors
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -27,14 +33,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ai.mealz.core.base.state.ComponentUiState
-import ai.mealz.core.localisation.Localisation
-import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
-import ai.mealz.sdk.ressource.Image.cart
-import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.components.price.formatPrice
 
-class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
+class CoursesURecipeDetailFooter : RecipeDetailSuccessFooter {
     @Composable
     override fun Content(params: RecipeDetailSuccessFooterParameters) {
 
@@ -47,40 +47,44 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                 .padding(vertical = 8.dp, horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Box(Modifier.weight(1f)) {
-                when (params.priceStatus) {
-                    ComponentUiState.EMPTY, ComponentUiState.IDLE -> {
-                        Box {} // show nothing until price is loaded
-                    }
-
-                    ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
-                        if (params.priceStatus == ComponentUiState.LOADING) {
-                            Box(Modifier.size(16.dp)) {
-                                CircularProgressIndicator(color = Colors.primary)
-                            }
+            when (params.priceStatus) {
+                ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
+                    if (params.priceStatus == ComponentUiState.LOADING) {
+                        Box(Modifier.size(16.dp)) {
+                            CircularProgressIndicator(color = Colors.primary)
                         }
-                        if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
+                    }
+                    if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 text = priceOfProductsInBasket.value.formatPrice(),
-                                style = TextStyle(fontSize = 20.sp, color = Colors.black, fontWeight = FontWeight.Black)
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    color = Colors.black,
+                                    fontWeight = FontWeight.Black
+                                )
                             )
+                            Spacer(Modifier.width(16.dp))
                             Text(
                                 text = Localisation.recipeDetails.inMyBasket.localised,
                                 style = TextStyle(fontSize = 10.sp, color = Colors.grey)
                             )
                         }
                     }
-                    else -> {}
                 }
+
+                else -> {}
             }
+            Spacer(Modifier.width(8.dp))
             if (isButtonLock.value) {
                 LoadingButton()
             } else {
                 when (params.ingredientsStatus.type) {
                     IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.recipeDetails.continueShopping.localised) { params.onConfirm() }
                     IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
-                        AddButton(text =
-                        "${Localisation.ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
+                        AddButton(
+                            text =
+                            "${Localisation.ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
                         ) { params.onConfirm() }
                     }
                 }
@@ -90,7 +94,13 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
 
     @Composable
     fun LoadingButton() {
-        Surface(shape = RoundedCornerShape(50), color = Colors.primary, modifier = Modifier.fillMaxWidth()) {
+        Surface(
+            shape = RoundedCornerShape(50),
+            color = Colors.primary,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -106,7 +116,9 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
         Surface(
             shape = RoundedCornerShape(50),
             color = Colors.primary,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -115,7 +127,14 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
             ) {
                 Image(painter = painterResource(cart), contentDescription = "$cart")
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = text, style = TextStyle(fontSize = 14.sp, color = Colors.white, fontWeight = FontWeight(600)))
+                Text(
+                    text = text,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = Colors.white,
+                        fontWeight = FontWeight(600)
+                    )
+                )
             }
         }
     }
@@ -126,18 +145,23 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
             shape = RoundedCornerShape(50),
             border = BorderStroke(1.dp, Colors.primary),
             color = Colors.white,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(text = text,
+                Text(
+                    text = text,
                     style = TextStyle(
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         color = Colors.primary,
-                        fontWeight = FontWeight(600)))
+                        fontWeight = FontWeight(600)
+                    )
+                )
             }
         }
     }

@@ -35,7 +35,11 @@ class CoursesUTags: RecipeDetailSuccessTag {
     @Composable
     override fun Content(params: RecipeDetailSuccessTagParameters) {
 
-        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column(
+            Modifier
+                .padding(vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
             Row(Modifier.fillMaxWidth()) {
                 Text(
                     text = params.title,
@@ -82,7 +86,7 @@ class CoursesUTags: RecipeDetailSuccessTag {
     fun RecipeDifficulty(imageRef: Int, difficultyLabel: String) {
         Row(
             modifier = Modifier
-                .background(shape = RoundedCornerShape(100.dp), color = Color.Transparent)
+                .background(shape = RoundedCornerShape(100.dp), color = Colors.backgroundLightGrey)
                 .border(border = BorderStroke(1.dp, Colors.lightgrey), shape = RoundedCornerShape(100.dp))
                 .padding(vertical = 8.dp, horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -106,7 +110,7 @@ class CoursesUTags: RecipeDetailSuccessTag {
         if (time?.inWholeSeconds != 0.toLong()) {
             Row(
                 modifier = Modifier
-                    .background(shape = RoundedCornerShape(100.dp), color = Color.Transparent,
+                    .background(shape = RoundedCornerShape(100.dp), color = Colors.backgroundLightGrey,
                     ).border(border = BorderStroke(1.dp, Colors.lightgrey), shape = RoundedCornerShape(100.dp))
                     .padding(vertical = 8.dp, horizontal = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,

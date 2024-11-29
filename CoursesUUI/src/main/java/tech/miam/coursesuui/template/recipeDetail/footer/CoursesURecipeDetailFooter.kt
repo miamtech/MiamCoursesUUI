@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -45,37 +46,39 @@ class CoursesURecipeDetailFooter : RecipeDetailSuccessFooter {
             Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp, horizontal = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            when (params.priceStatus) {
-                ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
-                    if (params.priceStatus == ComponentUiState.LOADING) {
-                        Box(Modifier.size(16.dp)) {
-                            CircularProgressIndicator(color = Colors.primary)
+            Box(Modifier.height(30.dp)) {
+                when (params.priceStatus) {
+                    ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
+                        if (params.priceStatus == ComponentUiState.LOADING) {
+                            Box(Modifier.size(16.dp)) {
+                                CircularProgressIndicator(color = Colors.primary)
+                            }
                         }
-                    }
-                    if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                text = priceOfProductsInBasket.value.formatPrice(),
-                                style = TextStyle(
-                                    fontSize = 20.sp,
-                                    color = Colors.black,
-                                    fontWeight = FontWeight.Black
+                        if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = priceOfProductsInBasket.value.formatPrice(),
+                                    style = TextStyle(
+                                        fontSize = 20.sp,
+                                        color = Colors.black,
+                                        fontWeight = FontWeight.Black
+                                    )
                                 )
-                            )
-                            Spacer(Modifier.width(16.dp))
-                            Text(
-                                text = Localisation.recipeDetails.inMyBasket.localised,
-                                style = TextStyle(fontSize = 10.sp, color = Colors.grey)
-                            )
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    text = Localisation.recipeDetails.inMyBasket.localised,
+                                    style = TextStyle(fontSize = 10.sp, color = Colors.grey)
+                                )
+                            }
                         }
                     }
-                }
 
-                else -> {}
+                    else -> {}
+                }
             }
-            Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.height(8.dp))
             if (isButtonLock.value) {
                 LoadingButton()
             } else {

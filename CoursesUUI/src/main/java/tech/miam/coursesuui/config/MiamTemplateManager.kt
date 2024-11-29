@@ -17,6 +17,7 @@ import ai.mealz.sdk.components.MiamTheme.recipesPage
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
@@ -188,6 +189,7 @@ class MiamTemplateManager {
                         }
                         footer {
                             view = CoursesURecipeDetailFooter()
+                            height = 100.dp
                         }
                     }
                     header {

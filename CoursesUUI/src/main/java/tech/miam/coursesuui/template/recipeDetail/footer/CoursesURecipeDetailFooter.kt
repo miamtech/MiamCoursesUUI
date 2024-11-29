@@ -15,10 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -42,17 +41,16 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
         val priceOfProductsInBasket = params.priceOfProductsInBasket.collectAsState()
         val priceOfRemainingProducts = params.priceOfRemainingProducts.collectAsState()
         val isButtonLock = params.isButtonLock.collectAsState()
-        Row(
+        Column(
             Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp)
-                .height(200.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(vertical = 8.dp, horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(Modifier.weight(1f)) {
                 when (params.priceStatus) {
                     ComponentUiState.EMPTY, ComponentUiState.IDLE -> {
-                        Box {}
+                        Box {} // show nothing until price is loaded
                     }
 
                     ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
@@ -67,16 +65,17 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                                 style = TextStyle(fontSize = 20.sp, color = Colors.black, fontWeight = FontWeight.Black)
                             )
                             Text(
-                                    text = Localisation.recipeDetails.inMyBasket.localised,
-                            style = TextStyle(fontSize = 10.sp, color = Colors.grey)
+                                text = Localisation.recipeDetails.inMyBasket.localised,
+                                style = TextStyle(fontSize = 10.sp, color = Colors.grey)
                             )
                         }
                     }
                     else -> {}
                 }
             }
-            if (isButtonLock.value) LoadingButton()
-            else {
+            if (isButtonLock.value) {
+                LoadingButton()
+            } else {
                 when (params.ingredientsStatus.type) {
                     IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.recipeDetails.continueShopping.localised) { params.onConfirm() }
                     IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
@@ -91,7 +90,7 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
 
     @Composable
     fun LoadingButton() {
-        Surface(shape = RoundedCornerShape(50), color = Colors.primary) {
+        Surface(shape = RoundedCornerShape(50), color = Colors.primary, modifier = Modifier.fillMaxWidth()) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -102,12 +101,12 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
         }
     }
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun AddButton(text: String, action: () -> Unit = {}) {
         Surface(
             shape = RoundedCornerShape(50),
             color = Colors.primary,
+            modifier = Modifier.fillMaxWidth(),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -121,13 +120,13 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
         }
     }
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun ContinueButton(text: String, action: () -> Unit = {}) {
         Surface(
             shape = RoundedCornerShape(50),
             border = BorderStroke(1.dp, Colors.primary),
             color = Colors.white,
+            modifier = Modifier.fillMaxWidth(),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),

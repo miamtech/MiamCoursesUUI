@@ -50,6 +50,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
     @Composable
     override fun Content(params: MyMealRecipeCardSuccessParameters) {
         Surface(
+            onClick = params.openRecipeDetail,
             Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
@@ -101,28 +102,6 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                         }
 
                     Spacer(modifier = Modifier.weight(1f))
-                    Surface(
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-                        shape = RoundedCornerShape(50),
-                        border = BorderStroke(1.dp, color = Colors.primary,),
-                        onClick = params.openRecipeDetail,
-                    ) {
-                        Row(horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            ) {
-                            Text(
-                                text = Localisation.recipe.showBasketPreview.localised,
-                                style = Typography.subtitle.copy(fontSize = 14.sp),
-                                color = Colors.primary
-                            )
-                            Icon(
-                                painter = painterResource(Image.toggleCaret),
-                                contentDescription = "Icon arrow view products",
-                                tint = Colors.primary
-                            )
-                        }
-                    }
                 }
             }
         }

@@ -22,7 +22,8 @@ class CatalogFragment : Fragment() {
         val catalog = view.findViewById<CatalogJourney>(R.id.catalogView)
 
         catalog?.bind(
-            categoryId = null
+            categoryId = null,
+            onRedirectToClientBasket = {}
         )
     }
 }

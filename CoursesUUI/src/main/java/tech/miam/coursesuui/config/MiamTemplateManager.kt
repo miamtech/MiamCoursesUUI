@@ -5,11 +5,13 @@ import ai.mealz.sdk.components.MiamTheme.favoritePage
 import ai.mealz.sdk.components.MiamTheme
 import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
 import ai.mealz.sdk.components.MiamTheme.mealPlanner
 import ai.mealz.sdk.components.MiamTheme.myMeal
 import ai.mealz.sdk.components.MiamTheme.myMealButton
+import ai.mealz.sdk.components.MiamTheme.orderHistory
 import ai.mealz.sdk.components.MiamTheme.price
 import ai.mealz.sdk.components.MiamTheme.recipeCard
 import ai.mealz.sdk.components.MiamTheme.recipeDetail
@@ -24,6 +26,7 @@ import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
+import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
@@ -241,13 +244,13 @@ class MiamTemplateManager {
             //////// CATALOGUE //////////
             catalog {
                 success {
-                    toolbar {
-                        view = CoursesUCatalogToolbar()
-                    }
                     categories {
                         category {
                             view = CoursesUCatalogCategory()
                         }
+                    }
+                    toolbar {
+                        enablePreferences = false
                     }
                 }
             }
@@ -278,6 +281,24 @@ class MiamTemplateManager {
                 }
             }
              //// END MY MEAL BUTTON  //////////
+            //// FILTER BUTTON  //////////$
+            filter {
+                success {
+                    header {
+                        view = CoursesUFilterHeader()
+                    }
+                }
+            }
+            //// END FILTER  //////////
+            //// ORDER HISTORY  //////////$
+            orderHistory {
+                success {
+                    order {
+                        numberOfRecipeBeforeOverflow = 4
+                    }
+                }
+            }
+            //// END ORDER HISTORY  //////////
         }
     }
 

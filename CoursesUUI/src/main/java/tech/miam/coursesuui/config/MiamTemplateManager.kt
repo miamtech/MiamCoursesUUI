@@ -3,12 +3,13 @@ package tech.miam.coursesuui.config
 import ai.mealz.sdk.components.MiamTheme
 import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
-import ai.mealz.sdk.components.MiamTheme.favoritePage
+import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
 import ai.mealz.sdk.components.MiamTheme.mealPlanner
 import ai.mealz.sdk.components.MiamTheme.myMeal
 import ai.mealz.sdk.components.MiamTheme.myMealButton
+import ai.mealz.sdk.components.MiamTheme.orderHistory
 import ai.mealz.sdk.components.MiamTheme.price
 import ai.mealz.sdk.components.MiamTheme.recipeCard
 import ai.mealz.sdk.components.MiamTheme.recipeDetail
@@ -16,12 +17,14 @@ import ai.mealz.sdk.components.MiamTheme.recipesPage
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
+import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
@@ -55,6 +58,7 @@ import tech.miam.coursesuui.template.recipeDetail.success.CoursesUStep
 import tech.miam.coursesuui.template.recipeDetail.success.header.CoursesURecipeDetailHeader
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProductCounter
+import tech.miam.coursesuui.template.recipeDetail.swapper.CoursesUSwapper
 import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
 
 
@@ -172,6 +176,7 @@ class MiamTemplateManager {
                             view = CoursesUGuestsCounter()
                         }
                     }
+                    segmentedControl { view = CoursesUSwapper() }
                     products {
                         counter {
                             view = CoursesUProductCounter()
@@ -193,6 +198,7 @@ class MiamTemplateManager {
                         }
                         footer {
                             view = CoursesURecipeDetailFooter()
+                            height = 100.dp
                         }
                     }
                     header {
@@ -242,13 +248,13 @@ class MiamTemplateManager {
             //////// CATALOGUE //////////
             catalog {
                 success {
-                    toolbar {
-                        view = CoursesUCatalogToolbar()
-                    }
                     categories {
                         category {
                             view = CoursesUCatalogCategory()
                         }
+                    }
+                    toolbar {
+                        enablePreferences = false
                     }
                 }
             }
@@ -278,7 +284,25 @@ class MiamTemplateManager {
                     view = CoursesUMyMealButton()
                 }
             }
-            //// END MY MEAL BUTTON  //////////
+             //// END MY MEAL BUTTON  //////////
+            //// FILTER BUTTON  //////////$
+            filter {
+                success {
+                    header {
+                        view = CoursesUFilterHeader()
+                    }
+                }
+            }
+            //// END FILTER  //////////
+            //// ORDER HISTORY  //////////$
+            orderHistory {
+                success {
+                    order {
+                        numberOfRecipeBeforeOverflow = 4
+                    }
+                }
+            }
+            //// END ORDER HISTORY  //////////
         }
     }
 

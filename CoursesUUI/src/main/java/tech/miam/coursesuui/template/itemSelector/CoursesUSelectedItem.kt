@@ -46,17 +46,17 @@ internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
                                 .fillMaxSize()
                         )
                         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            item.attributes?.name?.let { name ->
+                            item.attributes?.brand?.let { brand ->
                                 Text(
-                                    text = name.uppercase(),
+                                    text = brand.uppercase(),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     lineHeight = 18.sp,
                                 )
                             }
-                            item.attributes?.itemDescription?.let { itemDescription ->
+                            item.attributes?.name?.let { name ->
                                 Text(
-                                    text = itemDescription,
+                                    text = name,
                                     fontSize = 12.sp,
                                     lineHeight = 18.sp
                                 )

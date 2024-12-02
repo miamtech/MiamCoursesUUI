@@ -1,10 +1,9 @@
 package tech.miam.coursesuui.config
 
-import ai.mealz.sdk.components.MiamTheme.favoritePage
-
 import ai.mealz.sdk.components.MiamTheme
 import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.favoritePage
 import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
@@ -19,12 +18,10 @@ import ai.mealz.sdk.components.MiamTheme.recipesPage
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
-import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
@@ -49,15 +46,16 @@ import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealHeader
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
+import tech.miam.coursesuui.template.recipeCard.CoursesUCatalogCategoryRecipeCard
 import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
 import tech.miam.coursesuui.template.recipeCard.StandaloneCoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.info.CoursesURecipeDetailInfo
 import tech.miam.coursesuui.template.recipeDetail.loading.CoursesUProductLoading
 import tech.miam.coursesuui.template.recipeDetail.removeFromBasket.CoursesUProductRemovedFromBasket
-import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.CoursesUStep
 import tech.miam.coursesuui.template.recipeDetail.success.header.CoursesURecipeDetailHeader
+import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduct
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProductCounter
 import tech.miam.coursesuui.template.recipeDetail.swapper.CoursesUSwapper
 import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
@@ -99,7 +97,7 @@ class MiamTemplateManager {
                 }
                 basketPreview {
                     success {
-                        recipe{
+                        recipe {
                             view = RecipeCardOverview()
                         }
                         foundProducts {
@@ -108,9 +106,9 @@ class MiamTemplateManager {
                             }
                         }
                         notInBasketProducts {
-                           header {
-                               view = MealPlannerBasketPreviewSectionTitleU()
-                           }
+                            header {
+                                view = MealPlannerBasketPreviewSectionTitleU()
+                            }
                         }
                     }
                     footer {
@@ -148,7 +146,12 @@ class MiamTemplateManager {
 
             recipeCard {
                 success {
-                    view = StandaloneCoursesURecipeCard()
+                    shelf {
+                        view = StandaloneCoursesURecipeCard()
+                    }
+                    catalog {
+                        view = CoursesUCatalogCategoryRecipeCard()
+                    }
                 }
                 loading {
                     view = CoursesURecipeCardLoading()
@@ -187,14 +190,13 @@ class MiamTemplateManager {
                             view = CoursesUProductLoading()
                         }
                         steps {
-                            view= CoursesUStep()
+                            view = CoursesUStep()
                         }
                         tag {
                             view = CoursesUTags()
                         }
                         footer {
                             view = CoursesURecipeDetailFooter()
-                            height = 100.dp
                         }
                     }
                     header {
@@ -234,7 +236,7 @@ class MiamTemplateManager {
             ///// END MY MEAL  //////////
             //// PRICE  //////////
             price {
-                footerPrice{
+                footerPrice {
                     success {
                         view = CoursesURecipeDetailCookOnlyFooter()
                     }
@@ -273,14 +275,14 @@ class MiamTemplateManager {
                     view = CoursesULikeButtonSuccess()
                 }
             }
-             //// END LIKE BUTTON //////////
+            //// END LIKE BUTTON //////////
             //// MY MEAL BUTTON  //////////$
             myMealButton {
                 success {
                     view = CoursesUMyMealButton()
                 }
             }
-             //// END MY MEAL BUTTON  //////////
+            //// END MY MEAL BUTTON  //////////
             //// FILTER BUTTON  //////////$
             filter {
                 success {
@@ -312,6 +314,6 @@ class MiamTemplateManager {
     }
 
     private fun overrideMealzColors() {
-        Colors.primary = Color(0,125,143)
+        Colors.primary = Color(0, 125, 143)
     }
 }

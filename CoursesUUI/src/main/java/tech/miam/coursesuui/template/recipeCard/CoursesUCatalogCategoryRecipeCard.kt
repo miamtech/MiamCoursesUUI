@@ -1,5 +1,13 @@
 package tech.miam.coursesuui.template.recipeCard
 
+import ai.mealz.core.helpers.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.recipeCard.success.catalog.RecipeCardSuccessCatalog
+import ai.mealz.sdk.components.recipeCard.success.catalog.RecipeCardSuccessCatalogParams
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,17 +47,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import ai.mealz.core.helpers.formatPrice
-import ai.mealz.core.localisation.Localisation
-import ai.mealz.sdk.ressource.Image
-import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.theme.Typography
-import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
-import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessParams
 import kotlinx.coroutines.flow.MutableStateFlow
 
-@Composable
-fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
+class CoursesUCatalogCategoryRecipeCard : RecipeCardSuccessCatalog {
+
+    @Composable
+    override fun Content(params: RecipeCardSuccessCatalogParams) {
 
         Surface(
             border = BorderStroke(1.dp, Colors.lightgrey),
@@ -60,9 +63,9 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
         ) {
             Column {
                 Box {
-                    params.recipe.attributes?.let {
-                        CatalogRecipeCardImageView(it.mediaUrl) {params.goToDetail() }
-                    }
+
+                    CatalogRecipeCardImageView(params.recipePicture) { params.goToDetail() }
+
                     Row(
                         Modifier
                             .fillMaxWidth()
@@ -70,9 +73,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         if (params.isSponsor) {
-                            params.recipe.relationships?.sponsors?.data?.get(0)?.attributes?.logoUrl?.let {
-                                CatalogSponsorLogo(it)
-                            }
+                            CatalogSponsorLogo(params.sponsorLogo)
                         } else {
                             Spacer(Modifier.weight(1f))
                         }
@@ -85,9 +86,7 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.Bottom
                     ) {
-                        params.recipe.attributes?.title?.let {
-                            CatalogRecipeCardTitleView(it, Modifier.weight(1f))
-                        }
+                        CatalogRecipeCardTitleView(params.recipeTitle, Modifier.weight(1f))
                         CatalogBadgeViewGuest(params.guest)
                     }
                 }
@@ -99,20 +98,21 @@ fun CoursesUCatalogCategoryRecipeCard(params: RecipeCardSuccessParams) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box {
-                        CatalogPricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
+                        CatalogPricePerPerson(params.pricePerServe)
                     }
                     Row(
                         modifier = Modifier
                             .weight(1f),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        CatalogRecipeCardCTAView(params.recipe.id, params.isInCart) {
+                        CatalogRecipeCardCTAView(params.mealzRecipeId, params.isInCart) {
                             params.goToDetail()
                         }
                     }
                 }
             }
         }
+    }
 }
 
 @Composable
@@ -138,7 +138,7 @@ fun CatalogRecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
                 .fillMaxWidth()
                 .background(
                     Brush.verticalGradient(
-                        listOf(Color.Transparent, Color.Black,),
+                        listOf(Color.Transparent, Color.Black),
                         0f,  // TODO: set start
                         900f,
                     )
@@ -252,7 +252,8 @@ internal fun CatalogBadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
         horizontalArrangement = Arrangement.End
     ) {
         Surface(shape = RoundedCornerShape(100.dp), color = Color.White) {
-            Row(modifier = Modifier.padding(horizontal = 8.dp, vertical =2.dp),
+            Row(
+                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(

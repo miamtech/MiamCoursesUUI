@@ -3,6 +3,7 @@ package tech.miam.coursesuui.config
 import ai.mealz.sdk.components.MiamTheme
 import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.favoritePage
 import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
@@ -17,12 +18,10 @@ import ai.mealz.sdk.components.MiamTheme.recipesPage
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
-import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
@@ -198,7 +197,6 @@ class MiamTemplateManager {
                         }
                         footer {
                             view = CoursesURecipeDetailFooter()
-                            height = 100.dp
                         }
                     }
                     header {
@@ -284,7 +282,7 @@ class MiamTemplateManager {
                     view = CoursesUMyMealButton()
                 }
             }
-             //// END MY MEAL BUTTON  //////////
+            //// END MY MEAL BUTTON  //////////
             //// FILTER BUTTON  //////////$
             filter {
                 success {

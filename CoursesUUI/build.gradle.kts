@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    api("ai.mealz.core:mealz-core:5.3.2")
-    api("ai.mealz.android:mealz-android:5.3.1")
+    api("ai.mealz.core:mealz-core:5.2.3")
+    api("ai.mealz.android:mealz-android:5.2.3")
 
     api("androidx.core:core-ktx:1.10.1")
     api("androidx.appcompat:appcompat:1.6.1")

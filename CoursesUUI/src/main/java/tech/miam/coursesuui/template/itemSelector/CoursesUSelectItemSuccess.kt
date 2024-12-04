@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.itemSelector
 
-import com.miam.sdk.components.itemSelector.success.ItemSelectorSuccess
-import com.miam.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccess
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.Item
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.Item
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesUSelectItemSuccess: ItemSelectorSuccess {
 
@@ -57,17 +57,17 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                                 .fillMaxSize()
                         )
                         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            selectableItem.attributes?.name?.let { name ->
+                            selectableItem.attributes?.brand?.let { brand ->
                                 Text(
-                                    text = name.uppercase(),
+                                    text = brand.uppercase(),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     lineHeight = 18.sp,
                                 )
                             }
-                            selectableItem.attributes?.itemDescription?.let { itemDescription ->
+                            selectableItem.attributes?.name?.let { name ->
                                 Text(
-                                    text = itemDescription,
+                                    text = name,
                                     fontSize = 12.sp,
                                     lineHeight = 18.sp
                                 )
@@ -113,7 +113,7 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
     private fun PrimaryButton(selectableItem: Item, select: (item: Item) -> Unit) {
         Surface(shape = RoundedCornerShape(100.dp), color = Colors.primary, modifier = Modifier.clickable { select(selectableItem) }) {
             Text(
-                text = Localisation.ItemSelector.select.localised,
+                text = Localisation.itemSelector.select.localised,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 16.sp,

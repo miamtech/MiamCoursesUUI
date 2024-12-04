@@ -22,12 +22,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.miam.core.localisation.Localisation
+import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.mealPlanner.recipe.success.BudgetLikeButton
-import com.miam.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.mealPlanner.recipe.success.BudgetLikeButton
+import ai.mealz.sdk.components.mealPlanner.recipe.success.MealPlannerRecipeCardSuccessParameters
 
 
 @Composable
@@ -69,7 +69,7 @@ fun CoursesURecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
                         .height(35.dp)
 
                 ) {
-                    RecipeCardMetric(text = params.recipe.totalTime, image = Image.time)
+                    RecipeCardMetric(text = params.recipe.totalTime, image = Image.miamTime)
                     Divider(
                         thickness = 1.dp, color = Color.LightGray, modifier = Modifier
                             .height(32.dp)
@@ -79,20 +79,20 @@ fun CoursesURecipeCardSearch(params: MealPlannerRecipeCardSuccessParameters) {
                     ) {
                         when (params.recipe.attributes!!.difficulty) {
                             1 -> RecipeCardMetric(
-                                Localisation.Recipe.lowDifficulty.localised,
-                                Image.difficultyLow,
+                                Localisation.recipe.lowDifficulty.localised,
+                                Image.miamDifficulty,
 
                                 )
 
                             2 -> RecipeCardMetric(
-                                Localisation.Recipe.mediumDifficulty.localised,
-                                Image.difficultyMid,
+                                Localisation.recipe.mediumDifficulty.localised,
+                                Image.miamDifficulty,
                                 Modifier.weight(1f)
                             )
 
                             3 -> RecipeCardMetric(
-                                Localisation.Recipe.highDifficulty.localised,
-                                Image.difficultyHard,
+                                Localisation.recipe.highDifficulty.localised,
+                                Image.miamDifficulty,
                                 Modifier.weight(1f)
                             )
                         }

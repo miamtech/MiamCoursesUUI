@@ -1,7 +1,13 @@
 package tech.miam.coursesuui.template.recipeDetail.footer
 
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
-import com.miam.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
+import ai.mealz.sdk.components.price.formatPrice
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+import ai.mealz.sdk.ressource.Image.cart
+import ai.mealz.sdk.theme.Colors
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,46 +21,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.base.state.ComponentUiState
-import com.miam.core.localisation.Localisation
-import com.miam.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
-import com.miam.kmm_miam_sdk.android.ressource.Image.cart
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.price.formatPrice
 
-class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
+class CoursesURecipeDetailFooter : RecipeDetailSuccessFooter {
     @Composable
     override fun Content(params: RecipeDetailSuccessFooterParameters) {
 
         val priceOfProductsInBasket = params.priceOfProductsInBasket.collectAsState()
         val priceOfRemainingProducts = params.priceOfRemainingProducts.collectAsState()
         val isButtonLock = params.isButtonLock.collectAsState()
-        Row(
+        Column(
             Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp)
-                .height(200.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(vertical = 8.dp, horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(Modifier.weight(1f)) {
+            Box(Modifier.height(30.dp)) {
                 when (params.priceStatus) {
-                    ComponentUiState.EMPTY, ComponentUiState.IDLE -> {
-                        Box {}
-                    }
-
                     ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
                         if (params.priceStatus == ComponentUiState.LOADING) {
                             Box(Modifier.size(16.dp)) {
@@ -62,26 +57,37 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
                             }
                         }
                         if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
-                            Text(
-                                text = priceOfProductsInBasket.value.formatPrice(),
-                                style = TextStyle(fontSize = 20.sp, color = Colors.black, fontWeight = FontWeight.Black)
-                            )
-                            Text(
-                                    text = Localisation.RecipeDetails.inMyBasket.localised,
-                            style = TextStyle(fontSize = 10.sp, color = Colors.grey)
-                            )
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = priceOfProductsInBasket.value.formatPrice(),
+                                    style = TextStyle(
+                                        fontSize = 20.sp,
+                                        color = Colors.black,
+                                        fontWeight = FontWeight.Black
+                                    )
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    text = Localisation.recipeDetails.inMyBasket.localised,
+                                    style = TextStyle(fontSize = 10.sp, color = Colors.grey)
+                                )
+                            }
                         }
                     }
+
                     else -> {}
                 }
             }
-            if (isButtonLock.value) LoadingButton()
-            else {
+            Spacer(Modifier.height(8.dp))
+            if (isButtonLock.value) {
+                LoadingButton()
+            } else {
                 when (params.ingredientsStatus.type) {
-                    IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.RecipeDetails.continueShopping.localised) { params.onConfirm() }
+                    IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.recipeDetails.continueShopping.localised) { params.onConfirm() }
                     IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
-                        AddButton(text =
-                        "${Localisation.Ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
+                        AddButton(
+                            text =
+                            "${Localisation.ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
                         ) { params.onConfirm() }
                     }
                 }
@@ -91,7 +97,13 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
 
     @Composable
     fun LoadingButton() {
-        Surface(shape = RoundedCornerShape(50), color = Colors.primary) {
+        Surface(
+            shape = RoundedCornerShape(50),
+            color = Colors.primary,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -102,12 +114,14 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
         }
     }
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun AddButton(text: String, action: () -> Unit = {}) {
         Surface(
             shape = RoundedCornerShape(50),
             color = Colors.primary,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -116,29 +130,41 @@ class CoursesURecipeDetailFooter: RecipeDetailSuccessFooter {
             ) {
                 Image(painter = painterResource(cart), contentDescription = "$cart")
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = text, style = TextStyle(fontSize = 14.sp, color = Colors.white, fontWeight = FontWeight(600)))
+                Text(
+                    text = text,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = Colors.white,
+                        fontWeight = FontWeight(600)
+                    )
+                )
             }
         }
     }
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun ContinueButton(text: String, action: () -> Unit = {}) {
         Surface(
             shape = RoundedCornerShape(50),
             border = BorderStroke(1.dp, Colors.primary),
             color = Colors.white,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
             onClick = { action() }) {
             Row(
                 Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(text = text,
+                Text(
+                    text = text,
                     style = TextStyle(
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         color = Colors.primary,
-                        fontWeight = FontWeight(600)))
+                        fontWeight = FontWeight(600)
+                    )
+                )
             }
         }
     }

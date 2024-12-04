@@ -13,6 +13,9 @@ dependencyResolutionManagement {
         flatDir {
             dirs("libs")
         }
+        maven {
+            url = uri("https://github.com/miamtech/releaseMealz/raw/main")
+        }
     }
 }
 rootProject.name = "MiamCoursesUUI"

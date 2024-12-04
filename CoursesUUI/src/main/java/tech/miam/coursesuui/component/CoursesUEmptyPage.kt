@@ -24,11 +24,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.sdk.components.common.Clickable
 import androidx.compose.ui.unit.sp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.ui.components.common.Clickable
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPage
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 import tech.miam.coursesuui.R
 
 

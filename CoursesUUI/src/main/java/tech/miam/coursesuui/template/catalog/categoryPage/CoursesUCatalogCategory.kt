@@ -1,8 +1,14 @@
 package tech.miam.coursesuui.template.catalog.categoryPage
 
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.Recipe
+import ai.mealz.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategory
+import ai.mealz.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategoryParameters
+import ai.mealz.sdk.components.recipeJourney.RecipeJourney
+import ai.mealz.sdk.ressource.Image.toggleCaret
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 import androidx.compose.foundation.Image
-import com.miam.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategory
-import com.miam.sdk.components.catalog.success.categoriesPage.category.CatalogCategoriesPageCategoryParameters
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,28 +25,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.Recipe
-import com.miam.kmm_miam_sdk.android.ressource.Image.previous
-import com.miam.kmm_miam_sdk.android.ressource.Image.toggleCaret
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.recipeJourney.RecipeJourney
 
-class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
+class CoursesUCatalogCategory : CatalogCategoriesPageCategory {
     @Composable
     override fun Content(param: CatalogCategoriesPageCategoryParameters) {
-        Column (
+        Column(
             Modifier.padding(top = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -56,8 +52,7 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                     }
                     Row(
                         Modifier
-                            .fillMaxWidth()
-                        ,
+                            .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -79,7 +74,7 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                             horizontalArrangement = Arrangement.End
                         ) {
                             Text(
-                                text = Localisation.Catalog.showAll.localised,
+                                text = Localisation.catalog.showAll.localised,
                                 color = Colors.primary,
                             )
                             Image(
@@ -87,14 +82,18 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                                 contentDescription = null,
                                 colorFilter = ColorFilter.tint(Colors.primary),
                                 modifier = Modifier
-                                    .padding(vertical = 8.dp).padding(end = 8.dp)
+                                    .padding(vertical = 8.dp)
+                                    .padding(end = 8.dp)
                             )
                         }
                     }
                 }
             }
 
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(start = 8.dp)) {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(start = 8.dp)
+            ) {
                 items(
                     key = { item: Recipe -> item.id },
                     items = (param.category.relationships?.recipes?.data ?: emptyList())
@@ -104,7 +103,7 @@ class CoursesUCatalogCategory: CatalogCategoriesPageCategory {
                             .width(240.dp)
                             .height(330.dp)
                     ) {
-                        RecipeJourney.View(recipe = recipe)
+                        RecipeJourney.View(recipe = recipe, isInShelve = false)
                     }
                 }
             }

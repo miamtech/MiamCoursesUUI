@@ -16,10 +16,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
-import com.miam.kmm_miam_sdk.android.theme.Typography.body
-import com.miam.kmm_miam_sdk.android.theme.Typography.bodyBold
-import com.miam.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccess
-import com.miam.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccessParameters
+import ai.mealz.sdk.theme.Typography.body
+import ai.mealz.sdk.theme.Typography.bodyBold
+import ai.mealz.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccess
+import ai.mealz.sdk.components.mealPlanner.callToAction.success.MealPlannerCallToActionSuccessParameters
 
 class MealPlannerCallToActionU: MealPlannerCallToActionSuccess {
     @Composable

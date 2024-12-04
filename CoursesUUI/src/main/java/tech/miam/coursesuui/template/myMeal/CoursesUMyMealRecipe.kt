@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.myMeal
 
 import androidx.compose.foundation.BorderStroke
-import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccess
-import com.miam.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccessParameters
+import ai.mealz.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccess
+import ai.mealz.sdk.components.myMeal.myMealRecipeCard.success.MyMealRecipeCardSuccessParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -38,11 +38,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.miam.core.helpers.formatPrice
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.core.helpers.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 
 
 class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
@@ -50,6 +50,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
     @Composable
     override fun Content(params: MyMealRecipeCardSuccessParameters) {
         Surface(
+            onClick = params.openRecipeDetail,
             Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
@@ -87,7 +88,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                             horizontalAlignment = Alignment.Start
                         ) {
                             Text(
-                                text = Localisation.MyMeals.products(params.numberOfProductsInRecipe).localised,
+                                text = Localisation.myMeals.products(params.numberOfProductsInRecipe).localised,
                                 style = Typography.bodySmall,
                                 color = Colors.disabledText,
                             )
@@ -101,28 +102,6 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                         }
 
                     Spacer(modifier = Modifier.weight(1f))
-                    Surface(
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-                        shape = RoundedCornerShape(50),
-                        border = BorderStroke(1.dp, color = Colors.primary,),
-                        onClick = params.openRecipeDetail,
-                    ) {
-                        Row(horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            ) {
-                            Text(
-                                text = Localisation.Recipe.showBasketPreview.localised,
-                                style = Typography.subtitle.copy(fontSize = 14.sp),
-                                color = Colors.primary
-                            )
-                            Icon(
-                                painter = painterResource(Image.toggleCaret),
-                                contentDescription = "Icon arrow view products",
-                                tint = Colors.primary
-                            )
-                        }
-                    }
                 }
             }
         }
@@ -194,7 +173,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
         val pricePerPerson = if (numberOfGuests != 0) price / numberOfGuests else 0.0
         val formattedPrice = pricePerPerson.formatPrice()
             Text(
-                text = Localisation.MyMeals.perPerson(formattedPrice).localised,
+                text = Localisation.myMeals.perPerson(formattedPrice).localised,
                 style = Typography.bodySmall,
                 textAlign = TextAlign.Left,
                 maxLines = 2,

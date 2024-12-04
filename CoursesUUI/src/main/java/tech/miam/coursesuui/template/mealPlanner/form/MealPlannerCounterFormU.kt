@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.sdk.theme.Typography
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
 

@@ -26,7 +26,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.miam.sdk.components.recipeCard.loading.RecipeCardLoading
+import ai.mealz.sdk.components.recipeCard.loading.RecipeCardLoading
 
 class CoursesURecipeCardLoading: RecipeCardLoading {
 

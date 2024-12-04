@@ -16,12 +16,12 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.sdk.components.baseComponent.counter.CounterParameters
-import com.miam.sdk.components.baseComponent.likeButton.LikeButton
-import com.miam.sdk.components.recipeDetail.success.info.RecipeDetailInfo
-import com.miam.sdk.components.recipeDetail.success.info.RecipeDetailInfoParameters
-import com.miam.sdk.di.TemplateDI
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.components.baseComponent.counter.CounterParameters
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfo
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfoParameters
+import ai.mealz.sdk.di.TemplateDI
 
 class CoursesURecipeDetailInfo: RecipeDetailInfo {
     @Composable
@@ -36,24 +36,6 @@ class CoursesURecipeDetailInfo: RecipeDetailInfo {
                         .height(280.dp)
                         .fillMaxWidth()
                 )
-                if (params.isLikeEnable) {
-                    Row(
-                        horizontalArrangement = Arrangement.End,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Surface(shape = CircleShape,
-                                color = Colors.white ,
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                            }
-                            LikeButton(RectangleShape, recipeId = params.recipe.id).Content()
-                        }
-                    }
-                }
                 if (params.showGuestCounter) {
                     Box(
                         Modifier

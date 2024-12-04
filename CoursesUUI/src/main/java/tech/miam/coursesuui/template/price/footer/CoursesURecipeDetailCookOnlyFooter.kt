@@ -1,7 +1,7 @@
 package tech.miam.coursesuui.template.price.footer
 
-import com.miam.sdk.components.price.footer.success.FooterPriceSuccess
-import com.miam.sdk.components.price.footer.success.FooterPriceSuccessParameters
+import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccess
+import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccessParameters
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -24,11 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.price.formatPrice
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
     @Composable
@@ -51,7 +51,7 @@ class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
                         style = Typography.subtitleBold
                     )
                     Text(
-                        Localisation.Price.perGuest.localised,
+                        Localisation.price.perGuest.localised,
                         style = Typography.bodySmall,
                         modifier = Modifier.padding(start = 4.dp)
                     )
@@ -59,7 +59,7 @@ class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
                         Row(Modifier.padding(horizontal = 20.dp, vertical = 8.dp)) {
                             Box {
                                 Text(
-                                    text = Localisation.Price.mealCost(params.price.price.formatPrice()).localised,
+                                    text = Localisation.price.mealCost(params.price.price.formatPrice()).localised,
                                     style = Typography.bodyBold,
                                     textAlign = TextAlign.Center
                                 )

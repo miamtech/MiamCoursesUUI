@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.recipeDetail.tags
 
 import androidx.compose.foundation.BorderStroke
-import com.miam.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTag
-import com.miam.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTagParameters
+import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTag
+import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTagParameters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,18 +24,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.core.model.RecipeDifficulty
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.RecipeDifficulty
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
 import kotlin.time.Duration
 
 class CoursesUTags: RecipeDetailSuccessTag {
     @Composable
     override fun Content(params: RecipeDetailSuccessTagParameters) {
 
-        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column(
+            Modifier
+                .padding(vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
             Row(Modifier.fillMaxWidth()) {
                 Text(
                     text = params.title,
@@ -68,11 +72,11 @@ class CoursesUTags: RecipeDetailSuccessTag {
             Time(Image.miamPreparation, preparationTime)
             Time(Image.miamCook, cookingTime)
             when (difficulty) {
-                RecipeDifficulty.Easy -> RecipeDifficulty(Image.miamDifficulty, Localisation.Recipe.lowDifficulty.localised)
-                RecipeDifficulty.Medium -> RecipeDifficulty(Image.miamDifficulty, Localisation.Recipe.mediumDifficulty.localised)
-                RecipeDifficulty.Hard -> RecipeDifficulty(Image.miamDifficulty, Localisation.Recipe.highDifficulty.localised)
+                RecipeDifficulty.Easy -> RecipeDifficulty(Image.miamDifficulty, Localisation.recipe.lowDifficulty.localised)
+                RecipeDifficulty.Medium -> RecipeDifficulty(Image.miamDifficulty, Localisation.recipe.mediumDifficulty.localised)
+                RecipeDifficulty.Hard -> RecipeDifficulty(Image.miamDifficulty, Localisation.recipe.highDifficulty.localised)
                 else -> {
-                    RecipeDifficulty(Image.difficulty, Localisation.Recipe.lowDifficulty.localised)
+                    RecipeDifficulty(Image.difficulty, Localisation.recipe.lowDifficulty.localised)
                 }
             }
         }
@@ -82,7 +86,7 @@ class CoursesUTags: RecipeDetailSuccessTag {
     fun RecipeDifficulty(imageRef: Int, difficultyLabel: String) {
         Row(
             modifier = Modifier
-                .background(shape = RoundedCornerShape(100.dp), color = Color.Transparent)
+                .background(shape = RoundedCornerShape(100.dp), color = Colors.backgroundLightGrey)
                 .border(border = BorderStroke(1.dp, Colors.lightgrey), shape = RoundedCornerShape(100.dp))
                 .padding(vertical = 8.dp, horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -106,7 +110,7 @@ class CoursesUTags: RecipeDetailSuccessTag {
         if (time?.inWholeSeconds != 0.toLong()) {
             Row(
                 modifier = Modifier
-                    .background(shape = RoundedCornerShape(100.dp), color = Color.Transparent,
+                    .background(shape = RoundedCornerShape(100.dp), color = Colors.backgroundLightGrey,
                     ).border(border = BorderStroke(1.dp, Colors.lightgrey), shape = RoundedCornerShape(100.dp))
                     .padding(vertical = 8.dp, horizontal = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,

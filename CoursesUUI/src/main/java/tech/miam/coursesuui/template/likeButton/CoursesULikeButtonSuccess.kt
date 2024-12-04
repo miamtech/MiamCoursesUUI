@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.sdk.components.baseComponent.likeButton.success.LikeButtonSuccess
-import com.miam.sdk.components.baseComponent.likeButton.success.LikeButtonSuccessParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.components.baseComponent.likeButton.success.LikeButtonSuccess
+import ai.mealz.sdk.components.baseComponent.likeButton.success.LikeButtonSuccessParameters
 
 class CoursesULikeButtonSuccess: LikeButtonSuccess {
 

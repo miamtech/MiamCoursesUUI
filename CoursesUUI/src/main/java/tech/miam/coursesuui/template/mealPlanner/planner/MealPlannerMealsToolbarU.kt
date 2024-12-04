@@ -24,14 +24,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.miam.core.base.state.ComponentUiState
+import ai.mealz.core.base.state.ComponentUiState
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.form.FormCard
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
-import com.miam.sdk.components.mealPlanner.meals.toolbar.MealPlannerToolbar
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
+import ai.mealz.sdk.components.mealPlanner.meals.toolbar.MealPlannerToolbar
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {

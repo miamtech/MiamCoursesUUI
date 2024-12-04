@@ -33,16 +33,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-import com.miam.core.localisation.Localisation
+import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
-import com.miam.kmm_miam_sdk.android.ressource.Image
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.theme.Typography.body
-import com.miam.sdk.components.baseComponent.likeButton.LikeButton
-import com.miam.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRow
-import com.miam.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRowParameters
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.theme.Typography.body
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRow
+import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRowParameters
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
 import java.util.*
@@ -108,7 +108,7 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                 overflow = TextOverflow.Ellipsis
                             )
                                 Text(
-                                    text = Localisation.Recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParametersState.productCount).localised,
+                                    text = Localisation.recipe.numberOfIngredients(mealPlannerBasketPreviewRecipeOverviewParametersState.productCount).localised,
                                     style = body.copy(fontSize = 12.sp)
                                 )
                             SuccessViewPerGuest(
@@ -185,7 +185,7 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
 @Composable
 fun PriceView(price: Double) {
     val numberFormat = NumberFormat.getCurrencyInstance()
-    numberFormat.currency = Currency.getInstance(Localisation.Price.currency.localised)
+    numberFormat.currency = Currency.getInstance(Localisation.price.currency.localised)
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -210,7 +210,7 @@ fun PriceView(price: Double) {
 @Composable
 fun SuccessViewPerGuest(price: Double ) {
     val numberFormat = NumberFormat.getCurrencyInstance()
-    numberFormat.currency = Currency.getInstance(Localisation.Price.currency.localised)
+    numberFormat.currency = Currency.getInstance(Localisation.price.currency.localised)
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -279,7 +279,7 @@ private fun CollapseButton(initaleState: Boolean, isLoading: Boolean, action: ()
         expandedState = !expandedState
     }, enabled = !isLoading) {
         Text(
-            text = Localisation.Basket.moreDetails.localised,
+            text = Localisation.basket.moreDetails.localised,
             style = Typography.subtitle.copy(fontSize = 14.sp),
             color = Colors.primary
         )

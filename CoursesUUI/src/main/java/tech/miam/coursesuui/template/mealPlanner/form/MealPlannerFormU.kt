@@ -35,12 +35,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.base.state.ComponentUiState
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Dimension
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccess
-import com.miam.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
+import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.mealPlanner.form.success.MealPlannerFormSuccess
+import ai.mealz.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
 
 import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R

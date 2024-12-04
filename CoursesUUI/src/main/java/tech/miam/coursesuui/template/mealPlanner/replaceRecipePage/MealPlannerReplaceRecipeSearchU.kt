@@ -1,5 +1,8 @@
 package tech.miam.coursesuui.template.mealPlanner.replaceRecipePage
 
+import ai.mealz.sdk.components.mealPlanner.search.MealPlannerSearch
+import ai.mealz.sdk.components.mealPlanner.search.MealPlannerSearchParameters
+import ai.mealz.sdk.theme.Colors
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -25,11 +28,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.sdk.components.mealPlanner.search.MealPlannerSearch
-import com.miam.sdk.components.mealPlanner.search.MealPlannerSearchParameters
-
+import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.theme.Typography
 
 class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
 
@@ -64,7 +64,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 )
                 IconButton(onClick = params.filtersTapped) {
                     Image(
-                        painter = painterResource(com.miam.kmm_miam_sdk.android.ressource.Image.filter),
+                        painter = painterResource(Image.filter),
                         contentDescription = "Filter Icon",
                         colorFilter = ColorFilter.tint(Colors.primary)
                     )
@@ -93,7 +93,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 leadingIcon = {
                     IconButton(onClick = { isFocused = false }) {
                         Image(
-                            painter = painterResource(com.miam.kmm_miam_sdk.android.ressource.Image.search),
+                            painter = painterResource(Image.search),
                             contentDescription = "Search Icon",
                             colorFilter = ColorFilter.tint(Colors.black)
                         )

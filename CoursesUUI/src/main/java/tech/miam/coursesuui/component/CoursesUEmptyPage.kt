@@ -28,6 +28,9 @@ import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
 import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
 import ai.mealz.sdk.components.common.Clickable
+import ai.mealz.sdk.theme.Typography
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.size
 import androidx.compose.ui.unit.sp
 import tech.miam.coursesuui.R
 
@@ -38,42 +41,38 @@ class CoursesUEmptyPage(private val overrideText: String? = null): EmptyPage {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Colors.primary)
+                .background(Colors.white)
         ) {
             Column(
                 Modifier
                     .align(Alignment.Center)
-                    .padding(horizontal = 16.dp)
+                    .padding(16.dp)
+                    .fillMaxHeight()
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
                 Image(
-                    painter = painterResource(R.drawable.empty_white),
+                    painter = painterResource(R.drawable.ic_empty),
                     contentDescription = "empty page",
-                    Modifier.padding(top = 16.dp, bottom = 24.dp),
-                    colorFilter = ColorFilter.tint(Color.White)
+                    Modifier
+                        .size(200.dp)
+                        .padding(top = 16.dp, bottom = 24.dp)
                 )
                 Text(
                     text = overrideText ?: params.title,
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        lineHeight = 24.sp,
-                    ),
+                    style = Typography.body.copy(fontSize = 16.sp),
                     textAlign = TextAlign.Center,
-                    color = Color.White
+                    color = Colors.black
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 if (params.subtitle.isNotEmpty()) {
                     Text(
                         text = params.subtitle,
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 24.sp,
-                        ),
+                        style = Typography.bodyBold.copy(fontSize = 16.sp),
                         fontWeight = FontWeight.Black,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Colors.black
                     )
                 }
                 if (params.haveAnAction) {
@@ -81,11 +80,12 @@ class CoursesUEmptyPage(private val overrideText: String? = null): EmptyPage {
                         Box(
                             Modifier
                                 .clip(RoundedCornerShape(50))
-                                .background(colorResource(id = R.color.button_background))
+                                .background(Colors.primary)
                         ) {
                             Text(
                                 text = params.actionText,
                                 color = Colors.white,
+                                style = Typography.bodyBold.copy(fontSize = 16.sp),
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                             )
                         }

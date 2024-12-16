@@ -24,6 +24,7 @@ import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
 import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
+import tech.miam.coursesuui.template.filter.CoursesUFilterFooter
 import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
@@ -290,6 +291,9 @@ class MiamTemplateManager {
                 success {
                     header {
                         view = CoursesUFilterHeader()
+                    }
+                    footer {
+                        view = CoursesUFilterFooter()
                     }
                 }
             }

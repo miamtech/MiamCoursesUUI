@@ -21,11 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
 import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.sdk.components.itemSelector.noResults.ItemSelectorNoResults
+import ai.mealz.sdk.components.itemSelector.noResults.ItemSelectorNoResultsParameters
+import androidx.compose.foundation.layout.size
 import tech.miam.coursesuui.R
 
-class CoursesUItemSelectorEmpty: EmptyPage {
+class CoursesUItemSelectorNoResults: ItemSelectorNoResults {
     @Composable
-    override fun Content(params: EmptyPageParameters) {
+    override fun Content(params: ItemSelectorNoResultsParameters) {
 
             Column(
                 Modifier
@@ -34,7 +37,13 @@ class CoursesUItemSelectorEmpty: EmptyPage {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Image(painter = painterResource(id = R.drawable.ic_empty), contentDescription = null, Modifier.padding(top = 16.dp, bottom = 24.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_empty),
+                    contentDescription = null,
+                    Modifier
+                        .size(200.dp)
+                        .padding(top = 16.dp, bottom = 24.dp)
+                )
                 Text(
                     text = stringResource(id = R.string.item_selector_no_result),
                     style = TextStyle(

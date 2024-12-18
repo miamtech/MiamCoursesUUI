@@ -26,7 +26,7 @@ import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.filter.CoursesUFilterFooter
 import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
-import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorEmpty
+import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorNoResults
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
@@ -219,8 +219,8 @@ class MiamTemplateManager {
                 success {
                     view = CoursesUSelectItemSuccess()
                 }
-                empty {
-                    view = CoursesUItemSelectorEmpty()
+                noResults {
+                    view = CoursesUItemSelectorNoResults()
                 }
             }
             ////// END ITEM SELECTOR //////////

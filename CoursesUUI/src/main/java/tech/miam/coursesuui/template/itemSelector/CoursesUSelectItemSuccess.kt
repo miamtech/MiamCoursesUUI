@@ -29,6 +29,9 @@ import ai.mealz.core.localisation.Localisation
 import ai.mealz.core.model.Item
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.components.price.formatPrice
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 class CoursesUSelectItemSuccess: ItemSelectorSuccess {
 
@@ -63,6 +66,7 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     lineHeight = 18.sp,
+                                    fontFamily = FontFamily(Font(R.font.mealz_mullish))
                                 )
                             }
                             selectableItem.attributes?.name?.let { name ->
@@ -86,7 +90,8 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                             fontWeight = FontWeight.Black,
                             lineHeight = 24.sp,
                             color = Colors.black,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            fontFamily = FontFamily(Font(R.font.mealz_mullish))
                         )
                         PrimaryButton(selectableItem, select)
                     }

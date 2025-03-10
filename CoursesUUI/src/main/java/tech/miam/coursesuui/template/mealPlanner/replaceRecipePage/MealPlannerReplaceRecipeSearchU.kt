@@ -30,11 +30,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Typography
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
 
     @Composable
-    override fun Content(params: MealPlannerSearchParameters) {
+    override fun Content(budgetSearchParameters: MealPlannerSearchParameters) {
 
         var currentSearch by remember { mutableStateOf("") }
         Column {
@@ -52,9 +55,9 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                         searchText = currentSearch,
                         onTextChange = {
                             currentSearch = it
-                            params.updateSearch(it)
+                            budgetSearchParameters.updateSearch(it)
                         },
-                        submit = { params.updateSearch(currentSearch) }
+                        submit = { budgetSearchParameters.updateSearch(currentSearch) }
                     )
                 }
                 Divider(
@@ -62,7 +65,7 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                         .fillMaxHeight()
                         .width(1.dp)
                 )
-                IconButton(onClick = params.filtersTapped) {
+                IconButton(onClick = budgetSearchParameters.filtersTapped) {
                     Image(
                         painter = painterResource(Image.filter),
                         contentDescription = "Filter Icon",
@@ -87,8 +90,15 @@ class MealPlannerReplaceRecipeSearchU: MealPlannerSearch {
                 value = searchText,
                 onValueChange = onTextChange,
                 placeholder = {
-                    Text(text = "Que recherchez-vous ?", style = Typography.bodySmall)
+                    Text(text = "Que recherchez-vous ?", style = Typography.bodySmall.copy(fontFamily = FontFamily(
+                        Font(R.font.mealz_mullish)
+                    )
+                    ))
                 },
+                textStyle = Typography.bodySmall.copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                )
+                ),
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = {
                     IconButton(onClick = { isFocused = false }) {

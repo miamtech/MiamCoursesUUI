@@ -44,7 +44,7 @@ class CoursesUProductRemovedFromBasket: ProductIgnore, OftenDeletedProduct {
 
     @Composable
     private fun Product(ingredientName: String, ingredientQuantity: String, ingredientUnit: String, guestsCount: MutableStateFlow<Int>, defaultRecipeGuest :Int, chooseProduct: () -> Unit) {
-        val guestsCount = guestsCount.collectAsState()
+        //val guestsCounts = guestsCount.collectAsState()
 
         Box(
             modifier = Modifier

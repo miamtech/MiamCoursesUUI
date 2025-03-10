@@ -25,6 +25,8 @@ import ai.mealz.sdk.theme.Typography
 import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecap
 import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecapParameters
 import ai.mealz.sdk.components.price.formatPrice
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 
 class MealPlannerRecapU: MealPlannerRecap {
     @Composable
@@ -79,7 +81,10 @@ class MealPlannerRecapU: MealPlannerRecap {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 16.dp),
-                            style = Typography.subtitleBold,
+                            style = Typography.subtitleBold.copy(fontFamily = FontFamily(
+                                Font(R.font.mealz_mullish)
+                            )
+                            ),
                             textAlign = TextAlign.Center,
                             color = Colors.black,
                         )
@@ -90,7 +95,9 @@ class MealPlannerRecapU: MealPlannerRecap {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 20.dp),
-                            style = Typography.subtitleBold,
+                            style = Typography.subtitleBold.copy(fontFamily = FontFamily(
+                                Font(R.font.mealz_mullish)
+                            )),
                             textAlign = TextAlign.Center,
                             color = Colors.black
                         )
@@ -130,7 +137,9 @@ class MealPlannerRecapU: MealPlannerRecap {
             Text(text = "$mealCount repas pour", style = Typography.body)
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(text = price.formatPrice(), style = Typography.subtitleBold)
+                Text(text = price.formatPrice(), style = Typography.subtitleBold.copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                )))
                 Image(
                     painter = painterResource(id = R.drawable.ic_underline),
                     contentDescription = null,

@@ -54,7 +54,7 @@ class CoursesUBudgetPlannerToolbar: MealPlannerToolbar {
 
             Column(Modifier.padding(horizontal = 16.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.budget_repas_logo),
+                    painter = painterResource(R.drawable.logo_budget_h),
                     contentDescription = "Background",
                     modifier = Modifier
                         .padding(vertical = 24.dp)
@@ -193,7 +193,7 @@ fun CoursesUBudgetPlannerToolbarPreview() {
             12,
             MutableStateFlow(12),
             { _, _ -> },
-            submit = { budget, numberOfGuests, numberOfMeal -> print("hello") }
+            submit = { budget, numberOfGuests, numberOfMeal -> print("hello " +budget + numberOfMeal+ numberOfGuests) }
         ))
     }
 }

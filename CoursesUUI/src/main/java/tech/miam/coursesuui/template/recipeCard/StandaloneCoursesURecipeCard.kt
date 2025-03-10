@@ -45,6 +45,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -115,7 +117,7 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                             Box {
                                 PricePerPerson(
                                     params.pricePerServe
-                                        ?: 0.0, true
+                                       , true
                                 )
                             }
                             Box(modifier = Modifier.weight(1f)) {
@@ -138,7 +140,9 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
         Text(
             text = title,
             maxLines = 2,
-            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp),
+            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp,
+                fontFamily = FontFamily(Font(R.font.mealz_mullish))
+            ),
             color = Colors.black,
             modifier = modifier
         )
@@ -267,14 +271,14 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
             ) {
                 Text(
                     text = formattedPrice,
-                    style = subtitleBold,
+                    style = subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                     textAlign = TextAlign.Left,
                     maxLines = 2,
                     color = Colors.black
                 )
                 Text(
                     text = Localisation.myMeals.perPerson.localised,
-                    style = bodySmall,
+                    style = bodySmall.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                     textAlign = TextAlign.Left,
                     color = Colors.grey
                 )
@@ -283,14 +287,14 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
             Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
                 Text(
                     text = formattedPrice,
-                    style = subtitleBold,
+                    style = subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                     textAlign = TextAlign.Left,
                     maxLines = 2,
                     color = Colors.black
                 )
                 Text(
                     text = Localisation.myMeals.perPerson.localised,
-                    style = bodySmall,
+                    style = bodySmall.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                     textAlign = TextAlign.Left,
                     color = Colors.grey
                 )
@@ -315,7 +319,7 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                         style = bodyBold.copy(
                             fontWeight = FontWeight.Black,
                             fontSize = 16.sp
-                        ),
+                        ).copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                     )
                     Icon(
                         painter = painterResource(id = miamGuest),

@@ -41,6 +41,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -48,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.flow.MutableStateFlow
+import tech.miam.coursesuui.R
 
 class CoursesUCatalogCategoryRecipeCard : RecipeCardSuccessCatalog {
 
@@ -132,6 +135,7 @@ fun CatalogRecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
                 .clickable { goToDetail() }
         )
         Box(
+
             modifier = Modifier
                 .height(225.dp)
                 .align(Alignment.BottomCenter)
@@ -169,13 +173,16 @@ fun CatalogSponsorLogo(sponsorLogo: String?) {
     }
 }
 
+
 @Composable
 fun CatalogRecipeCardTitleView(title: String, modifier: Modifier = Modifier) {
     Text(
         text = title,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
-        style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp),
+        style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp,
+            fontFamily = FontFamily(Font(R.font.mulish_bold))
+        ),
         color = Colors.white,
         modifier = modifier
     )
@@ -229,14 +236,14 @@ fun CatalogPricePerPerson(price: Double) {
     Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
         Text(
             text = formattedPrice,
-            style = Typography.subtitleBold,
+            style = Typography.subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
             textAlign = TextAlign.Left,
             maxLines = 2,
             color = Colors.black
         )
         Text(
             text = Localisation.myMeals.perPerson.localised,
-            style = Typography.bodySmall,
+            style = Typography.bodySmall.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
             textAlign = TextAlign.Left,
             color = Colors.grey
         )
@@ -261,7 +268,7 @@ internal fun CatalogBadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
                     style = Typography.bodyBold.copy(
                         fontWeight = FontWeight.Black,
                         fontSize = 16.sp
-                    ),
+                    ).copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                 )
                 Icon(
                     painter = painterResource(id = Image.miamGuest),

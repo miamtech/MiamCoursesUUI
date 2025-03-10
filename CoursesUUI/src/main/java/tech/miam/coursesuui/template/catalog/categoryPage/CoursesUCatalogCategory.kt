@@ -27,8 +27,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import tech.miam.coursesuui.R
 
 class CoursesUCatalogCategory : CatalogCategoriesPageCategory {
     @Composable
@@ -47,7 +51,7 @@ class CoursesUCatalogCategory : CatalogCategoriesPageCategory {
                         Text(
                             text = it,
                             color = Colors.black,
-                            style = Typography.subtitleBold
+                            style = Typography.subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish)))
                         )
                     }
                     Row(
@@ -62,7 +66,8 @@ class CoursesUCatalogCategory : CatalogCategoriesPageCategory {
                                 color = Colors.black,
                                 modifier = Modifier.weight(1f),
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
+                                style = TextStyle(fontFamily = FontFamily(Font(R.font.mealz_mullish)))
                             )
                         } ?: Spacer(modifier = Modifier.weight(1f))
 

@@ -32,8 +32,8 @@ import ai.mealz.sdk.components.mealPlanner.recipe.loading.MealPlannerRecipeLoadi
 
 class RecipeLoadingViewU: MealPlannerRecipeLoading {
     @Composable
-    override fun Content(mealPlannerRecipeLoadingParameters: MealPlannerRecipeLoadingParameters) {
-        when (mealPlannerRecipeLoadingParameters.displayComponent) {
+    override fun Content(params: MealPlannerRecipeLoadingParameters) {
+        when (params.displayComponent) {
             Component.PLANNER -> ShimmerMealPlannerRecipeCardRow()
             Component.SEARCH_RESULT -> ShimmerMealPlannerRecipeCardColumn()
         }

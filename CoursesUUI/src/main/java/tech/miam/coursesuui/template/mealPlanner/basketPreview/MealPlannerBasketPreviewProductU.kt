@@ -41,6 +41,8 @@ import ai.mealz.sdk.theme.Typography
 import ai.mealz.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProduct
 import ai.mealz.sdk.components.mealPlanner.basketPreview.success.found.products.FoundProductParameters
 import ai.mealz.sdk.components.price.formatPrice
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import tech.miam.coursesuui.component.CounterButton
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.recipeCard.ProgressIndicatorU
@@ -74,7 +76,10 @@ class CoursesUBasketPreviewProductImp: FoundProduct {
                     Text(
                         text = params.productName.capitalize(),
                         color = Color.Black,
-                        style = Typography.bodyBold
+                        style = Typography.bodyBold.copy(fontFamily = FontFamily(
+                            Font(R.font.mealz_mullish)
+                        )
+                        )
                     )
                     Text(
                         text = "${params.productName} \n ${params.productCapacityUnit}",
@@ -97,7 +102,9 @@ class CoursesUBasketPreviewProductImp: FoundProduct {
                         Text(
                             text = params.price.formatPrice(),
                             color = Color.Black,
-                            style = Typography.subtitleBold.copy( fontSize = 22.sp)
+                            style = Typography.subtitleBold.copy( fontSize = 22.sp).copy(fontFamily = FontFamily(
+                                Font(R.font.mealz_mullish)
+                            ))
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         CounterForProduct(

@@ -32,6 +32,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 class CoursesUMyMealButton: MyMealButtonSuccess {
     @OptIn(ExperimentalMaterialApi::class)
@@ -66,7 +69,7 @@ class CoursesUMyMealButton: MyMealButtonSuccess {
                         )
                         Text(
                             text = Localisation.myMeals.mealsAdded(params.recipeCount).localised,
-                            style = Typography.bodyBold,
+                            style = Typography.bodyBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                             color = Colors.white
                         )
                         Icon(

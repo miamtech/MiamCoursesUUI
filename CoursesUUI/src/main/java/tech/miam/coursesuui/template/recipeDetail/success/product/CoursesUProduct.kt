@@ -50,6 +50,9 @@ import ai.mealz.sdk.di.TemplateDI
 import ai.mealz.sdk.theme.Dimension
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 class CoursesUProduct: ProductSuccess {
     @Composable
@@ -181,7 +184,10 @@ class CoursesUProduct: ProductSuccess {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
                     text = productBrand,
-                    style = TextStyle(fontSize = 16.sp, lineHeight = 18.sp, fontWeight = FontWeight(700), color = Colors.boldText)
+                    style = TextStyle(fontSize = 16.sp, lineHeight = 18.sp, fontWeight = FontWeight(700), color = Colors.boldText).copy(fontFamily = FontFamily(
+                        Font(R.font.mealz_mullish)
+                    )
+                    )
                 )
                 Text(
                     text = productName,
@@ -233,7 +239,7 @@ class CoursesUProduct: ProductSuccess {
         ) {
             Text(
                 text = productPrice,
-                style = TextStyle(fontSize = 20.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color = black)
+                style = TextStyle(fontSize = 20.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color = black).copy(fontFamily = FontFamily(Font(R.font.mealz_mullish)))
             )
             if (isInBasket) {
                 TemplateDI.recipeDetail.success.product.counter?.view?.Content(

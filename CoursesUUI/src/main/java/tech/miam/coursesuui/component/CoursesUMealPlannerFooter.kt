@@ -38,6 +38,8 @@ import ai.mealz.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBaske
 import ai.mealz.sdk.components.mealPlanner.basketPreview.footer.MealPlannerBasketPreviewFooterParameters
 import ai.mealz.sdk.components.mealPlanner.meals.footer.MealPlannerFooter
 import ai.mealz.sdk.components.mealPlanner.meals.footer.MealsFooterParameters
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
@@ -203,7 +205,10 @@ class CoursesUMealPlannerFooter: MealPlannerFooter, MealPlannerBasketPreviewFoot
             Text(
                 text = NumberFormat.getCurrencyInstance().format(price),
                 color = Colors.black,
-                style = bodyBold.copy(fontSize = 18.sp)
+                style = bodyBold.copy(fontSize = 18.sp).copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                )
+                )
             )
             Image(
                 painter = painterResource(id = trait),

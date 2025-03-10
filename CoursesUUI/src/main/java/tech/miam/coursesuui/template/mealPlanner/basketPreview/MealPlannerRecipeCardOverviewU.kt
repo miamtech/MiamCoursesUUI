@@ -43,6 +43,8 @@ import ai.mealz.sdk.theme.Typography.body
 import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
 import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRow
 import ai.mealz.sdk.components.mealPlanner.basketPreview.success.recipeRow.MealPlannerBasketPreviewSuccessRecipeRowParameters
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import java.text.NumberFormat
 import tech.miam.coursesuui.R
 import java.util.*
@@ -103,7 +105,10 @@ class RecipeCardOverview: MealPlannerBasketPreviewSuccessRecipeRow {
                                     .padding(vertical = 8.dp)
                                     .defaultMinSize(minHeight = 40.dp)
                                     .clickable { params.openRecipeDetail() },
-                                style = Typography.subtitleBold.copy(fontSize = 14.sp),
+                                style = Typography.subtitleBold.copy(fontSize = 14.sp).copy(fontFamily = FontFamily(
+                                    Font(R.font.mealz_mullish)
+                                )
+                                ),
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -201,7 +206,9 @@ fun PriceView(price: Double) {
             )
             Text(
                 text = numberFormat.format(price),
-                style = Typography.subtitleBold.copy(fontSize = 14.sp)
+                style = Typography.subtitleBold.copy(fontSize = 14.sp).copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                ))
             )
         }
     }

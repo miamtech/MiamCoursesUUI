@@ -26,6 +26,9 @@ import androidx.compose.ui.unit.sp
 import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.theme.Typography
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 class CoursesUStep: RecipeDetailSteps {
     @Composable
@@ -38,7 +41,7 @@ class CoursesUStep: RecipeDetailSteps {
         ) {
             Text(
                 text = Localisation.recipe.steps.localised,
-                style = Typography.subtitleBold,
+                style = Typography.subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                 color = Colors.black
             )
             params.steps.forEachIndexed { index, recipeStep ->

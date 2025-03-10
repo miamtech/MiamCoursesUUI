@@ -39,6 +39,9 @@ import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearch
 import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearchParameters
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 import java.util.Locale
 
 class CoursesUItemSelectorSearch : ItemSelectorSearch {
@@ -85,13 +88,18 @@ class CoursesUItemSelectorSearch : ItemSelectorSearch {
                 placeholder = {
                     Text(
                         Localisation.itemSelector.search.localised,
-                        style = TextStyle(fontSize = 16.sp),
+                        style = TextStyle(fontSize = 16.sp).copy(fontFamily = FontFamily(
+                            Font(R.font.mealz_mullish)
+                        )),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                textStyle = TextStyle().copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                ))
             )
         }
     }
@@ -112,12 +120,17 @@ class CoursesUItemSelectorSearch : ItemSelectorSearch {
                 Text(
                     text = "${params.ingredientName.replaceFirstChar { if (it.isLowerCase()) it.titlecase(
                         Locale.ROOT) else it.toString() }} :",
-                    style = TextStyle(fontSize = 14.sp)
+                    style = TextStyle(fontSize = 14.sp).copy(fontFamily = FontFamily(
+                        Font(R.font.mealz_mullish)
+                    )
+                    )
                 )
                 Spacer(Modifier.width(2.dp))
                 Text(
                     text = "${params.ingredientQuantity} ${params.ingredientUnit}",
-                    style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black)
+                    style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black).copy(fontFamily = FontFamily(
+                        Font(R.font.mealz_mullish)
+                    ))
                 )
             }
         }

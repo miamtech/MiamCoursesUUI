@@ -43,6 +43,9 @@ import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.theme.Typography
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 
 
 class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
@@ -77,7 +80,10 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
                         ) {
                             Text(
                                 text = params.recipe.attributes?.title ?: "",
-                                style = Typography.subtitleBold.copy(lineBreak = LineBreak.Simple),
+                                style = Typography.subtitleBold.copy(lineBreak = LineBreak.Simple).copy(fontFamily = FontFamily(
+                                    Font(R.font.mealz_mullish)
+                                )
+                                ),
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis,
                                 modifier = Modifier.width(130.dp),
@@ -186,7 +192,7 @@ class CoursesUMyMealRecipe(): MyMealRecipeCardSuccess {
         val formattedPrice = price.formatPrice()
         Text(
             text = formattedPrice,
-            style = Typography.subtitleBold,
+            style = Typography.subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
             textAlign = TextAlign.Left,
             maxLines = 2,
             color = Colors.black

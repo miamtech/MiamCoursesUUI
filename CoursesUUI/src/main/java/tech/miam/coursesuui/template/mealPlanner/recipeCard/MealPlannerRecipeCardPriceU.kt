@@ -18,6 +18,11 @@ import androidx.compose.ui.unit.dp
 import ai.mealz.core.localisation.Localisation
 import tech.miam.coursesuui.theme.Typography
 import ai.mealz.sdk.ressource.Image.trait
+import ai.mealz.sdk.theme.Colors
+import androidx.compose.foundation.background
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import tech.miam.coursesuui.R
 import java.text.NumberFormat
 import java.util.*
 
@@ -42,7 +47,11 @@ fun RecipeCardPrice(price: Double) {
             )
             Text(
                 text = numberFormat.format(price),
-                style = Typography.title
+                style = Typography.title.copy(fontFamily = FontFamily(
+                    Font(R.font.mealz_mullish)
+                )
+                )
+
             )
         }
         Spacer(modifier = Modifier.width(4.dp))

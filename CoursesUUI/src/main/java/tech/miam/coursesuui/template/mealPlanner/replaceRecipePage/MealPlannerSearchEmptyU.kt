@@ -22,7 +22,7 @@ import tech.miam.coursesuui.R
 
 class MealPlannerSearchEmptyU: MealPlannerSearchEmpty {
     @Composable
-    override fun Content(params: MealPlannerSearchEmptyParameters) {
+    override fun Content(mealPlannerSearchEmptyParameters: MealPlannerSearchEmptyParameters) {
         Column(
             modifier = Modifier.padding(horizontal = 15.dp),
             verticalArrangement = Arrangement.Center,

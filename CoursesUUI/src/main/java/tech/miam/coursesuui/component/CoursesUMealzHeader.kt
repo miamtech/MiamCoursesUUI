@@ -22,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
@@ -65,7 +67,7 @@ fun CoursesUMealzHeader(
             Text(
                 text = title, Modifier.weight(1f),
                 textAlign = TextAlign.Left,
-                style = Typography.subtitleBold,
+                style = Typography.subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                 color = Colors.white
             )
         }

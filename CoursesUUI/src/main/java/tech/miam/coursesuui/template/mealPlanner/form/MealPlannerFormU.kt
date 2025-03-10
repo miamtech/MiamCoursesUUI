@@ -41,6 +41,8 @@ import ai.mealz.sdk.theme.Dimension
 import ai.mealz.sdk.theme.Typography
 import ai.mealz.sdk.components.mealPlanner.form.success.MealPlannerFormSuccess
 import ai.mealz.sdk.components.mealPlanner.form.success.MealPlannerFormSuccessParameters
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 
 import tech.miam.coursesuui.component.CoursesUButton
 import tech.miam.coursesuui.R
@@ -70,7 +72,7 @@ class CoursesUBudgetForm : MealPlannerFormSuccess {
                     .padding(Dimension.lPadding)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.budget_repas_logo),
+                    painter = painterResource(R.drawable.logo_budget_h),
                     contentDescription = "Background",
                     modifier = Modifier
                         .padding(vertical = 24.dp)
@@ -175,7 +177,7 @@ fun FormCard(params: MealPlannerFormSuccessParameters, onSubmit: () -> Unit = {}
         Text(
             text = "Choisissez vos repas de la semaine ou du mois selon votre budget :",
             color = Colors.black,
-            style = Typography.bodyBold,
+            style = Typography.bodyBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
             textAlign = TextAlign.Center
         )
         Divider(color = colorResource(R.color.miam_courses_u_background_gray))

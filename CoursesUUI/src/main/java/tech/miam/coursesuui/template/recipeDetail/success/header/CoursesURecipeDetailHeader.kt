@@ -29,6 +29,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tech.miam.coursesuui.R
@@ -74,7 +76,7 @@ class CoursesURecipeDetailHeader : RecipeDetailHeader {
                     Text(
                         text = params.title, Modifier.weight(1f),
                         textAlign = TextAlign.Left,
-                        style = subtitleBold,
+                        style = subtitleBold.copy(fontFamily = FontFamily(Font(R.font.mealz_mullish))),
                         color = Colors.white
                     )
                 }

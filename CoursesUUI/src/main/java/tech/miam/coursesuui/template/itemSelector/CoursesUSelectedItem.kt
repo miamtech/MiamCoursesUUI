@@ -31,7 +31,7 @@ import ai.mealz.sdk.components.price.formatPrice
 internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
     @Composable
     override fun Content(params: ItemSelectorSelectedItemParameters) {
-        val item = params.selectedItem
+        /*val item = params.selectedItem
         Column {
             Surface(color = Colors.backgroundLightGrey, modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -84,7 +84,7 @@ internal class CoursesUSelectedItem: ItemSelectorSelectedItem {
             Surface(color = Colors.border, modifier = Modifier.fillMaxWidth()) {
                 Spacer(Modifier.size(1.dp))
             }
-        }
+        }*/
     }
 
     @Composable

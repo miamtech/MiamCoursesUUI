@@ -2,7 +2,7 @@
 # Android / Compose
 composeCompilerPlugin = "1.5.8"
 composeCompilerLib = "1.5.8"
-compose = "1.6.7"
+compose = "1.9.0"
 composeJunit = "1.0.5"
 androidLegacy = "1.0.0"
 androidKTX = "1.8.0"

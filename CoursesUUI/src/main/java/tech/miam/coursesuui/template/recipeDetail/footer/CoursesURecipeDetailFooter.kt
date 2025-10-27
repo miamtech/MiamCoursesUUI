@@ -1,9 +1,9 @@
 package tech.miam.coursesuui.template.recipeDetail.footer
 
 import ai.mealz.core.base.state.ComponentUiState
+import ai.mealz.core.helpers.formatPrice
 import ai.mealz.core.localisation.Localisation
 import ai.mealz.core.viewModels.dynamicRecipeDetailFooter.IngredientStatusTypes
-import ai.mealz.sdk.components.price.formatPrice
 import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
 import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
 import ai.mealz.sdk.ressource.Image.cart
@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight

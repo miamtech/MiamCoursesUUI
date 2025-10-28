@@ -1,8 +1,8 @@
 package tech.miam.coursesuui.template.itemSelector
 
+import ai.mealz.core.helpers.formatPrice
 import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccess
 import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,11 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-
 import ai.mealz.core.localisation.Localisation
 import ai.mealz.core.model.Item
 import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.components.price.formatPrice
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import tech.miam.coursesuui.R

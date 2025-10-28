@@ -303,7 +303,7 @@ class MiamTemplateManager {
                             view = CoursesUGuestsCounter()
                         }
                     }
-                    segmentedControl { view = CoursesUSwapper() }
+                    segmentedButtonRow { view = CoursesUSwapper() }
                     products {
                         counter {
                             view = CoursesUProductCounter()

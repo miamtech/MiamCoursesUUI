@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.price.footer
 
+import ai.mealz.core.helpers.formatPrice
 import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccess
 import ai.mealz.sdk.components.price.footer.success.FooterPriceSuccessParameters
 import androidx.compose.animation.AnimatedVisibility
@@ -16,8 +17,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.Text
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,6 @@ import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.theme.Typography
-import ai.mealz.sdk.components.price.formatPrice
 
 class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
     @Composable
@@ -37,7 +37,9 @@ class CoursesURecipeDetailCookOnlyFooter: FooterPriceSuccess {
             enter = slideInVertically { height -> height },
             exit = slideOutVertically { height -> height }) {
 
-            BottomAppBar(Modifier.height(60.dp), backgroundColor = Colors.white) {
+            BottomAppBar(
+                modifier = Modifier.height(60.dp).background(Colors.white),
+            ) {
                 Row(
                     Modifier
                         .fillMaxWidth()

@@ -1,14 +1,15 @@
 package tech.miam.coursesuui.template.mealPlanner.recap
 
+import ai.mealz.core.helpers.formatPrice
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +25,6 @@ import ai.mealz.sdk.theme.Colors
 import ai.mealz.sdk.theme.Typography
 import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecap
 import ai.mealz.sdk.components.mealPlanner.recap.success.MealPlannerRecapParameters
-import ai.mealz.sdk.components.price.formatPrice
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 
@@ -107,7 +107,7 @@ class MealPlannerRecapU: MealPlannerRecap {
                                 .width(162.dp)
                                 .height(40.dp),
                             shape = RoundedCornerShape(40.dp),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFE22019))
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE22019))
                         ) {
 
                             Text(

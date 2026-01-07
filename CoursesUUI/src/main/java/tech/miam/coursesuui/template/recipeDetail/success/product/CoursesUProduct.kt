@@ -95,6 +95,7 @@ class CoursesUProduct: ProductSuccess {
                 )
                 ReplaceOrIgnoreRow(
                     params.isLocked,
+                    params.isInBasket,
                     params.ignoreProduct,
                     params.replaceProduct
                 )
@@ -285,6 +286,7 @@ class CoursesUProduct: ProductSuccess {
     @Composable
     fun ReplaceOrIgnoreRow(
         disable: Boolean,
+        isInBasket: Boolean,
         ignoreProduct: () -> Unit,
         replaceProduct: () -> Unit
 
@@ -295,18 +297,21 @@ class CoursesUProduct: ProductSuccess {
                 .fillMaxWidth()
                 .padding(Dimension.mPadding)
         ) {
-            TextButton(onClick = { ignoreProduct() }, enabled = !disable) {
-                Text(
-                    text = Localisation.recipeDetailsProduct.ignoreProduct.localised,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        lineHeight = 16.sp,
-                        fontWeight = FontWeight(700),
-                        color = grey
+            if (!isInBasket) {
+                // Can ignore product if not already added. Otherwise, can only replace it (or delete it by changing quantity)
+                TextButton(onClick = { ignoreProduct() }, enabled = !disable) {
+                    Text(
+                        text = Localisation.recipeDetailsProduct.ignoreProduct.localised,
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 16.sp,
+                            fontWeight = FontWeight(700),
+                            color = grey
+                        )
                     )
-                )
+                }
+                Spacer(modifier = Modifier.padding(Dimension.mPadding))
             }
-            Spacer(modifier = Modifier.padding(Dimension.mPadding))
             TextButton(onClick = { replaceProduct() }, enabled = !disable) {
                 Text(
                     text = Localisation.recipeDetailsProduct.replaceItem.localised,

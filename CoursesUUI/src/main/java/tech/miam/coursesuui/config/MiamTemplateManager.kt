@@ -585,14 +585,19 @@ class CoursesURecipeDetailSponsorBanner: RecipeDetailSponsorBanner {
                     Text(text = Localisation.sponsorBanner.sponsorBannerSpeach.localised, style = ai.mealz.sdk.theme.Typography.body.copy(fontFamily = FontFamily(
                         Font(R.font.mealz_mullish)
                     )))
-                    Spacer(Modifier.size(4.dp))
-                    Text(
-                        text = Localisation.sponsorBanner.sponsorBannerMoreInfo.localised,
-                        style = ai.mealz.sdk.theme.Typography.link.copy(fontFamily = FontFamily(
-                            Font(R.font.mealz_mullish)
-                        )),
-                        color = ai.mealz.sdk.theme.Colors.primary,
-                        modifier = Modifier.clickable { params.openSponsorDetail(params.sponsor) })
+                    if (params.hasSponsorDetailsInformation) {
+                        Spacer(Modifier.size(4.dp))
+                        Text(
+                            text = Localisation.sponsorBanner.sponsorBannerMoreInfo.localised,
+                            style = ai.mealz.sdk.theme.Typography.link.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.mealz_mullish)
+                                )
+                            ),
+                            color = ai.mealz.sdk.theme.Colors.primary,
+                            modifier = Modifier.clickable { params.openSponsorDetail(params.sponsor) }
+                        )
+                    }
                 }
                 params.sponsor.attributes?.let {
                     AsyncImage(

@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import ai.mealz.core.localisation.Localisation
-import ai.mealz.core.model.Item
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessItem
 import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -38,18 +38,23 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            params.items.forEach { item -> SelectableItem(item, params.select) }
+            params.itemSelectorItems.forEach { item ->
+                SelectableItem(item, params.isASubstitution)
+            }
         }
     }
 
     @Composable
-    private fun SelectableItem(selectableItem: Item, select: (pricedItem: Item) -> Unit) {
+    private fun SelectableItem(
+        selectableItem: ItemSelectorSuccessItem,
+        isASubstitution: Boolean
+    ) {
         Column {
             Surface(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                         AsyncImage(
-                            model = selectableItem.attributes?.image ?: "",
+                            model = selectableItem.imageUrl,
                             contentDescription = "Product image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
@@ -58,23 +63,19 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                                 .fillMaxSize()
                         )
                         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            selectableItem.attributes?.brand?.let { brand ->
-                                Text(
-                                    text = brand.uppercase(),
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    lineHeight = 18.sp,
-                                    fontFamily = FontFamily(Font(R.font.mealz_mullish))
-                                )
-                            }
-                            selectableItem.attributes?.name?.let { name ->
-                                Text(
-                                    text = name,
-                                    fontSize = 12.sp,
-                                    lineHeight = 18.sp
-                                )
-                            }
-                            Badge(selectableItem.capacity)
+                            Text(
+                                text = selectableItem.brand.uppercase(),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                lineHeight = 18.sp,
+                                fontFamily = FontFamily(Font(R.font.mealz_mullish))
+                            )
+                            Text(
+                                text = selectableItem.name,
+                                fontSize = 12.sp,
+                                lineHeight = 18.sp
+                            )
+                            Badge(selectableItem.packaging)
                         }
                     }
                     Row(
@@ -83,7 +84,7 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = selectableItem.attributes?.unitPrice?.toDouble()?.formatPrice() ?: "",
+                            text = selectableItem.price.formatPrice(),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Black,
                             lineHeight = 24.sp,
@@ -91,7 +92,7 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
                             textAlign = TextAlign.Center,
                             fontFamily = FontFamily(Font(R.font.mealz_mullish))
                         )
-                        PrimaryButton(selectableItem, select)
+                        PrimaryButton(selectableItem, isASubstitution)
                     }
                 }
             }
@@ -113,10 +114,17 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
     }
 
     @Composable
-    private fun PrimaryButton(selectableItem: Item, select: (item: Item) -> Unit) {
-        Surface(shape = RoundedCornerShape(100.dp), color = Colors.primary, modifier = Modifier.clickable { select(selectableItem) }) {
+    private fun PrimaryButton(
+        selectableItem: ItemSelectorSuccessItem,
+        isASubstitution: Boolean
+    ) {
+        Surface(
+            shape = RoundedCornerShape(100.dp),
+            color = Colors.primary,
+            modifier = Modifier.clickable { selectableItem.select() }
+        ) {
             Text(
-                text = Localisation.itemSelector.select.localised,
+                text = if (isASubstitution) Localisation.itemSelector.replace.localised else Localisation.itemSelector.add.localised,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 16.sp,

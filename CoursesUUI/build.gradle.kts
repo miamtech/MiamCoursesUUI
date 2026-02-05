@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -37,8 +38,8 @@ android {
 }
 
 dependencies {
-    api("ai.mealz.core:mealz-core:5.10.8")
-    api("ai.mealz.android:mealz-android:5.10.8")
+    //api("ai.mealz.core:mealz-core:6.0.0-alpha1")
+    api("ai.mealz.android:mealz-android:6.0.0-alpha1")
 
     api("androidx.core:core-ktx:1.17.0")
     api("androidx.appcompat:appcompat:1.7.1")

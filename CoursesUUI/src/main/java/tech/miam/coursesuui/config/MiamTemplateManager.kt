@@ -11,7 +11,6 @@ import ai.mealz.sdk.components.MiamTheme.favoritePage
 import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
-import ai.mealz.sdk.components.MiamTheme.mealPlanner
 import ai.mealz.sdk.components.MiamTheme.myMeal
 import ai.mealz.sdk.components.MiamTheme.myMealButton
 import ai.mealz.sdk.components.MiamTheme.mySpace
@@ -20,9 +19,7 @@ import ai.mealz.sdk.components.MiamTheme.price
 import ai.mealz.sdk.components.MiamTheme.recipeCard
 import ai.mealz.sdk.components.MiamTheme.recipeDetail
 import ai.mealz.sdk.components.MiamTheme.recipesPage
-import ai.mealz.sdk.components.baseComponent.header.Header
 import ai.mealz.sdk.components.baseComponent.recipesPage.IngredientImage
-import ai.mealz.sdk.components.baseComponent.search.SearchBar
 import ai.mealz.sdk.components.baseComponent.tag.Tag
 import ai.mealz.sdk.components.catalog.success.search.CatalogSuccessSearch
 import ai.mealz.sdk.components.catalog.success.search.CatalogSuccessSearchParameters
@@ -32,8 +29,6 @@ import ai.mealz.sdk.components.favoritePage.search.FavoritesSearch
 import ai.mealz.sdk.components.favoritePage.search.FavoritesSearchParameters
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeader
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeaderParameters
-import ai.mealz.sdk.components.mealPlanner.meals.footer.MealPlannerFooter
-import ai.mealz.sdk.components.mealPlanner.meals.footer.MealsFooterParameters
 import ai.mealz.sdk.components.mySpace.header.MySpaceHeader
 import ai.mealz.sdk.components.mySpace.header.MySpaceHeaderParameters
 import ai.mealz.sdk.components.orderHistory.success.search.OrderHistorySuccessSearch
@@ -53,12 +48,6 @@ import ai.mealz.sdk.theme.Colors.white
 import ai.mealz.sdk.theme.Dimension
 import ai.mealz.sdk.theme.Dimension.xlButtonHeight
 import ai.mealz.sdk.theme.Typography
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -82,12 +71,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -110,7 +96,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -128,7 +113,6 @@ import coil.compose.AsyncImage
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
-import tech.miam.coursesuui.component.CoursesUMealPlannerFooter
 import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
 import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUDiscountButton
@@ -140,24 +124,11 @@ import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectedItem
 import tech.miam.coursesuui.template.likeButton.CoursesULikeButtonLoading
 import tech.miam.coursesuui.template.likeButton.CoursesULikeButtonSuccess
-import tech.miam.coursesuui.template.mealPlanner.basketPreview.CoursesUBasketPreviewProductImp
-import tech.miam.coursesuui.template.mealPlanner.basketPreview.MealPlannerBasketPreviewSectionTitleU
-import tech.miam.coursesuui.template.mealPlanner.basketPreview.RecipeCardOverview
-import tech.miam.coursesuui.template.mealPlanner.callToAction.MealPlannerCallToActionU
-import tech.miam.coursesuui.template.mealPlanner.form.CoursesUBudgetForm
-import tech.miam.coursesuui.template.mealPlanner.planner.CoursesUBudgetPlannerToolbar
-import tech.miam.coursesuui.template.mealPlanner.recap.MealPlannerRecapU
-import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipeCardU
-import tech.miam.coursesuui.template.mealPlanner.recipeCard.MealPlannerRecipePlaceholderU
-import tech.miam.coursesuui.template.mealPlanner.recipeCard.RecipeLoadingViewU
-import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerReplaceRecipeSearchU
-import tech.miam.coursesuui.template.mealPlanner.replaceRecipePage.MealPlannerSearchEmptyU
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealButton
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealHeader
 import tech.miam.coursesuui.template.myMeal.CoursesUMyMealRecipe
 import tech.miam.coursesuui.template.price.footer.CoursesURecipeDetailCookOnlyFooter
 import tech.miam.coursesuui.template.recipeCard.CoursesUCatalogCategoryRecipeCard
-import tech.miam.coursesuui.template.recipeCard.CoursesURecipeCardLoading
 import tech.miam.coursesuui.template.recipeCard.StandaloneCoursesURecipeCard
 import tech.miam.coursesuui.template.recipeDetail.footer.CoursesURecipeDetailFooter
 import tech.miam.coursesuui.template.recipeDetail.info.CoursesURecipeDetailInfo
@@ -169,8 +140,6 @@ import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProduc
 import tech.miam.coursesuui.template.recipeDetail.success.product.CoursesUProductCounter
 import tech.miam.coursesuui.template.recipeDetail.swapper.CoursesUSwapper
 import tech.miam.coursesuui.template.recipeDetail.tags.CoursesUTags
-import java.text.NumberFormat
-import java.util.Currency
 import java.util.Locale
 import kotlin.math.ceil
 import kotlin.time.Duration
@@ -185,67 +154,6 @@ class MiamTemplateManager {
             mySpace {
                 header {
                     view = CoursesUMySpaceHeader()
-                }
-            }
-            mealPlanner {
-                meals {
-                    footer { view = CoursesUMealPlannerFooter() }
-                    footer {
-                        view = CoursesUMealPlannerFooter()
-                    }
-                    toolbar {
-                        view = CoursesUBudgetPlannerToolbar()
-                    }
-                    recipeCard {
-                        success {
-                            view = MealPlannerRecipeCardU()
-                        }
-                        placeholder {
-                            view = MealPlannerRecipePlaceholderU()
-                        }
-                        loading {
-                            view = RecipeLoadingViewU()
-                        }
-                    }
-                }
-                search {
-                    view = MealPlannerReplaceRecipeSearchU()
-                }
-                callToAction {
-                    success {
-                        view = MealPlannerCallToActionU()
-                    }
-                }
-                basketPreview {
-                    success {
-                        recipe {
-                            view = RecipeCardOverview()
-                        }
-                        foundProducts {
-                            product {
-                                view = CoursesUBasketPreviewProductImp()
-                            }
-                        }
-                        notInBasketProducts {
-                            header {
-                                view = MealPlannerBasketPreviewSectionTitleU()
-                            }
-                        }
-                    }
-                    footer {
-                        view = CoursesUMealPlannerFooter()
-                    }
-                }
-                form {
-                    success {
-                        view = CoursesUBudgetForm()
-                    }
-                }
-                recap {
-                    view = MealPlannerRecapU()
-                }
-                searchEmpty {
-                    view = MealPlannerSearchEmptyU()
                 }
             }
             ////////   MEAL PLANNER  END TEMPLATING /////////////////////
@@ -378,6 +286,7 @@ class MiamTemplateManager {
             //////// CATALOGUE //////////
             catalog {
                 success {
+                    enableMealPlanner = true
                     search { view = CoursesUCatalogSuccessSearch() }
                     categories {
                         category {
@@ -461,7 +370,6 @@ class MiamTemplateManager {
     }
 }
 
-
 class CoursesURecipeDetailProductListHeaderImp: RecipeDetailProductListHeader {
     @Composable
     override fun Content(params: RecipeDetailProductListHeaderParameters) {
@@ -490,7 +398,6 @@ class CoursesURecipeDetailProductListHeaderImp: RecipeDetailProductListHeader {
         }
     }
 }
-
 
 class CoursesUIngredientsImp : Ingredients {
     @Composable
@@ -698,8 +605,6 @@ class CoursesURecipeDetailSuccessTag: RecipeDetailSuccessTag {
         }
     }
 }
-
-
 
 internal class CoursesUCatalogSuccessSearch : CatalogSuccessSearch {
     @OptIn(ExperimentalLayoutApi::class)

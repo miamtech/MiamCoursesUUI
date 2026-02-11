@@ -1,7 +1,7 @@
 # 5.10.8
-- [FIX] Item selector label in case of substitution
-- [FIX] Remove ignore product button is product is already in basket
-- [FIX] Display "see more" button for sponsor block only the information is defined
+[FIX] Item selector label in case of substitution
+[FIX] Remove ignore product button is product is already in basket
+[FIX] Display "see more" button for sponsor block only the information is defined
 
 # 2.0.5
 [FEA] Added Price of products in basket to Recipe Details Footer

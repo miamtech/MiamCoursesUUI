@@ -25,4 +25,13 @@
         android:id="@+id/shelfFragment"
         android:name="tech.miam.coursesUDemoApp.features.miam.views.ShelfFragment"
         android:label="ShelfFragment" />
+    <fragment
+        android:id="@+id/planner"
+        android:name="tech.miam.coursesUDemoApp.features.miam.views.PlannerFragment"
+        android:label="PlannerFragment">
+
+        <argument
+            android:name="route"
+            app:argType="string" />
+    </fragment>
 </navigation>

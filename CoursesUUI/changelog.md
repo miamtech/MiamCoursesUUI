@@ -1,3 +1,6 @@
+# 6.0.0
+[FEA] Use Meals Planner V2 (and remove old planner v1 custom components)
+
 # 5.10.8
 [FIX] Item selector label in case of substitution
 [FIX] Remove ignore product button is product is already in basket

@@ -38,8 +38,11 @@ android {
 }
 
 dependencies {
-    //api("ai.mealz.core:mealz-core:6.0.0-alpha1")
-    api("ai.mealz.android:mealz-android:6.0.0-alpha1")
+    api("ai.mealz.android:mealz-android:6.0.0")
+    // Remove these following dependencies with the upgarde to 6.1.x version. Currently 6.0.0 wasn't built with them defined as api :/
+    api("org.jetbrains.kotlinx:atomicfu:0.27.0")
+    api("io.insert-koin:koin-android:3.5.3")
+    api("androidx.webkit:webkit:1.14.0")
 
     api("androidx.core:core-ktx:1.17.0")
     api("androidx.appcompat:appcompat:1.7.1")

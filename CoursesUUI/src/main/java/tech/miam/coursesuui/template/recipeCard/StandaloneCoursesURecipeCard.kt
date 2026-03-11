@@ -6,8 +6,12 @@ import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
 import ai.mealz.sdk.components.recipeCard.success.shelf.RecipeCardSuccessShelf
 import ai.mealz.sdk.components.recipeCard.success.shelf.RecipeCardSuccessShelfParams
 import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.ressource.Image.discount
 import ai.mealz.sdk.ressource.Image.miamGuest
 import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Colors.white
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Dimension.xsSpacerHeight
 import ai.mealz.sdk.theme.Typography.bodyBold
 import ai.mealz.sdk.theme.Typography.bodySmall
 import ai.mealz.sdk.theme.Typography.subtitleBold
@@ -55,6 +59,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.flow.MutableStateFlow
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.theme.Typography
 
 class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
     val height = 200.dp
@@ -114,10 +119,14 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                             Modifier.height(80.dp),
                             verticalArrangement = Arrangement.Bottom
                         ) {
-                            Box {
+                            Column {
+                                if (params.productDiscountCount >= 0) {
+                                    CoursesURecipeCardDiscountTag()
+                                    Spacer(Modifier.height(xsSpacerHeight))
+                                }
                                 PricePerPerson(
-                                    params.pricePerServe
-                                       , true
+                                    price = params.pricePerServe,
+                                    sameLine = true
                                 )
                             }
                             Box(modifier = Modifier.weight(1f)) {

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import ai.mealz.core.localisation.Localisation
+import ai.mealz.core.model.DiscountType
 import ai.mealz.core.viewModels.quantityFormatter.QuantityFormatter
 import ai.mealz.sdk.ressource.Image.cart
 import ai.mealz.sdk.theme.Colors
@@ -48,11 +49,14 @@ import ai.mealz.sdk.theme.Colors.white
 import ai.mealz.sdk.components.baseComponent.counter.CounterParameters
 import ai.mealz.sdk.di.TemplateDI
 import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Dimension.mPadding
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.component.CoursesUProductDiscountTagMessage
+import tech.miam.coursesuui.theme.Typography
 
 class CoursesUProduct: ProductSuccess {
     @Composable
@@ -76,7 +80,14 @@ class CoursesUProduct: ProductSuccess {
                     guestsCount.value,
                     params.defaultRecipeGuest
                 )
-                Surface(modifier = Modifier.height(32.dp).padding(vertical = 12.dp)) {}
+                CoursesUProductDiscountTagMessage(
+                    discountAmount = params.productDiscountAmount ?: 0.0,
+                    discountType = params.productDiscountType,
+                    modifier = Modifier.padding(mPadding),
+                    noDiscountView = {
+                        Surface(modifier = Modifier.height(32.dp).padding(vertical = 12.dp)) {}
+                    }
+                )
                 ProductInformation(
                     params.productName,
                     params.productBrand,

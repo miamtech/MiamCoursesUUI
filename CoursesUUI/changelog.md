@@ -1,3 +1,6 @@
+# 6.0.1
+[FIX] Add missing discount tag inside customization (recipe card and product items)
+
 # 6.0.0
 [FEA] Use Meals Planner V2 (and remove old planner v1 custom components)
 

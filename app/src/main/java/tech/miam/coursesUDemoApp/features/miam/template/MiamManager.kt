@@ -30,7 +30,7 @@ object MiamSdkHelper : CoroutineScope by CoroutineScope(Dispatchers.Main) {
     private var _basketMiamRecipeCountFlow = MutableStateFlow(0)
     val basketMiamRecipeCountFlow = _basketMiamRecipeCountFlow.asStateFlow()
 
-    val supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlBST0QiCn0"
+    val supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0udGVzdCIsCgkibWlhbV9vcmlnaW4iOiAiY291cnNlc3UiLAoJIm9yaWdpbiI6ICJtaWFtLmNvdXJzZXN1LmFwcCIsCgkibWlhbV9lbnZpcm9ubWVudCI6ICJVQVQiCn0="
 
 
 

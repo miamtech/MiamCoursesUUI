@@ -93,12 +93,6 @@ class CoursesUCatalogCategoryRecipeCard : RecipeCardSuccessCatalog {
                         } else {
                             Spacer(Modifier.weight(1f))
                         }
-
-                        /*if (params.isSponsor) {
-                            CatalogSponsorLogo(params.sponsorLogo)
-                        } else {
-                            Spacer(Modifier.weight(1f))
-                        }*/
                     }
                     Row(
                         Modifier

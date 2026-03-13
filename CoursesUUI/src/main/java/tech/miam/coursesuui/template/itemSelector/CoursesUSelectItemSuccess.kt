@@ -30,6 +30,7 @@ import ai.mealz.sdk.theme.Colors
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import tech.miam.coursesuui.R
+import tech.miam.coursesuui.component.CoursesUProductDiscountTagMessage
 
 class CoursesUSelectItemSuccess: ItemSelectorSuccess {
 
@@ -52,6 +53,10 @@ class CoursesUSelectItemSuccess: ItemSelectorSuccess {
         Column {
             Surface(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    CoursesUProductDiscountTagMessage(
+                        discountAmount = selectableItem.discountAmount ?: 0.0,
+                        discountType = selectableItem.discountType
+                    )
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                         AsyncImage(
                             model = selectableItem.imageUrl,

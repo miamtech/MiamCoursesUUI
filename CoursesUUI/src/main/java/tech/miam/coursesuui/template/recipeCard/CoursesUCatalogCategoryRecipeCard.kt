@@ -3,10 +3,17 @@ package tech.miam.coursesuui.template.recipeCard
 import ai.mealz.core.helpers.formatPrice
 import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import ai.mealz.sdk.components.baseComponent.tag.Tag
+import ai.mealz.sdk.components.recipeCard.SponsorLogo
 import ai.mealz.sdk.components.recipeCard.success.catalog.RecipeCardSuccessCatalog
 import ai.mealz.sdk.components.recipeCard.success.catalog.RecipeCardSuccessCatalogParams
 import ai.mealz.sdk.ressource.Image
+import ai.mealz.sdk.ressource.Image.discount
 import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Colors.secondary
+import ai.mealz.sdk.theme.Colors.white
+import ai.mealz.sdk.theme.Dimension
+import ai.mealz.sdk.theme.Dimension.xsSpacerHeight
 import ai.mealz.sdk.theme.Typography
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -75,8 +82,14 @@ class CoursesUCatalogCategoryRecipeCard : RecipeCardSuccessCatalog {
                             .align(Alignment.TopStart),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        if (params.isSponsor) {
-                            CatalogSponsorLogo(params.sponsorLogo)
+                        if (params.isSponsor || params.productDiscountCount > 0) {
+                            Column {
+                                if (params.productDiscountCount > 0) {
+                                    CoursesURecipeCardDiscountTag(modifier = Modifier.padding(Dimension.mPadding))
+                                    Spacer(Modifier.height(xsSpacerHeight))
+                                }
+                                if (params.isSponsor) CatalogSponsorLogo(params.sponsorLogo)
+                            }
                         } else {
                             Spacer(Modifier.weight(1f))
                         }

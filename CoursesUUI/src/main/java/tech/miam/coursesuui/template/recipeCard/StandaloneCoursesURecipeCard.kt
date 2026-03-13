@@ -59,7 +59,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.flow.MutableStateFlow
 import tech.miam.coursesuui.R
-import tech.miam.coursesuui.theme.Typography
 
 class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
     val height = 200.dp
@@ -120,7 +119,7 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                             verticalArrangement = Arrangement.Bottom
                         ) {
                             Column {
-                                if (params.productDiscountCount >= 0) {
+                                if (params.productDiscountCount > 0) {
                                     CoursesURecipeCardDiscountTag()
                                     Spacer(Modifier.height(xsSpacerHeight))
                                 }

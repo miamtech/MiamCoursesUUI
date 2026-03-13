@@ -6,11 +6,8 @@ import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
 import ai.mealz.sdk.components.recipeCard.success.shelf.RecipeCardSuccessShelf
 import ai.mealz.sdk.components.recipeCard.success.shelf.RecipeCardSuccessShelfParams
 import ai.mealz.sdk.ressource.Image
-import ai.mealz.sdk.ressource.Image.discount
 import ai.mealz.sdk.ressource.Image.miamGuest
 import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.theme.Colors.white
-import ai.mealz.sdk.theme.Dimension
 import ai.mealz.sdk.theme.Dimension.xsSpacerHeight
 import ai.mealz.sdk.theme.Typography.bodyBold
 import ai.mealz.sdk.theme.Typography.bodySmall
@@ -26,12 +23,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -99,23 +98,23 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                         BadgeViewGuest(params.guest)
                     }
                 }
-                Column {
+                Column(Modifier.fillMaxSize()) {
                     RecipeCardTitleView(
                         params.recipeTitle,
                         Modifier
-                            .weight(1f)
-                            .padding(12.dp)
+                            .wrapContentSize()
+                            .padding(top = 12.dp, start = 12.dp, end = 12.dp)
                     )
                     Row(
                         Modifier
-                            .fillMaxWidth()
+                            .fillMaxSize()
                             .padding(vertical = 8.dp)
-                            .padding(start = 12.dp, end = 16.dp),
+                            .padding(start = 12.dp, end = 16.dp)
+                            .weight(1f),
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.Bottom
                     ) {
                         Column(
-                            Modifier.height(80.dp),
                             verticalArrangement = Arrangement.Bottom
                         ) {
                             Column {
@@ -128,7 +127,7 @@ class StandaloneCoursesURecipeCard : RecipeCardSuccessShelf {
                                     sameLine = true
                                 )
                             }
-                            Box(modifier = Modifier.weight(1f)) {
+                            Box {
                                 RecipeCardCTAView(
                                     params.mealzRecipeId,
                                     params.isInCart

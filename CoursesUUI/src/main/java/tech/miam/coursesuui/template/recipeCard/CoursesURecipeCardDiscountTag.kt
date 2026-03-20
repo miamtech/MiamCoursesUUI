@@ -1,6 +1,5 @@
 package tech.miam.coursesuui.template.recipeCard
 
-import ai.mealz.core.localisation.Localisation
 import ai.mealz.sdk.ressource.Image.discount
 import ai.mealz.sdk.theme.Colors.white
 import ai.mealz.sdk.theme.Dimension
@@ -12,12 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import tech.miam.coursesuui.theme.Typography
 
 @Composable
@@ -48,8 +48,10 @@ fun CoursesURecipeCardDiscountTag(
 
             Spacer(modifier = Modifier.width(Dimension.mPadding))
             Text(
-                text = Localisation.recipe.discount.localised,
-                style = Typography.bodyMedium,
+                text = "Promo'",
+                style = Typography.bodyMedium.copy(
+                    fontWeight = FontWeight.Bold
+                ),
                 color = white
             )
         }

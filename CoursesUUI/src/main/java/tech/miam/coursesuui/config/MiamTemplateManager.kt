@@ -5,11 +5,14 @@ import ai.mealz.core.model.Ingredient
 import ai.mealz.core.model.RecipeDifficulty
 import ai.mealz.core.viewModels.quantityFormatter.QuantityFormatter
 import ai.mealz.sdk.components.MiamTheme
+import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
+import ai.mealz.sdk.components.MiamTheme.favoritePage
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
 import ai.mealz.sdk.components.MiamTheme.myMeal
 import ai.mealz.sdk.components.MiamTheme.myMealButton
+import ai.mealz.sdk.components.MiamTheme.mySpace
 import ai.mealz.sdk.components.MiamTheme.orderHistory
 import ai.mealz.sdk.components.MiamTheme.price
 import ai.mealz.sdk.components.MiamTheme.recipeCard
@@ -18,8 +21,6 @@ import ai.mealz.sdk.components.baseComponent.recipesPage.IngredientImage
 import ai.mealz.sdk.components.baseComponent.tag.Tag
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeader
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeaderParameters
-import ai.mealz.sdk.components.orderHistory.success.search.OrderHistorySuccessSearch
-import ai.mealz.sdk.components.orderHistory.success.search.OrderHistorySuccessSearchParameters
 import ai.mealz.sdk.components.recipeDetail.success.ingredients.Ingredients
 import ai.mealz.sdk.components.recipeDetail.success.ingredients.IngredientsParameters
 import ai.mealz.sdk.components.recipeDetail.success.productListHeader.RecipeDetailProductListHeader
@@ -213,13 +214,9 @@ class MiamTemplateManager {
             ////// END ITEM SELECTOR //////////
             ////// MY MEAL  //////////
             myMeal {
-                header {
-                    view = CoursesUMyMealHeader()
-                }
+                header { view = CoursesUMyMealHeader() }
                 recipeCard {
-                    success {
-                        view = CoursesUMyMealRecipe()
-                    }
+                    success { view = CoursesUMyMealRecipe() }
                 }
                 empty { view = CoursesUEmptyPage("Vous n'avez aucune idées repas") }
             }
@@ -252,18 +249,22 @@ class MiamTemplateManager {
             }
             //// END MY MEAL BUTTON  //////////
 
-            //// ORDER HISTORY  //////////$
-            orderHistory {
-                success {
-                    search {
-                        view = CourseUOrderHistorySuccessSearch()
-                    }
-                    order {
-                        numberOfRecipeBeforeOverflow = 4
-                    }
-                }
+            catalog {
+                displayVariant = DISPLAY_VARIANT
             }
-            //// END ORDER HISTORY  //////////
+
+            // region MySpace and sub pages
+            mySpace {
+                displayVariant = DISPLAY_VARIANT
+            }
+            favoritePage {
+                displayVariant = DISPLAY_VARIANT
+            }
+            orderHistory {
+                displayVariant = DISPLAY_VARIANT
+                //loading {  }
+            }
+            // endregion
         }
     }
 
@@ -278,6 +279,10 @@ class MiamTemplateManager {
 
     private fun overrideMealzColors() {
         Colors.primary = Color(0, 125, 143)
+    }
+
+    companion object {
+        private val DISPLAY_VARIANT: Int = 3
     }
 }
 
@@ -543,26 +548,6 @@ class CoursesUItemSelectorHeader: ItemSelectorHeader {
                 style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold).copy(fontFamily = FontFamily(
                     Font(R.font.mealz_mullish)
                 ))
-            )
-        }
-    }
-}
-
-class CourseUOrderHistorySuccessSearch : OrderHistorySuccessSearch {
-    @Composable
-    override fun Content(params: OrderHistorySuccessSearchParameters) {
-        Column(
-            Modifier.padding(
-                vertical = Dimension.mPadding,
-                horizontal = Dimension.mPadding
-            ),
-            verticalArrangement = Arrangement.spacedBy(
-                Dimension.sSpacerHeight
-            )
-        ) {
-            CoursesUSearchBar(
-                Localisation.orderHistory.searchBarText.localised,
-                params.onChange
             )
         }
     }

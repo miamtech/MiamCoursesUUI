@@ -8,7 +8,6 @@ import ai.mealz.sdk.components.MiamTheme
 import ai.mealz.sdk.components.MiamTheme.catalog
 import ai.mealz.sdk.components.MiamTheme.defaultViews
 import ai.mealz.sdk.components.MiamTheme.favoritePage
-import ai.mealz.sdk.components.MiamTheme.filter
 import ai.mealz.sdk.components.MiamTheme.itemSelector
 import ai.mealz.sdk.components.MiamTheme.likeButton
 import ai.mealz.sdk.components.MiamTheme.myMeal
@@ -18,21 +17,10 @@ import ai.mealz.sdk.components.MiamTheme.orderHistory
 import ai.mealz.sdk.components.MiamTheme.price
 import ai.mealz.sdk.components.MiamTheme.recipeCard
 import ai.mealz.sdk.components.MiamTheme.recipeDetail
-import ai.mealz.sdk.components.MiamTheme.recipesPage
 import ai.mealz.sdk.components.baseComponent.recipesPage.IngredientImage
 import ai.mealz.sdk.components.baseComponent.tag.Tag
-import ai.mealz.sdk.components.catalog.success.search.CatalogSuccessSearch
-import ai.mealz.sdk.components.catalog.success.search.CatalogSuccessSearchParameters
-import ai.mealz.sdk.components.catalog.success.search.PreferencesManager
-import ai.mealz.sdk.components.common.Clickable
-import ai.mealz.sdk.components.favoritePage.search.FavoritesSearch
-import ai.mealz.sdk.components.favoritePage.search.FavoritesSearchParameters
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeader
 import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeaderParameters
-import ai.mealz.sdk.components.mySpace.header.MySpaceHeader
-import ai.mealz.sdk.components.mySpace.header.MySpaceHeaderParameters
-import ai.mealz.sdk.components.orderHistory.success.search.OrderHistorySuccessSearch
-import ai.mealz.sdk.components.orderHistory.success.search.OrderHistorySuccessSearchParameters
 import ai.mealz.sdk.components.recipeDetail.success.ingredients.Ingredients
 import ai.mealz.sdk.components.recipeDetail.success.ingredients.IngredientsParameters
 import ai.mealz.sdk.components.recipeDetail.success.productListHeader.RecipeDetailProductListHeader
@@ -43,11 +31,8 @@ import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTag
 import ai.mealz.sdk.components.recipeDetail.success.tag.RecipeDetailSuccessTagParameters
 import ai.mealz.sdk.ressource.Image
 import ai.mealz.sdk.theme.Colors
-import ai.mealz.sdk.theme.Colors.primary
-import ai.mealz.sdk.theme.Colors.white
 import ai.mealz.sdk.theme.Dimension
 import ai.mealz.sdk.theme.Dimension.xlButtonHeight
-import ai.mealz.sdk.theme.Typography
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -56,54 +41,40 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -113,11 +84,6 @@ import coil.compose.AsyncImage
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.component.CoursesUEmptyPage
 import tech.miam.coursesuui.component.CoursesUGuestsCounter
-import tech.miam.coursesuui.template.catalog.CoursesUCatalogToolbar
-import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUCatalogCategory
-import tech.miam.coursesuui.template.catalog.categoryPage.CoursesUDiscountButton
-import tech.miam.coursesuui.template.filter.CoursesUFilterFooter
-import tech.miam.coursesuui.template.filter.CoursesUFilterHeader
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorNoResults
 import tech.miam.coursesuui.template.itemSelector.CoursesUItemSelectorSearch
 import tech.miam.coursesuui.template.itemSelector.CoursesUSelectItemSuccess
@@ -150,26 +116,11 @@ class MiamTemplateManager {
         overrideMealzColors()
         overrideIcon()
         MiamTheme.Template {
-            //////// MEAL PLANNER TEMPLATING /////////////////
-            mySpace {
-                header {
-                    view = CoursesUMySpaceHeader()
-                }
-            }
             ////////   MEAL PLANNER  END TEMPLATING /////////////////////
             /////// DEFAULT VIEW TEMPLATING //////////////////
             defaultViews {
                 empty {
                     view = CoursesUEmptyPage()
-                }
-            }
-            /////// END DEFAULT VIEW TEMPLATING //////////////////
-
-            /////// FAVORITES PAGE TEMPLATING //////////////////
-            favoritePage {
-                empty { view = CoursesUEmptyPage("Vous n'avez aucune idées repas") }
-                search {
-                    view = CoursesUFavoritesSearch()
                 }
             }
             /////// END DEFAULT VIEW TEMPLATING //////////////////
@@ -263,13 +214,9 @@ class MiamTemplateManager {
             ////// END ITEM SELECTOR //////////
             ////// MY MEAL  //////////
             myMeal {
-                header {
-                    view = CoursesUMyMealHeader()
-                }
+                header { view = CoursesUMyMealHeader() }
                 recipeCard {
-                    success {
-                        view = CoursesUMyMealRecipe()
-                    }
+                    success { view = CoursesUMyMealRecipe() }
                 }
                 empty { view = CoursesUEmptyPage("Vous n'avez aucune idées repas") }
             }
@@ -283,35 +230,7 @@ class MiamTemplateManager {
                 }
             }
             //// END PRICE  //////////
-            //////// CATALOGUE //////////
-            catalog {
-                success {
-                    enableMealPlanner = true
-                    search { view = CoursesUCatalogSuccessSearch() }
-                    categories {
-                        category {
-                            view = CoursesUCatalogCategory()
-                        }
-                        discountButton {
-                            view = CoursesUDiscountButton()
-                        }
-                    }
-                    toolbar {
-                        enablePreferences = false
-                        view = CoursesUCatalogToolbar()
-                    }
-                }
-            }
-            //// END CATALOGUE //////////
-            //// RECIPE PAGE //////////
-            recipesPage {
-                success {
-                    catalogPageColumns = 2
-                    catalogPageHorizontalSpacing = 8
-                    catalogPageVerticalSpacing = 8
-                }
-            }
-            //// END RECIPE PAGE //////////
+
             //// LIKE BUTTON //////////
             likeButton {
                 loading {
@@ -329,30 +248,23 @@ class MiamTemplateManager {
                 }
             }
             //// END MY MEAL BUTTON  //////////
-            //// FILTER BUTTON  //////////$
-            filter {
-                success {
-                    header {
-                        view = CoursesUFilterHeader()
-                    }
-                    footer {
-                        view = CoursesUFilterFooter()
-                    }
-                }
+
+            catalog {
+                displayVariant = DISPLAY_VARIANT
             }
-            //// END FILTER  //////////
-            //// ORDER HISTORY  //////////$
+
+            // region MySpace and sub pages
+            mySpace {
+                displayVariant = DISPLAY_VARIANT
+            }
+            favoritePage {
+                displayVariant = DISPLAY_VARIANT
+            }
             orderHistory {
-                success {
-                    search {
-                        view = CourseUOrderHistorySuccessSearch()
-                    }
-                    order {
-                        numberOfRecipeBeforeOverflow = 4
-                    }
-                }
+                displayVariant = DISPLAY_VARIANT
+                //loading {  }
             }
-            //// END ORDER HISTORY  //////////
+            // endregion
         }
     }
 
@@ -367,6 +279,10 @@ class MiamTemplateManager {
 
     private fun overrideMealzColors() {
         Colors.primary = Color(0, 125, 143)
+    }
+
+    companion object {
+        private val DISPLAY_VARIANT: Int = 3
     }
 }
 
@@ -606,153 +522,6 @@ class CoursesURecipeDetailSuccessTag: RecipeDetailSuccessTag {
     }
 }
 
-internal class CoursesUCatalogSuccessSearch : CatalogSuccessSearch {
-    @OptIn(ExperimentalLayoutApi::class)
-    @Composable
-    override fun Content(params: CatalogSuccessSearchParameters) {
-        val context = LocalContext.current
-        val textState = remember { mutableStateOf("") }
-        val preferenceManager = remember { PreferencesManager(context) }
-        val history = remember { mutableStateOf(preferenceManager.getData("history")) }
-
-        Box(
-            Modifier
-                .fillMaxSize()
-                .background(ai.mealz.sdk.theme.Colors.white)
-        ) {
-            Column(modifier = Modifier.padding(horizontal = 10.dp)) {
-                BackButton(params.onClose)
-                SearchContainer {
-                    val focusRequester = FocusRequester()
-                    TextField(
-                        modifier = Modifier
-                            .focusRequester(focusRequester)
-                            .onFocusChanged {
-                                textState.value = ""
-                            },
-                        singleLine = true,
-                        value = textState.value,
-                        onValueChange = { textState.value = it },
-                        colors = TextFieldDefaults.textFieldColors(
-                            disabledTextColor = Color.Transparent,
-                            backgroundColor = Color.White,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                            disabledIndicatorColor = Color.Transparent
-                        ),
-                        placeholder = { Text(Localisation.catalog.searchPlaceholder.localised) },
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            imeAction = ImeAction.Search
-                        ),
-                        keyboardActions = KeyboardActions(
-                            onSearch = {
-                                history.value.add(textState.value)
-                                preferenceManager.saveData("history", history.value.takeLast(5).toMutableList())
-                                params.onApply(textState.value)
-                            }
-                        ),
-                        textStyle = TextStyle().copy(fontFamily = FontFamily(
-                            Font(R.font.mealz_mullish)
-                        ))
-                    )
-                    SearchButton(textState, {
-                        history.value.add(textState.value)
-                        preferenceManager.saveData("history", history.value.takeLast(5).toMutableList())
-                        params.onApply(textState.value)
-                    })
-                }
-                FlowRow (
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.padding(12.dp)
-                ) {
-                    history.value.reversed().forEach {
-                        Row(
-                            modifier = Modifier
-                                .background(
-                                    shape = RoundedCornerShape(100.dp),
-                                    color = ai.mealz.sdk.theme.Colors.backgroundGrey
-                                )
-                                .clickable {
-                                    params.onApply(it)
-                                }
-                                .padding(vertical = 6.dp, horizontal = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-
-                        ) {
-                            Text(
-                                text = it,
-                                style = TextStyle(
-                                    ai.mealz.sdk.theme.Colors.boldText,
-                                    fontSize = 16.sp
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
-    @Composable
-    fun BackButton(close: () -> Unit) {
-        Row(Modifier.fillMaxWidth()) {
-            Clickable(onClick = close) {
-                Image(
-                    painter = painterResource(ai.mealz.sdk.ressource.Image.toggleCaret),
-                    contentDescription = "Back button",
-                    Modifier
-                        .rotate(180f)
-                        .padding(vertical = 8.dp)
-                )
-            }
-        }
-    }
-
-    @Composable
-    fun SearchContainer(children: @Composable () -> Unit) {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .border(
-                    border = BorderStroke(1.dp, ai.mealz.sdk.theme.Colors.primary),
-                    shape = RoundedCornerShape(50)
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            children()
-        }
-    }
-
-    @Composable
-    fun SearchButton(textState: MutableState<String>, apply: (String) -> Unit) {
-
-        Surface(
-            shape = CircleShape,
-            elevation = 8.dp,
-            modifier = Modifier
-                .padding(horizontal = 10.dp)
-                .clickable {
-                    apply(textState.value)
-                }) {
-            Box(
-                Modifier
-                    .background(primary)
-                    .padding(8.dp)
-            )
-            {
-                Image(
-                    painter = painterResource(ai.mealz.sdk.ressource.Image.search),
-                    contentDescription = "Search button",
-                    colorFilter = ColorFilter.tint(white)
-                )
-            }
-        }
-    }
-}
-
 class CoursesUItemSelectorHeader: ItemSelectorHeader {
     @Composable
     override fun Content(params: ItemSelectorHeaderParameters) {
@@ -782,99 +551,6 @@ class CoursesUItemSelectorHeader: ItemSelectorHeader {
             )
         }
     }
-}
-
-class CoursesUMySpaceHeader : MySpaceHeader {
-    @Composable
-    override fun Content(params: MySpaceHeaderParameters) {
-       /* Header(
-            Localisation.mySpace.title.localised,
-            false,
-            params.back
-        )*/
-
-        val widthOfButton = 25.dp
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .padding(Dimension.mPadding)
-        ) {
-            Row {
-                Box(
-                    Modifier
-                        .clip(RoundedCornerShape(Dimension.mPadding))
-                        .background(Colors.backgroundSecondary)
-                        .clickable { params.back() }
-                ) {
-                    Image(
-                        painter = painterResource(Image.previous),
-                        contentDescription = "previous",
-                        modifier = Modifier
-                            .padding(Dimension.mPadding)
-                            .width(widthOfButton)
-                    )
-                }
-            }
-            Text(
-                modifier = Modifier
-                    .padding(start = if (!false) widthOfButton + Dimension.mPadding else 0.dp)
-                    .padding(
-                        horizontal = Dimension.lPadding,
-                        vertical = Dimension.mPadding
-                    )
-                    .then(if (false) Modifier.align(Alignment.Center) else Modifier),
-                text = params.text,
-                style = Typography.subtitleBold.copy(fontFamily = FontFamily(
-                    Font(R.font.mealz_mullish)
-                )
-                ),
-                color = Colors.boldText
-            )
-        }
-
-
-    }
-}
-
-class CourseUOrderHistorySuccessSearch : OrderHistorySuccessSearch {
-    @Composable
-    override fun Content(params: OrderHistorySuccessSearchParameters) {
-        Column(
-            Modifier.padding(
-                vertical = Dimension.mPadding,
-                horizontal = Dimension.mPadding
-            ),
-            verticalArrangement = Arrangement.spacedBy(
-                Dimension.sSpacerHeight
-            )
-        ) {
-            CoursesUSearchBar(
-                Localisation.orderHistory.searchBarText.localised,
-                params.onChange
-            )
-        }
-    }
-}
-
-internal class CoursesUFavoritesSearch : FavoritesSearch {
-    @Composable
-    override fun Content(params: FavoritesSearchParameters) {
-        Column(
-            Modifier.padding(
-                vertical = Dimension.mPadding,
-                horizontal = Dimension.mPadding
-            ),
-            verticalArrangement = Arrangement.spacedBy(
-                Dimension.sSpacerHeight
-            )
-        ) {
-            CoursesUSearchBar(
-                params.searchPlaceholder,
-                params.onChanges
-            )
-        }
-    }
-
 }
 
 @Composable
@@ -909,9 +585,12 @@ fun CoursesUSearchBar(searchPlaceholder: String, search: (String) -> Unit) {
                 textFieldValue = it
                 search(it.text)
             },
-            colors = TextFieldDefaults.textFieldColors(
+            colors = TextFieldDefaults.colors(
                 disabledTextColor = Color.Transparent,
-                backgroundColor = Color.White,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color.White,
+                disabledContainerColor = Color.White,
+                errorContainerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent

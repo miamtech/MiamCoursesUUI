@@ -1,5 +1,6 @@
 package tech.miam.coursesuui.template.myMeal
 
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPage
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,12 +27,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miam.core.localisation.Localisation
-import com.miam.kmm_miam_sdk.android.theme.Colors
-import com.miam.kmm_miam_sdk.android.theme.Typography
-import com.miam.kmm_miam_sdk.android.ui.components.common.Clickable
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPage
-import com.miam.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.core.localisation.Localisation
+import ai.mealz.sdk.theme.Colors
+import ai.mealz.sdk.theme.Typography
+import ai.mealz.sdk.components.baseComponent.emptyPage.EmptyPageParameters
+import ai.mealz.sdk.components.common.Clickable
 import tech.miam.coursesuui.R
 
 class CoursesUMyMealAndFavoritesEmpty: EmptyPage {

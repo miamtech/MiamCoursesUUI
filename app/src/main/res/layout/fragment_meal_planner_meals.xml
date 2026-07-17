@@ -5,7 +5,7 @@
     android:background="@color/miam_courses_u_background_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.miam.sdk.components.mealPlanner.meals.MealPlanner
+    <ai.mealz.sdk.components.mealPlanner.meals.MealPlanner
         android:id="@+id/meal_planner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,17 +1,16 @@
 [versions]
 # Android / Compose
-composeCompilerPlugin = "1.4.0-alpha01"
-composeCompilerLib = "1.3.2"
-compose = "1.3.1"
+composeCompilerPlugin = "1.5.8"
+composeCompilerLib = "1.5.8"
+compose = "1.9.0"
 composeJunit = "1.0.5"
 androidLegacy = "1.0.0"
 androidKTX = "1.8.0"
-androidNavigation = "2.5.2"
 composeViewModel = "2.4.1"
+androidNavigation = "2.7.7"
 androidConstraintlayout = "2.1.3"
-androidActivityCompose = "1.4.0"
 androidAppcompat = "1.4.1"
-androidMaterial = "1.7.0"
+androidMaterial = "1.12.0"
 coil = "1.3.1"
 
 # Compose

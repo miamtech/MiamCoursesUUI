@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_call_to_action"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-            <com.miam.sdk.components.mealPlanner.callToAction.MealPlannerCallToAction
+
+            <ai.mealz.sdk.components.mealPlanner.callToAction.MealPlannerCallToAction
                 android:id="@+id/CallToActionU"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               />
+                android:layout_height="wrap_content" />
 
-            <com.miam.sdk.components.recipeJourney.RecipeJourney
+            <ai.mealz.sdk.components.recipeJourney.RecipeJourney
                 android:id="@+id/Recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/CallToActionU"
+                app:layout_constraintBottom_toBottomOf="@+id/CallToActionU" />
 
-                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

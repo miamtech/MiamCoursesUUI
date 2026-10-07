@@ -14,8 +14,8 @@ android {
         applicationId "tech.miam.coursesUDemoApp"
         minSdk 24
         targetSdk 33
-        versionCode = 26030310
-        versionName = "6.2.0"
+        versionCode = 26100709
+        versionName = "6.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

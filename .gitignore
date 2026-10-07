@@ -13,7 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
-app/src/google-services.json
+app/google-services.json
 miamandroid-e8aaba9e4d7b.json
 .idea/gradle.xml
+.idea/migrations.xml
 .idea/misc.xml
+.idea/deploymentTargetDropDown.xml
+.idea/render.experimental.xml

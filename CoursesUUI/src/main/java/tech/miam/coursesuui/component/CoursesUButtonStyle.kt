@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.miam.kmm_miam_sdk.android.theme.Dimension
+import ai.mealz.sdk.theme.Dimension
 import tech.miam.coursesuui.R
 import tech.miam.coursesuui.template.mealPlanner.form.MealCountState
 

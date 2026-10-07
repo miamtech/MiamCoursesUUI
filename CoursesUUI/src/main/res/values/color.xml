@@ -27,6 +27,9 @@
     <color name="miam_courses_u_grey_text">
         #BCBCBB
     </color>
+    <color name="miam_courses_u_dark_background">
+        #005562
+    </color>
     <color
         name="miam_courses_u_text_gray"
         >#575756</color>

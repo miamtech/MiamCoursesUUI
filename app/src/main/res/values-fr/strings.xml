@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="com_miam_favorites_no_favorites" tools:ignore="ExtraTranslation">Vous n\'avez aucune idées repas</string>
+    <string name="com_miam_item_selector_selected">Déjà sélectionné</string>
+    <string name="com_miam_recipe_difficulty_low">Facile</string>
+    <string name="com_miam_recipe_difficulty_medium">Moyen</string>
+    <string name="com_miam_recipe_difficulty_high">Difficile</string>
+
+    <string name="com_miam_budget_headline_button">Mon budget, mes repas</string>
+    <string name="com_miam_budget_subtext_button">Je planifie ... </string>
+    <string name="com_miam_budget_add_a_meal">Ajouter une idée repas </string>
+    <string name="com_miam_budget_plan_meals_title">C\'est parti !</string>
+    <string name="com_miam_budget_our_collection_title">Choisissez vos repas de la semaine ou du mois selon votre budget :</string>
+    <string name="com_miam_budget_total_budget">Mon budget max  </string>
+    <string name="com_miam_budget_number_of_persons">Nombre de personnes </string>
+    <string name="com_miam_budget_number_of_meals">Nombre de repas </string>
+    <string name="com_miam_meal_planner_products_added_to_basket">Tous les ingrédients ont bien été ajoutés au panier.</string>
+    <string name="com_miam_meal_planner_discover">Découvrez aussi :</string>
+    <string name="com_miam_budget_search_for_recipe">Que recherchez-vous?</string>
+
+    <string name="com_miam_recipe_add">Ajouter</string>
+    <string name="com_miam_basket_swap_product">Changer d\'article</string>
+    <string name="com_miam_basket_continue_shopping">Finaliser</string>
+    <string name="com_miam_meal_planner_finalize">Tous les ingrédients ont bien été ajoutés au panier.</string>
+    <string name="com_miam_catalog_no_recipe_found">Désolé, il n\'y a pas d\'idée repas correspondant à cette recherche.</string>
+    <string name="com_miam_preferences_add_tag">Ajouter</string>
+
+    <string name="com_miam_favorites_no_favorites" tools:ignore="ExtraTranslation">Vous n\'avez pas encore ajouté de repas á vos favoris</string>
+    <string name="com_miam_favorites_go_to_catalog">Explorer notre catalogue</string>
+    <string name="com_miam_my_meals_no_meal_in_basket">Vous n\'avez pas encore ajouté de repas</string>
 </resources>
